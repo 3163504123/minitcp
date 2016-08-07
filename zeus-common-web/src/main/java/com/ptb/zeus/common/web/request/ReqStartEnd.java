@@ -1,4 +1,4 @@
-package com.ptb.zeus.common.web.bean.request.base;
+package com.ptb.zeus.common.web.request;
 
 import org.hibernate.validator.constraints.Range;
 

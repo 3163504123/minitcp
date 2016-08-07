@@ -1,6 +1,7 @@
 package com.ptb.zeus.common.web.bean.request.common;
 
-import com.ptb.zeus.common.web.bean.request.base.BaseRequest;
+
+import com.ptb.zeus.common.web.request.BaseRequest;
 
 import org.hibernate.validator.constraints.NotBlank;
 

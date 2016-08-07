@@ -1,6 +1,7 @@
 package com.ptb.zeus.common.web.bean.request.media;
 
-import com.ptb.zeus.common.web.bean.request.base.ReqStartEnd;
+
+import com.ptb.zeus.common.web.request.ReqStartEnd;
 
 import org.hibernate.validator.constraints.Range;
 

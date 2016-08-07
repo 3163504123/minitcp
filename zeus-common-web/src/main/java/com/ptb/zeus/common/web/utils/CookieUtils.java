@@ -1,4 +1,4 @@
-package com.ptb.zeus.common.utils;
+package com.ptb.zeus.common.web.utils;
 
 import java.util.UUID;
 

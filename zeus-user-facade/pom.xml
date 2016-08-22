@@ -10,6 +10,7 @@
 
     <artifactId>zeus-user-facade</artifactId>
     <packaging>jar</packaging>
+    <version>3.0.0</version>
 
     <name>zeus-user-facade</name>
     <url>http://maven.apache.org</url>

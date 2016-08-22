@@ -10,6 +10,12 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>zeus-common-core</artifactId>
+    <properties>
+        <persistence-api.version>1.0</persistence-api.version>
+        <hibernate-validator>5.2.4.Final</hibernate-validator>
+        <pinyin4j.version>2.5.0</pinyin4j.version>
+        <uranus.smsclient>0.0.1-SNAPSHOT</uranus.smsclient>
+    </properties>
 
     <dependencies>
         <dependency>
@@ -25,18 +31,18 @@
         <dependency>
             <groupId>javax.persistence</groupId>
             <artifactId>persistence-api</artifactId>
-            <version>1.0</version>
+            <version>${persistence-api.version}</version>
         </dependency>
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-validator</artifactId>
-            <version>5.2.4.Final</version>
+            <version>${hibernate-validator}</version>
         </dependency>
 
         <dependency>
             <groupId>com.belerweb</groupId>
             <artifactId>pinyin4j</artifactId>
-            <version>2.5.0</version>
+            <version>${pinyin4j.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.poi</groupId>
@@ -67,23 +73,24 @@
         <dependency>
             <groupId>com.ptb.uranus.sms-client</groupId>
             <artifactId>uranus-smsclient</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>${uranus.smsclient}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.shiro</groupId>
             <artifactId>shiro-core</artifactId>
             <version>${shrio-spring.version}</version>
         </dependency>
-        <dependency>
-            <groupId>org.apache.shiro</groupId>
-            <artifactId>shiro-ehcache</artifactId>
-            <version>${shrio-spring.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.shiro</groupId>
-            <artifactId>shiro-spring</artifactId>
-            <version>${shrio-spring.version}</version>
-        </dependency>
+    <!--
+<dependency>
+     <groupId>org.apache.shiro</groupId>
+     <artifactId>shiro-ehcache</artifactId>
+     <version>${shrio-spring.version}</version>
+ </dependency>
+ <dependency>
+     <groupId>org.apache.shiro</groupId>
+     <artifactId>shiro-spring</artifactId>
+     <version>${shrio-spring.version}</version>
+ </dependency>-->
     </dependencies>
 
 </project>

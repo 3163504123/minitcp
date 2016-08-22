@@ -13,34 +13,11 @@
     <groupId>com.ptb.zeus</groupId>
     <artifactId>zeus-common-web</artifactId>
     <version>3.0.0</version>
-
     <dependencies>
         <dependency>
             <groupId>com.ptb.zeus</groupId>
             <artifactId>zeus-common-core</artifactId>
-            <version>${common-core-version}</version>
+            <version>${parent.version}</version>
         </dependency>
-        <dependency>
-            <groupId>com.ptb.zeus</groupId>
-            <artifactId>zeus-common-config</artifactId>
-            <version>${common-config-version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-validator</artifactId>
-            <version>${hibernate.volidate.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-context</artifactId>
-            <version>4.2.6.RELEASE</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-context</artifactId>
-            <version>4.2.6.RELEASE</version>
-        </dependency>
-
     </dependencies>
-    
 </project>

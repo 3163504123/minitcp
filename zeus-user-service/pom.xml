@@ -20,15 +20,48 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>dubbo</artifactId>
-            <version>${dubbo.version}</version>
+            <groupId>com.ptb.zeus</groupId>
+            <artifactId>zeus-common-config</artifactId>
+            <version>${common-config-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.ptb.zeus</groupId>
+            <artifactId>zeus-common-core</artifactId>
+            <version>${common-core-version}</version>
         </dependency>
         <dependency>
             <groupId>com.ptb.zeus</groupId>
             <artifactId>zeus-user-facade</artifactId>
             <version>${user-facade-version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>dubbo</artifactId>
+            <version>${dubbo.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring-expression</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring-aop</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring-beans</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring-context</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring-core</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
 
     </dependencies>
 </project>

@@ -2,7 +2,7 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
 	http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
 
     <dubbo:application name="zeus-server" owner="zeus" organization="ptb"/>
@@ -11,8 +11,9 @@
 
     <!--uncomment this if you want to test dubbo's monitor-->
     <!--<dubbo:monitor protocol="registry"/>-->
+<!--    <dubbo:monitor protocol="registry"/>-->
 
-    <dubbo:reference id="userService" interface="com.ptb.zeus.service.user.UserService"/>
+    <dubbo:reference id="iTbUserService" interface="com.ptb.zeus.service.user.ITbUserService"/>
 
     <!-- directly connect to provider to simulate the access to non-dubbo rest services -->
     <!--<dubbo:reference id="anotherUserRestService" interface="com.alibaba.dubbo.demo.user.facade.AnotherUserRestService" url="rest://localhost:8888/services/"/>-->

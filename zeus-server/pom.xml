@@ -19,6 +19,8 @@
     </properties>
 
     <dependencies>
+
+
         <!--spring的WEB依赖-->
         <dependency>
             <!-- Import dependency management from Spring Boot -->
@@ -71,9 +73,25 @@
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+            <version>${spring-boot.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-validation</artifactId>
             <version>${spring-boot.version}</version>
         </dependency>
+        <!--
+              <dependency>
+                  <groupId>org.springframework.boot</groupId>
+                  <artifactId>spring-boot-starter-redis</artifactId>
+                  <version>${spring-boot.version}</version>
+              </dependency>
+             <dependency>
+               <groupId>org.springframework.session</groupId>
+               <artifactId>spring-session-data-redis</artifactId>
+               <version>1.0.2.RELEASE</version>
+           </dependency>-->
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -111,5 +129,7 @@
             <artifactId>zeus-user-facade</artifactId>
             <version>${user-facade-version}</version>
         </dependency>
+
+
     </dependencies>
 </project>

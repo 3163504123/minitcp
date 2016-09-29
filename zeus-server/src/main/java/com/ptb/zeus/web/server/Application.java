@@ -12,7 +12,7 @@ import org.springframework.context.annotation.ImportResource;
 @SpringBootApplication
 @EnableAutoConfiguration(exclude={MongoAutoConfiguration.class, MongoDataAutoConfiguration.class, MongoRepositoriesAutoConfiguration.class})
 @ComponentScan
-@ImportResource("classpath:spring/dubbo-consumer.xml")
+@ImportResource("classpath:META-INFO/spring/dubbo-consumer.xml")
 public class Application {
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);

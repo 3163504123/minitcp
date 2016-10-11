@@ -51,6 +51,7 @@ public class TbUser implements Serializable {
 	/** 备注 */
 	protected String remark;
 
+
 	public Integer getId() {
 		return this.id;
 	}

@@ -20,7 +20,6 @@
 
     <dependencies>
 
-
         <!--spring的WEB依赖-->
         <dependency>
             <!-- Import dependency management from Spring Boot -->
@@ -30,10 +29,15 @@
             <type>pom</type>
             <scope>import</scope>
         </dependency>
-
+    <!--    <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-log4j</artifactId>
+            <version>${spring-boot.version}</version>
+        </dependency>-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+            <version>${spring-boot.version}</version>
             <exclusions>
                 <exclusion>
                     <artifactId>logback-classic</artifactId>
@@ -44,13 +48,8 @@
                     <groupId>org.slf4j</groupId>
                 </exclusion>
             </exclusions>
-            <version>${spring-boot.version}</version>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-log4j</artifactId>
-            <version>${spring-boot.version}</version>
-        </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-aop</artifactId>
@@ -66,11 +65,7 @@
             <artifactId>spring-context</artifactId>
             <version>${spring.version}</version>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.session</groupId>
-            <artifactId>spring-session</artifactId>
-            <version>1.0.2.RELEASE</version>
-        </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
@@ -81,18 +76,21 @@
             <artifactId>spring-boot-starter-validation</artifactId>
             <version>${spring-boot.version}</version>
         </dependency>
-        <!--
-              <dependency>
-                  <groupId>org.springframework.boot</groupId>
-                  <artifactId>spring-boot-starter-redis</artifactId>
-                  <version>${spring-boot.version}</version>
-              </dependency>
-             <dependency>
-               <groupId>org.springframework.session</groupId>
-               <artifactId>spring-session-data-redis</artifactId>
-               <version>1.0.2.RELEASE</version>
-           </dependency>-->
-
+        <dependency>
+            <groupId>org.springframework.session</groupId>
+            <artifactId>spring-session</artifactId>
+            <version>1.2.2.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-redis</artifactId>
+            <version>${spring-boot.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.session</groupId>
+            <artifactId>spring-session-data-redis</artifactId>
+            <version>1.0.2.RELEASE</version>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -100,11 +98,23 @@
             <version>${spring-boot.version}</version>
         </dependency>
 
-       <!--dubbo的依赖-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-freemarker</artifactId>
+            <version>${spring-boot.version}</version>
+        </dependency>
+
+        <!--dubbo的依赖-->
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>dubbo</artifactId>
             <version>${dubbo.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring-expression</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <!--业务的依赖-->
@@ -113,11 +123,13 @@
             <artifactId>zeus-common-core</artifactId>
             <version>${common-core-version}</version>
         </dependency>
+
         <dependency>
             <groupId>com.ptb.zeus</groupId>
             <artifactId>zeus-common-web</artifactId>
             <version>${common-web-version}</version>
         </dependency>
+
         <dependency>
             <groupId>com.ptb.zeus</groupId>
             <artifactId>zeus-common-config</artifactId>

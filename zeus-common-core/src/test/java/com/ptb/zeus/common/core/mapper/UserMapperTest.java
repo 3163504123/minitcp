@@ -26,6 +26,7 @@ public class UserMapperTest {
 		tbUser1.setNickName("12312312");
 		tbUser1.setRemark("2312312");
 		int insert = tbUserMapper.insert(tbUser1);
+		System.out.println("dddd"+insert);
 		HashMap<String,Object> objectObjectHashMap = new HashMap<>();
 		objectObjectHashMap.put("1","1");
 		List<TbUser> tbUsers = tbUserMapper.selectByMap(objectObjectHashMap);

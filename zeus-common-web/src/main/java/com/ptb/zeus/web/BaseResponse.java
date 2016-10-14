@@ -13,10 +13,14 @@ public class BaseResponse<T> {
     private String message;
     private long systemDate;
     private T data;
+    private String msg;
+    private boolean success;
 
-    public final static BaseResponse NormalResponse = new BaseResponse(0, "操作成功", null);
+    public final static BaseResponse NormalResponse = new BaseResponse(0, "操作成功", "1111");
     public BaseResponse(int code, String message, T data) {
         this.code = code;
+        this.success = code == 0 ;
+        this.msg = msg;
         this.message = message;
         this.data = data;
         this.systemDate = System.currentTimeMillis();
@@ -29,6 +33,23 @@ public class BaseResponse<T> {
     public BaseResponse(T data) {
 
         this(0,"操作成功",data);
+    }
+
+
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
+    }
+
+    public boolean isSuccess() {
+        return success;
+    }
+
+    public void setSuccess(boolean success) {
+        this.success = success;
     }
 
     public int getCode() {

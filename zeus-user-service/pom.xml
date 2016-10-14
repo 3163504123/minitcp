@@ -34,6 +34,7 @@
             <artifactId>zeus-user-facade</artifactId>
             <version>${user-facade-version}</version>
         </dependency>
+
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>dubbo</artifactId>

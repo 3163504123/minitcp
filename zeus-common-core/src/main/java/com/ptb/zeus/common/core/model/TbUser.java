@@ -24,8 +24,8 @@ public class TbUser implements Serializable {
 	protected Integer id;
 
 	/** 用户名 */
-	@TableField(value = "u_name")
-	protected String uName;
+	@TableField(value = "uname")
+	protected String uname;
 
 	/** 密码
  */
@@ -38,8 +38,8 @@ public class TbUser implements Serializable {
 	protected String email;
 
 	/** 创建时间 */
-	@TableField(value = "c_time")
-	protected Date cTime;
+	@TableField(value = "ctime")
+	protected Date ctime;
 
 	/** 账户状态 */
 	protected Integer state;
@@ -60,12 +60,12 @@ public class TbUser implements Serializable {
 		this.id = id;
 	}
 
-	public String getUName() {
-		return this.uName;
+	public String getUname() {
+		return uname;
 	}
 
-	public void setUName(String uName) {
-		this.uName = uName;
+	public void setUname(String uname) {
+		this.uname = uname;
 	}
 
 	public String getPassword() {
@@ -92,12 +92,12 @@ public class TbUser implements Serializable {
 		this.email = email;
 	}
 
-	public Date getCTime() {
-		return this.cTime;
+	public Date getCtime() {
+		return ctime;
 	}
 
-	public void setCTime(Date cTime) {
-		this.cTime = cTime;
+	public void setCtime(Date ctime) {
+		this.ctime = ctime;
 	}
 
 	public Integer getState() {

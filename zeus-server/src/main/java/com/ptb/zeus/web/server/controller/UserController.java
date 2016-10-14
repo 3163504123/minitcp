@@ -1,6 +1,8 @@
 package com.ptb.zeus.web.server.controller;
 
+import com.ptb.zeus.common.core.model.TbUser;
 import com.ptb.zeus.service.user.ITbUserService;
+import com.ptb.zeus.web.BaseResponse;
 import com.ptb.zeus.web.server.service.CacheService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -18,7 +22,7 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * Created by eric on 16/8/19.
  */
-@RequestMapping("api/user")
+@RequestMapping("api/u")
 @Controller
 public class UserController {
 	@Resource(name = "myAuthenticationManagerBean")
@@ -64,11 +68,30 @@ public class UserController {
 	}
 
 
+	@RequestMapping("add")
+	@ResponseBody
+	public BaseResponse addUser(TbUser tbUser) {
+		iTbUserService.insert(tbUser);
+		return BaseResponse.NormalResponse;
+	}
 
+	@RequestMapping("list")
+	@ResponseBody
+	public List<TbUser> getUsers() {
+		return iTbUserService.selectList(null);
+	}
 
+	@RequestMapping("edit")
+	@ResponseBody
+	public BaseResponse editUser(TbUser tbUser) {
+		iTbUserService.updateById(tbUser);
+		return BaseResponse.NormalResponse;
+	}
 
-
-
-
-
+	@RequestMapping("del")
+	@ResponseBody
+	public BaseResponse delUser(TbUser user) {
+		iTbUserService.deleteById(Long.valueOf(user.getId()));
+		return BaseResponse.NormalResponse;
+	}
 }

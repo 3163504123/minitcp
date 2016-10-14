@@ -38,11 +38,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		//需要校验权限的部分
 
 		http.authorizeRequests().
-				antMatchers("/api/user/login"
-						,"/api/user/logout","/").
-				permitAll()
-				.anyRequest().authenticated();
+				antMatchers("/**","/api/user/login"
+						,"/api/user/logout","/","/static/**").
+				permitAll();
+/*				.anyRequest().authenticated();*/
 		http.httpBasic().authenticationEntryPoint(new MyAuthenticationEntryPoint());
+		http.csrf().disable();
 
 		//退出的相关配置
 		http.logout().logoutSuccessHandler(new LogoutSuccessHandler() {

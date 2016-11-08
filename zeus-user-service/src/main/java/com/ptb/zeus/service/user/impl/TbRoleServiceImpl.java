@@ -1,8 +1,8 @@
 package com.ptb.zeus.service.user.impl;
 
 import com.baomidou.framework.service.impl.SuperServiceImpl;
-import com.ptb.zeus.common.core.mapper.TbRoleMapper;
-import com.ptb.zeus.common.core.model.TbRole;
+import com.ptb.zeus.common.core.mapper.user.TbRoleMapper;
+import com.ptb.zeus.common.core.model.user.TbRole;
 import com.ptb.zeus.service.user.ITbRoleService;
 
 import org.springframework.stereotype.Service;

@@ -44,6 +44,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 /*				.anyRequest().authenticated();*/
 		http.httpBasic().authenticationEntryPoint(new MyAuthenticationEntryPoint());
 		http.csrf().disable();
+		http.headers().frameOptions().sameOrigin();
 
 		//退出的相关配置
 		http.logout().logoutSuccessHandler(new LogoutSuccessHandler() {

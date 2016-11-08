@@ -7,14 +7,16 @@
     <groupId>com.ptb.zeus</groupId>
     <artifactId>zeus-parent</artifactId>
     <packaging>pom</packaging>
-    <version>3.0.0</version>
+    <version>3.0.0-SNAPSHOT</version>
     <properties>
-        <common-core-version>3.0.0</common-core-version>
-        <common-web-version>3.0.0</common-web-version>
-        <common-config-version>3.0.0</common-config-version>
-        <user-service-version>3.0.0</user-service-version>
-        <user-facade-version>3.0.0</user-facade-version>
-        <web-version>3.0.0</web-version>
+        <common-core-version>3.0.0-SNAPSHOT</common-core-version>
+        <common-web-version>3.0.0-SNAPSHOT</common-web-version>
+        <common-config-version>3.0.0-SNAPSHOT</common-config-version>
+        <user-service-version>3.0.0-SNAPSHOT</user-service-version>
+        <user-facade-version>3.0.0-SNAPSHOT</user-facade-version>
+        <main-service-version>3.0.0-SNAPSHOT</main-service-version>
+        <main-facade-version>3.0.0-SNAPSHOT</main-facade-version>
+        <web-version>3.0.0-SNAPSHOT</web-version>
 
         <commons-lang3.version>3.4</commons-lang3.version>
         <commons-configuration.version>1.9</commons-configuration.version>
@@ -47,6 +49,9 @@
         <module>zeus-common-web</module>
         <module>zeus-user-service</module>
         <module>zeus-user-facade</module>
+        <module>zeus-main-service</module>
+        <module>zeus-main-facade</module>
+
         <module>zeus-server</module>
     </modules>
     <dependencies>
@@ -74,8 +79,6 @@
             <artifactId>zookeeper</artifactId>
             <version>${zk.version}</version>
         </dependency>
-
-
 
         <!--        <dependency>
                     <groupId>mysql</groupId>
@@ -157,13 +160,21 @@
     </build>
 
     <distributionManagement>
-        <snapshotRepository>
-            <id>ptb-snapshots</id>
-            <url>http://192.168.5.41:8081/nexus/content/repositories/snapshots</url>
+   <!--     <snapshotRepository>
+            <id>ylxy-snapshots</id>
+            <url>http://192.168.75.201:8081/nexus/content/repositories/snapshots</url>
         </snapshotRepository>
         <repository>
-            <id>ptb-releases</id>
-            <url>http://192.168.5.41:8081/nexus/content/repositories/releases</url>
-        </repository>
-    </distributionManagement>
+            <id>ylxy-releases</id>
+            <url>http://192.168.75.201:8081/nexus/content/repositories/releases</url>
+        </repository>-->
+    <snapshotRepository>
+        <id>minitcp-snapshots</id>
+        <url>http://www.hotjk.com:8081/nexus/content/repositories/snapshots</url>
+    </snapshotRepository>
+    <repository>
+        <id>minitcp-releases</id>
+        <url>http://www.hotjk.com:8081/nexus/content/repositories/releases</url>
+    </repository>
+</distributionManagement>
 </project>

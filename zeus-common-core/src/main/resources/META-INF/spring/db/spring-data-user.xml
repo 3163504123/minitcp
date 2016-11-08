@@ -41,15 +41,15 @@ http://www.springframework.org/schema/context/spring-context-4.0.xsd">
         <!--        <property name="filters" value="stat" />-->
     </bean>
 
-    <bean id="sqlSessionFactory" class="com.baomidou.mybatisplus.spring.MybatisSqlSessionFactoryBean">
+    <bean id="userSqlSessionFactory" class="com.baomidou.mybatisplus.spring.MybatisSqlSessionFactoryBean">
         <!-- 配置数据源 -->
         <property name="dataSource" ref="userDBdataSource" />
         <!-- 配置Mybatis配置文件 -->
 <!--        <property name="configLocation" value="classpath:xml/mybatis-db.xml" />-->
         <!-- 配置别名包路径 -->
-        <property name="typeAliasesPackage" value="com.ptb.zeus.common.core.model" />
+        <property name="typeAliasesPackage" value="com.ptb.zeus.common.core.model.user" />
         <!-- 配置Mapper扫描路径（IDEA系列编辑器需要特别注意，因为IDEA的设置问题，src中的xml文件是不会被编译的，如果放在src中可能会报错，解决办法详见 常用问题-Invalid bound statement (not found) 错误如何解决?） -->
-        <property name="mapperLocations" value="classpath*:mapper/*.xml"/>
+        <property name="mapperLocations" value="classpath*:mapper/user/*.xml"/>
         <property name="plugins">
             <array>
                 <!-- 分页插件配置 -->
@@ -66,9 +66,9 @@ http://www.springframework.org/schema/context/spring-context-4.0.xsd">
     </bean>
 
     <!-- 配置Mapper扫描路径 -->
-    <bean id="mapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.ptb.zeus.common.core.mapper" />
-        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
+    <bean id="userMapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.ptb.zeus.common.core.mapper.user" />
+        <property name="sqlSessionFactoryBeanName" value="userSqlSessionFactory"></property>
     </bean>
 
 

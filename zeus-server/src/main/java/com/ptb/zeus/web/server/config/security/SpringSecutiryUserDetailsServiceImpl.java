@@ -1,6 +1,6 @@
 package com.ptb.zeus.web.server.config.security;
 
-import com.ptb.zeus.common.core.model.TbUser;
+import com.ptb.zeus.common.core.model.user.TbUser;
 import com.ptb.zeus.service.user.ITbUserService;
 
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

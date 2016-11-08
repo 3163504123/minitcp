@@ -1,0 +1,107 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="
+http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+http://www.springframework.org/schema/tx
+http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+http://www.springframework.org/schema/aop
+http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+    <!-- 加载dbconfig.properties文件，用于下边的数据库配置 -->
+    <context:property-placeholder location="classpath*:config.properties"/>
+
+    <bean id="mainDBdataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
+        <property name="url" value="${com.ptb.zeus.db.main.url}" />
+        <property name="username" value="${com.ptb.zeus.db.main.username}" />
+        <property name="password" value="${com.ptb.zeus.db.main.password}" />
+
+        <property name="maxActive" value="20" />
+        <property name="initialSize" value="1" />
+        <property name="maxWait" value="60000" />
+        <property name="minIdle" value="1" />
+
+        <property name="timeBetweenEvictionRunsMillis" value="3000" />
+        <property name="minEvictableIdleTimeMillis" value="300000" />
+
+        <property name="validationQuery" value="SELECT 'x' FROM DUAL" />
+        <property name="testWhileIdle" value="true" />
+        <property name="testOnBorrow" value="false" />
+        <property name="testOnReturn" value="false" />
+
+        <!-- mysql 不支持 poolPreparedStatements-->
+        <!--<property name="poolPreparedStatements" value="true" />-->
+        <!--<property name="maxPoolPreparedStatementPerConnectionSize" value="20" />-->
+
+        <!-- 开启Druid的监控统计功能 -->
+        <!--        <property name="filters" value="stat" />-->
+    </bean>
+
+    <bean id="mainSqlSessionFactory" class="com.baomidou.mybatisplus.spring.MybatisSqlSessionFactoryBean">
+        <!-- 配置数据源 -->
+        <property name="dataSource" ref="mainDBdataSource" />
+        <!-- 配置Mybatis配置文件 -->
+<!--        <property name="configLocation" value="classpath:xml/mybatis-db.xml" />-->
+        <!-- 配置别名包路径 -->
+        <property name="typeAliasesPackage" value="com.ptb.zeus.common.core.model.main" />
+        <!-- 配置Mapper扫描路径（IDEA系列编辑器需要特别注意，因为IDEA的设置问题，src中的xml文件是不会被编译的，如果放在src中可能会报错，解决办法详见 常用问题-Invalid bound statement (not found) 错误如何解决?） -->
+        <property name="mapperLocations" value="classpath*:mapper/main/*.xml"/>
+        <property name="plugins">
+            <array>
+                <!-- 分页插件配置 -->
+                <bean id="paginationInterceptor" class="com.baomidou.mybatisplus.plugins.PaginationInterceptor">
+                    <property name="dialectType" value="mysql" />
+                </bean>
+            </array>
+        </property>
+        <!-- Oracle需要添加该项 -->
+        <!-- <property name="dbType" value="oracle" /> -->
+
+        <!-- 全局表为下划线命名设置 true -->
+         <property name="dbColumnUnderline" value="true" />
+    </bean>
+
+    <!-- 配置Mapper扫描路径 -->
+    <bean id="mainMapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.ptb.zeus.common.core.mapper.main" />
+        <property name="sqlSessionFactoryBeanName" value="mainSqlSessionFactory"></property>
+    </bean>
+
+
+    <!--<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="mainDBdataSource" />
+        &lt;!&ndash; 自动扫描mapping.xml文件 &ndash;&gt;
+        <property name="mapperLocations" value="classpath:mapper/*.xml"></property>
+    </bean>-->
+
+    <!-- (事务管理)transaction manager, use JtaTransactionManager for global tx -->
+    <bean id="mainTransactionManager"
+          class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="mainDBdataSource" />
+    </bean>
+
+<!--    <tx:advice id="mainTxAdvice" transaction-manager="mainTransactionManager">
+        <tx:attributes>
+            <tx:method name="delete*" propagation="REQUIRED" read-only="false"
+                       rollback-for="java.lang.Exception" no-rollback-for="java.lang.RuntimeException"/>
+            <tx:method name="insert*" propagation="REQUIRED" read-only="false"
+                       rollback-for="java.lang.RuntimeException" />
+            <tx:method name="update*" propagation="REQUIRED" read-only="false"
+                       rollback-for="java.lang.Exception" />
+
+            <tx:method name="find*" propagation="SUPPORTS"/>
+            <tx:method name="get*" propagation="SUPPORTS"/>
+            <tx:method name="select*" propagation="SUPPORTS"/>
+        </tx:attributes>
+    </tx:advice>
+
+    <aop:db>
+        <aop:pointcut id="pc" expression="execution(public * com.lixing.scm.test.service.*.*(..))" /> &lt;!&ndash;把事务控制在Service层&ndash;&gt;
+        <aop:advisor pointcut-ref="pc" advice-ref="mainTxAdvice" />
+    </aop:db>-->
+
+</beans>

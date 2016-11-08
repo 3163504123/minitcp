@@ -2,7 +2,7 @@ package com.ptb.zeus.service.user;
 
 
 import com.baomidou.framework.service.ISuperService;
-import com.ptb.zeus.common.core.model.TbPermission;
+import com.ptb.zeus.common.core.model.user.TbPermission;
 
 /**
  *

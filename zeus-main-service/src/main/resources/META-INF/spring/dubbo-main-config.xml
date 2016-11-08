@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ - Copyright 1999-2011 Alibaba Group.
+ -  
+ - Licensed under the Apache License, Version 2.0 (the "License");
+ - you may not use this file except in compliance with the License.
+ - You may obtain a copy of the License at
+ -  
+ -      http://www.apache.org/licenses/LICENSE-2.0
+ -  
+ - Unless required by applicable law or agreed to in writing, software
+ - distributed under the License is distributed on an "AS IS" BASIS,
+ - WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ - See the License for the specific language governing permissions and
+ - limitations under the License.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+	http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:property-placeholder location="classpath*:config.properties"/>
+    <import resource="classpath*:META-INF/spring/core/spring.xml"/>
+    <dubbo:annotation package="${basic.package.name}" />
+    <!--
+        服务的名称
+    -->
+    <dubbo:application name="main-service-provider" owner="programmer" organization="ptb"/>
+
+    <!--
+    注册中心配置,这里直接选择ZK作为注册中心
+    -->
+    <dubbo:registry address="zookeeper://${common.zookeeper.addresss}"/>
+
+    <!--uncomment this if you want to test dubbo's monitor-->
+    <!--<dubbo:monitor protocol="registry"/>-->
+
+    <!-- here we demonstrate both annotation-based and xml-based configs -->
+    <!--包注解扫描路径-->
+
+
+<!--    <dubbo:protocol name="dubbo" serialization="kryo" optimizer="com.alibaba.dubbo.demo.SerializationOptimizerImpl"/>-->
+    <!--<dubbo:protocol name="dubbo" serialization="fst" optimizer="com.alibaba.dubbo.demo.SerializationOptimizerImpl"/>-->
+
+    <!--<dubbo:protocol name="dubbo" serialization="nativejava"/>-->
+    <!--<dubbo:protocol name="dubbo" serialization="hessian2"/>-->
+    <!--<dubbo:protocol name="dubbo" serialization="fastjson"/>-->
+    <!-- 所使用的序列化框架-->
+    <dubbo:protocol name="dubbo" serialization="dubbo"/>
+
+
+    <!--TODO according to the META-INF convention, we should use something like keep-alive-->
+    <!-- use netty server -->
+    <!--<dubbo:protocol name="rest" port="8888" keepalive="true" server="netty" iothreads="easyui" threads="100" contextpath="services"/>-->
+
+    <!-- use tjws server -->
+    <!--<dubbo:protocol name="rest" port="8888" server="tjws" contextpath="services"/>-->
+
+    <!-- use tomcat server -->
+
+    <!--rest风格的传输协议-->
+    <dubbo:protocol name="rest" port="8888" threads="500" contextpath="services" server="tomcat" accepts="500"/>
+
+    <!-- use the external tomcat or other server with the servlet approach; the port and contextpath must be exactly the same as those in external server -->
+    <!--<dubbo:protocol name="rest" port="8888" contextpath="services" server="servlet"/>-->
+
+<!--    <dubbo:protocol name="http" port="8889"/>
+    <dubbo:protocol name="hessian" port="8890"/>
+    <dubbo:protocol name="webservice" port="8892"/>-->
+
+
+<!--    <dubbo:monitor protocol="registry"/>-->
+	<dubbo:service interface="com.ptb.zeus.service.main.IMToolService" ref="mToolServiceImpl" protocol="dubbo"/>
+    <dubbo:service interface="com.ptb.zeus.service.main.IMToolSetService" ref="mToolSetServiceImpl" protocol="dubbo"/>
+    <dubbo:service interface="com.ptb.zeus.service.main.IMVedioService" ref="mVedioServiceImpl" protocol="dubbo"/>
+    <dubbo:service interface="com.ptb.zeus.service.main.IMVedioService" ref="mVedioSetServiceImpl" protocol="dubbo"/>
+
+<!--    <bean id="mainService" class="com.ptb.zeus.service.mTool.impl.TbUserServiceImpl"  />-->
+
+<!--
+    &lt;!&ndash; we add the group property since there's another annotation-configured service impl: com.alibaba.dubbo.demo.mTool.facade.AnnotationDrivenUserRestServiceImpl &ndash;&gt;
+    <dubbo:service i="com.alibaba.dubbo.demo.mTool.UserService" ref="mainService"  protocol="dubbo" group="xmlConfig"/>
+
+	<dubbo:service i="com.alibaba.dubbo.demo.mTool.facade.UserRestService" ref="mainRestService"  protocol="rest" validation="true"/>
+	<dubbo:service i="com.alibaba.dubbo.demo.mTool.facade.AnotherUserRestService" ref="anotherUserRestService"  protocol="rest"  timeout="2000" connections="100" validation="true"/>
+
+    <bean id="bidService" class="com.alibaba.dubbo.demo.bid.BidServiceImpl" />
+
+
+
+    <bean id="mainRestService" class="com.alibaba.dubbo.demo.mTool.facade.UserRestServiceImpl">
+        <property name="mainService" ref="mainService"/>
+    </bean>
+
+    <bean id="anotherUserRestService" class="com.alibaba.dubbo.demo.mTool.facade.AnotherUserRestServiceImpl">
+        <property name="mainService" ref="mainService"/>
+    </bean>-->
+</beans>

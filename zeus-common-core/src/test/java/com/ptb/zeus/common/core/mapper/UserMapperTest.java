@@ -1,6 +1,7 @@
 package com.ptb.zeus.common.core.mapper;
 
-import com.ptb.zeus.common.core.model.TbUser;
+import com.ptb.zeus.common.core.mapper.user.TbUserMapper;
+import com.ptb.zeus.common.core.model.user.TbUser;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -25,6 +26,7 @@ public class UserMapperTest {
 		TbUser tbUser1 = new TbUser();
 		tbUser1.setNickName("12312312");
 		tbUser1.setRemark("2312312");
+		tbUser1.setUname("ddddd");
 		int insert = tbUserMapper.insert(tbUser1);
 		System.out.println("dddd"+insert);
 		HashMap<String,Object> objectObjectHashMap = new HashMap<>();

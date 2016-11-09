@@ -18,7 +18,7 @@
             <tr>
                 <th field="ck" checkbox="true"></th>
                 <th data-options="field:'id',resizable:'true',sortable:'true'">id</th>
-                <th data-options="field:'name',resizable:'true',sortable:'true'">名称</th>
+                <th data-options="field:'name',resizable:'true',sortable:'true',width:10">名称</th>
                 <th data-options="field:'ctime',sortable:'true',formatter:GridDateformater"
                 ">创建时间</th>
             </tr>

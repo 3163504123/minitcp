@@ -19,13 +19,13 @@
             <dl class="hx_admin_subnav">
                 <dd>
                     <a href="#"
-                       onclick='addclass(this);s.openSelf($("#center_tabs"), "分集管理", "/vedio")'>视频集</a>
+                       onclick='addclass(this);s.openSelf($("#center_tabs"), "分集管理", "/video")'>视频管理</a>
                 </dd>
             </dl>
             <dl class="hx_admin_subnav">
                 <dd>
                     <a href="#"
-                       onclick='addclass(this);s.openSelf($("#center_tabs"), "视频集管理", "/vedioSet")'>视频管理</a>
+                       onclick='addclass(this);s.openSelf($("#center_tabs"), "视频集管理", "/videoSet")'>视频集</a>
                 </dd>
             </dl>
         </div>

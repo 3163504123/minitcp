@@ -9,16 +9,16 @@ import java.util.Map;
  * Created by eric on 16/10/9.
  */
 @Controller
-@RequestMapping("/vedio")
+@RequestMapping("/video")
 public class PMVedioController {
 	@RequestMapping("")
 	public String userPage(Map<String, Object> model) {
-		return "vedio/main";
+		return "video/main";
 	}
 
 	@RequestMapping("/edit")
 	public String editUserPage(Map<String, Object>model) {
-		return "vedio/edit";
+		return "video/edit";
 	}
 }
 

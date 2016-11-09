@@ -9,17 +9,48 @@
 <form method="post">
     <table class="dv-table" style="width:100%;background:#fafafa;padding:5px;margin-top:5px;">
         <tr>
-            <td>用户ID</td>
+            <td>ID</td>
             <td><input name="id" readonly></input>
             </td>
             <td>名称</td>
             <td><input name="name" class="easyui-validatebox"/></td>
         </tr>
+        <tr>
+            <td>介绍</td>
+            <td><input name="instruction"></input>
+            </td>
+            <td>学习层次</td>
+            <td>
+                <select class="easyui-combobox" name="studyLevel">
+                    <option value="0">初级</option>
+                    <option value="1">中级</option>
+                    <option value="2">高级</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>教师ID</td>
+            <td><input name="teacherId"></input>
+            </td>
+            <td>背景图</td>
+            <td><input name="imgUrl" class="easyui-validatebox"/></td>
+        </tr>
+        <tr>
+            <td>学生人数</td>
+            <td><input name="studentCnt" class="easyui-numberbox" ></input>
+            </td>
+        </tr>
+
         <tr style="display: none;">
+            <td>更新时间</td>
+            <td>
+                <input class="easyui-datetimebox" name="utime"
+                       data-options="showSeconds:true"/>
+            </td>
             <td>创建时间</td>
             <td>
                 <input class="easyui-datetimebox" name="ctime"
-                       data-options="showSeconds:false" style="width:150px"/>
+                       data-options="showSeconds:true"/>
             </td>
         </tr>
     </table>

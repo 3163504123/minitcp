@@ -20,7 +20,7 @@ public abstract class BaseRestController<R extends ZModel> {
 
 	@RequestMapping("add")
 	@ResponseBody
-	public BaseResponse addUser(R r) {
+	public BaseResponse add(R r) {
 		getBasicService().insert(r);
 		return BaseResponse.NormalResponse;
 	}

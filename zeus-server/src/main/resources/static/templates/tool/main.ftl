@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html style="height: 100%;">
 <head>
 
     <title>Tree Actions - jQuery EasyUI Demo</title>
 <#include "../common/commHeader.ftl"/>
 </head>
-<body>
-<div class="easyui-layout" style="min-height:620px;width:100%;height: 100%">
+<body style="height: 100%">
+<div class="easyui-layout" style="width:100%;height: 100%">
     <div region="center" style="height: 100%">
         <table id="tb-mtool" class="easyui-datagrid"
                iconCls="icon-save"

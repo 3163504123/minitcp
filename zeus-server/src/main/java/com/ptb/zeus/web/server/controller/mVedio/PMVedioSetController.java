@@ -13,18 +13,18 @@ import javax.annotation.Resource;
  * Created by eric on 16/10/9.
  */
 @Controller
-@RequestMapping("/vedioSet")
+@RequestMapping("/videoSet")
 public class PMVedioSetController {
 	@Resource
 	TbUserMapper tbUserMapper;
 	@RequestMapping("")
 	public String userPage(Map<String, Object> model) {
-		return "vedioSet/main";
+		return "videoSet/main";
 	}
 
 	@RequestMapping("/edit")
 	public String editUserPage(Map<String, Object>model) {
-		return "vedioSet/edit";
+		return "videoSet/edit";
 	}
 
 }

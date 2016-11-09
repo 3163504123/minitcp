@@ -14,7 +14,7 @@ import javax.annotation.Resource;
  * Created by eric on 16/10/9.
  */
 @Controller
-@RequestMapping("/api/vedioSet")
+@RequestMapping("/api/videoSet")
 public class AMVedioSetController extends BaseRestController<MVedioSet> {
 	@Resource
 	IMVedioSetService imVedioSetService;

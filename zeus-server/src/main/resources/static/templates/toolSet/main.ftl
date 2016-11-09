@@ -1,19 +1,19 @@
 <!DOCTYPE html>
-<html>
+<html style="height: 100%;">
 <head>
 
     <title>Tree Actions - jQuery EasyUI Demo</title>
 <#include "../common/commHeader.ftl"/>
 </head>
-<body>
-<div class="easyui-layout" style="min-height:500px;width:100%;height: 100%">
+<body style="height: 100%">
+<div class="easyui-layout" style="width:100%;height: 100%">
     <div region="center">
         <table id="tb-mtool-set" class="easyui-datagrid"
                iconCls="icon-save"
                rownumbers="true" fit="true" fitColumns="true"
                loadMsg="加载数据....."
                pagination="true" toolbar="#tb-mtool-set-toolbox" singleSelect="true"
-               style="height: 100%">
+               >
             <thead>
             <tr>
                 <th field="ck" checkbox="true"></th>

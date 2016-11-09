@@ -37,15 +37,15 @@ public class MVedioSet extends ZModel implements Serializable {
 
 	/**  */
 	@TableField(value = "study_level")
-	protected Integer studyLevel;
+	protected Integer studyLevel = 0;
 
 	/**  */
 	@TableField(value = "teacher_id")
-	protected Integer teacherId;
+	protected Integer teacherId = 0;
 
 	/**  */
 	@TableField(value = "student_cnt")
-	protected Integer studentCnt;
+	protected Integer studentCnt = 0;
 
 	/** 创建时间 */
 	@TableField(value = "ctime")
@@ -54,7 +54,7 @@ public class MVedioSet extends ZModel implements Serializable {
 	protected Date ctime;
 
 	/** 更新时间 */
-	@TableField(value = "ctime")
+	@TableField(value = "utime")
 	@DateTimeFormat(pattern = "MM/dd/yyyy HH:mm:ss")
 	@Temporal(TemporalType.TIMESTAMP)
 	protected Date utime;
@@ -119,7 +119,8 @@ public class MVedioSet extends ZModel implements Serializable {
 		if(ctime == null) {
 			ctime = new Date();
 		}
-		this.ctime = ctime;
+			this.ctime = ctime;
+
 	}
 
 	public Date getUtime() {

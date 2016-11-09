@@ -16,25 +16,12 @@
             <td><input name="name" class="easyui-validatebox"/></td>
         </tr>
         <tr>
-            <td>学生人数</td>
-            <td><input name="studentCnt" class="easyui-numberbox" ></input>
+            <td>资源地址</td>
+            <td><input name="resourceUrl" class="easyui-validatebox" ></input>
             </td>
-
-            <td>学习层次</td>
-            <td>
-                <select class="easyui-combobox"  name="studyLevel"  style="width:100px;">
-                    <option value="0">初级</option>
-                    <option value="1">中级</option>
-                    <option value="2">高级</option>
-                </select>
+            <td>观看次数</td>
+            <td><input name="uv" class="easyui-numberbox" ></input>
             </td>
-        </tr>
-        <tr>
-            <td>教师ID</td>
-            <td><input name="teacherId"></input>
-            </td>
-            <td>背景图</td>
-            <td><input name="imgUrl" class="easyui-validatebox"/></td>
         </tr>
         <tr>
             <td>介绍</td>
@@ -43,11 +30,6 @@
         </tr>
 
         <tr style="display: none;">
-            <td>更新时间</td>
-            <td>
-                <input class="easyui-datetimebox" name="utime"
-                       data-options="showSeconds:true"/>
-            </td>
             <td>创建时间</td>
             <td>
                 <input class="easyui-datetimebox" name="ctime"

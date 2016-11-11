@@ -3,26 +3,28 @@ package com.ptb.zeus.web.server.controller.user;
 import com.baomidou.framework.service.ISuperService;
 import com.ptb.zeus.common.core.model.user.TbUser;
 import com.ptb.zeus.service.user.ITbUserService;
-import com.ptb.zeus.web.server.controller.BaseRestController;
+import com.ptb.zeus.web.server.controller.BaseRestCRUDController;
+import com.ptb.zeus.web.server.request.PhoneRegisterRequest;
 import com.ptb.zeus.web.server.service.CacheService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestWrapper;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import javax.servlet.ServletException;
+import javax.servlet.http.HttpSession;
 
 /**
  * Created by eric on 16/8/19.
  */
 @RequestMapping("api/u")
-@Controller
-public class AUserController extends BaseRestController<TbUser>{
+@RestController
+public class AUserCRUDController extends BaseRestCRUDController<TbUser> {
 	@Resource(name = "myAuthenticationManagerBean")
 	AuthenticationManager authenticationManager;
 
@@ -31,6 +33,21 @@ public class AUserController extends BaseRestController<TbUser>{
 
 	@Autowired
 	CacheService cacheService;
+
+
+	@RequestMapping("reg")
+	public String register(PhoneRegisterRequest phoneRegisterRequest,HttpSession httpSession) {
+		String sessionPhone = httpSession.getAttribute("regPhone").toString();
+		String sessionVcode = httpSession.getAttribute("regVcode").toString();
+
+
+		String password = tbUser.getPassword();
+
+		if(httpSession.getAttribute("regVcode").equals(vcode)) {
+
+		}
+		return "";
+	}
 
 	@RequestMapping("login")
 	@ResponseBody

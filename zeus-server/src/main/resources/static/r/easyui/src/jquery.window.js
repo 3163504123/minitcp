@@ -239,7 +239,7 @@
 
 		function start1(e){
 			if (state.pmask){state.pmask.remove();}
-			state.pmask = $('<div class="window-proxy-mask"></div>').insertAfter(state.window);
+			state.pmask = $('<div class="window-mProxy-mask"></div>').insertAfter(state.window);
 			state.pmask.css({
 				display: 'none',
 				zIndex: $.fn.window.defaults.zIndex++,
@@ -249,7 +249,7 @@
 				height: state.window._outerHeight()
 			});
 			if (state.proxy){state.proxy.remove();}
-			state.proxy = $('<div class="window-proxy"></div>').insertAfter(state.window);
+			state.proxy = $('<div class="window-mProxy"></div>').insertAfter(state.window);
 			state.proxy.css({
 				display: 'none',
 				zIndex: $.fn.window.defaults.zIndex++,

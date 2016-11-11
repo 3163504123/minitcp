@@ -374,7 +374,7 @@
 	};
 	
 	$.fn.draggable.defaults = {
-		proxy:null,	// 'clone' or a function that will create the proxy object, 
+		proxy:null,	// 'clone' or a function that will create the mProxy object,
 					// the function has the source parameter that indicate the source object dragged.
 		revert:false,
 		cursor:'move',

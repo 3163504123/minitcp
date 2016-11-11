@@ -1,4 +1,4 @@
-package com.ptb.zeus.service.main;
+package com.ptb.zeus.common.core.repository;
 
 import com.ptb.zeus.common.core.model.main.MProxy;
 
@@ -11,10 +11,10 @@ import java.util.List;
  * @version 1.0.0
  * @description 类的功能
  */
-public interface IMProxyService {
-
-
-	List<MProxy> selectValidHost(int limit);
+public interface ProxyRespository {
+	List<MProxy> selectValidHost(int limit) ;
+	void add(MProxy mProxy) ;
+	void del(String id);
+	void checkAndDelInvalidProxy(int threadNum);
 	void genNewProxy();
-
 }

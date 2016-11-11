@@ -16,18 +16,20 @@ import java.util.List;
  * @version 1.0.0
  * @description 类的功能
  */
-public class IMProxyServiceImpl implements IMProxyService {
-	private static Logger logger = LoggerFactory.getLogger(IMProxyServiceImpl.class);
-	ProxyMongoRespository respository= new ProxyMongoRespository();
+public class MProxyServiceImpl implements IMProxyService {
+	private static Logger logger = LoggerFactory.getLogger(MProxyServiceImpl.class);
+	ProxyMongoRespository respository;
 
-	public IMProxyServiceImpl() {
-
+	public MProxyServiceImpl() {
+		respository = new ProxyMongoRespository();
 	}
 
+	public List<MProxy> selectValidHost(int limit) {
+		return respository.selectValidHost(limit);
+	}
 
 	@Override
-	public List<MProxy> select(
-			MProxy mProxy, int offset, int limit) {
-		return respository.select(mProxy,offset,limit);
+	public void genNewProxy() {
+		respository.genNewProxy();
 	}
 }

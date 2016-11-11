@@ -198,12 +198,12 @@ function _24(e){
 if(_23.pmask){
 _23.pmask.remove();
 }
-_23.pmask=$("<div class=\"window-proxy-mask\"></div>").insertAfter(_23.window);
+_23.pmask=$("<div class=\"window-mProxy-mask\"></div>").insertAfter(_23.window);
 _23.pmask.css({display:"none",zIndex:$.fn.window.defaults.zIndex++,left:e.data.left,top:e.data.top,width:_23.window._outerWidth(),height:_23.window._outerHeight()});
 if(_23.proxy){
 _23.proxy.remove();
 }
-_23.proxy=$("<div class=\"window-proxy\"></div>").insertAfter(_23.window);
+_23.proxy=$("<div class=\"window-mProxy\"></div>").insertAfter(_23.window);
 _23.proxy.css({display:"none",zIndex:$.fn.window.defaults.zIndex++,left:e.data.left,top:e.data.top});
 _23.proxy._outerWidth(e.data.width)._outerHeight(e.data.height);
 _23.proxy.hide();

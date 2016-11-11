@@ -3,7 +3,7 @@ package com.ptb.zeus.web.server.controller.mVedio;
 import com.baomidou.framework.service.ISuperService;
 import com.ptb.zeus.common.core.model.main.MVedio;
 import com.ptb.zeus.service.main.IMVedioService;
-import com.ptb.zeus.web.server.controller.BaseRestController;
+import com.ptb.zeus.web.server.controller.BaseRestCRUDController;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,7 +15,7 @@ import javax.annotation.Resource;
  */
 @Controller
 @RequestMapping("/api/video")
-public class AMVedioController extends BaseRestController<MVedio> {
+public class AMVedioCRUDController extends BaseRestCRUDController<MVedio> {
 	@Resource
 	IMVedioService imVedioService;
 

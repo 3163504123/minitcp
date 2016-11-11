@@ -9,13 +9,42 @@ import java.io.Serializable;
 public class MProxy implements Serializable {
 	String anonymity;
 	String city;
-	String connectTimeMs;
+	int connectTimeMs;
 	String country;
 	String ip;
-	String port;
+	int port;
 	String province;
 	String type;
 	long addTime;
+	long checkTime;
+
+	public long getCheckTime() {
+		return checkTime;
+	}
+
+	public void setCheckTime(long checkTime) {
+		this.checkTime = checkTime;
+	}
+
+	public int getConnectTimeMs() {
+		return connectTimeMs;
+	}
+
+	public void setConnectTimeMs(int connectTimeMs) {
+		this.connectTimeMs = connectTimeMs;
+	}
+
+	public void setIp(String ip) {
+		this.ip = ip;
+	}
+
+	public int getPort() {
+		return port;
+	}
+
+	public void setPort(int port) {
+		this.port = port;
+	}
 
 	public long getAddTime() {
 		return addTime;
@@ -41,14 +70,6 @@ public class MProxy implements Serializable {
 		this.city = city;
 	}
 
-	public String getConnectTimeMs() {
-		return connectTimeMs;
-	}
-
-	public void setConnectTimeMs(String connectTimeMs) {
-		this.connectTimeMs = connectTimeMs;
-	}
-
 	public String getCountry() {
 		return country;
 	}
@@ -59,18 +80,6 @@ public class MProxy implements Serializable {
 
 	public String getIp() {
 		return ip;
-	}
-
-	public void setIp(String ip) {
-		this.ip = ip;
-	}
-
-	public String getPort() {
-		return port;
-	}
-
-	public void setPort(String port) {
-		this.port = port;
 	}
 
 	public String getProvince() {

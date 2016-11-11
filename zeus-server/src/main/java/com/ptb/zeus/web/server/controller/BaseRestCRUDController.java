@@ -4,7 +4,8 @@ import com.baomidou.framework.service.ISuperService;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.ptb.zeus.common.core.model.ZModel;
-import com.ptb.zeus.web.BaseResponse;
+import com.ptb.zeus.web.controller.BaseController;
+import com.ptb.zeus.web.response.BaseResponse;
 import com.ptb.zeus.web.server.request.PageRequest;
 
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,7 +16,7 @@ import java.util.List;
 /**
  * Created by eric on 16/10/9.
  */
-public abstract class BaseRestController<R extends ZModel> {
+public abstract class BaseRestCRUDController<R extends ZModel> extends BaseController {
 	protected abstract ISuperService<R> getBasicService();
 
 	@RequestMapping("add")

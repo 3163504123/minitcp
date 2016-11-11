@@ -95,7 +95,7 @@ var _15=_13.tree;
 _13.disabledNodes=[];
 _14.dnd=true;
 _15.find("div.tree-node").draggable({disabled:false,revert:true,cursor:"pointer",proxy:function(_16){
-var p=$("<div class=\"tree-node-proxy\"></div>").appendTo("body");
+var p=$("<div class=\"tree-node-mProxy\"></div>").appendTo("body");
 p.html("<span class=\"tree-dnd-icon tree-dnd-no\">&nbsp;</span>"+$(_16).find(".tree-title").html());
 p.hide();
 return p;

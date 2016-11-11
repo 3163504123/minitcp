@@ -84,7 +84,7 @@ cc.find(">div,>form>div").each(function(){
 _14(this);
 });
 _16.onAdd=_17;
-cc.append("<div class=\"layout-split-proxy-h\"></div><div class=\"layout-split-proxy-v\"></div>");
+cc.append("<div class=\"layout-split-mProxy-h\"></div><div class=\"layout-split-mProxy-v\"></div>");
 cc.bind("_resize",function(e,_18){
 if($(this).hasClass("easyui-fluid")||_18){
 _2(_13);
@@ -132,9 +132,9 @@ _22.addClass("layout-split-"+dir);
 _22.resizable($.extend({},{handles:(_21[dir]||""),disabled:(!pp.panel("options").split),onStartResize:function(e){
 _1=true;
 if(dir=="north"||dir=="south"){
-var _23=$(">div.layout-split-proxy-v",_1a);
+var _23=$(">div.layout-split-mProxy-v",_1a);
 }else{
-var _23=$(">div.layout-split-proxy-h",_1a);
+var _23=$(">div.layout-split-mProxy-h",_1a);
 }
 var top=0,_24=0,_25=0,_26=0;
 var pos={display:"block"};
@@ -169,15 +169,15 @@ _23.css(pos);
 $("<div class=\"layout-mask\"></div>").css({left:0,top:0,width:cc.width(),height:cc.height()}).appendTo(cc);
 },onResize:function(e){
 if(dir=="north"||dir=="south"){
-var _27=$(">div.layout-split-proxy-v",_1a);
+var _27=$(">div.layout-split-mProxy-v",_1a);
 _27.css("top",e.pageY-$(_1a).offset().top-_27.height()/2);
 }else{
-var _27=$(">div.layout-split-proxy-h",_1a);
+var _27=$(">div.layout-split-mProxy-h",_1a);
 _27.css("left",e.pageX-$(_1a).offset().left-_27.width()/2);
 }
 return false;
 },onStopResize:function(e){
-cc.children("div.layout-split-proxy-v,div.layout-split-proxy-h").hide();
+cc.children("div.layout-split-mProxy-v,div.layout-split-mProxy-h").hide();
 pp.panel("resize",e.data);
 _2(_1a);
 _1=false;

@@ -1,4 +1,4 @@
-package com.ptb.zeus.web;
+package com.ptb.zeus.web.response;
 
 
 /**
@@ -64,8 +64,9 @@ public class BaseResponse<T> {
         return message;
     }
 
-    public void setMessage(String message) {
+    public BaseResponse<T> setMessage(String message) {
         this.message = message;
+		return this;
     }
 
     public long getSystemDate() {

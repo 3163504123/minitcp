@@ -447,7 +447,7 @@ $(this).resizable({handles:_7d,disabled:($(this).attr("resizable")?$(this).attr(
 _77.resizing=true;
 _7a.css("cursor",$("body").css("cursor"));
 if(!_77.proxy){
-_77.proxy=$("<div class=\"datagrid-resize-proxy\"></div>").appendTo(dc.view);
+_77.proxy=$("<div class=\"datagrid-resize-mProxy\"></div>").appendTo(dc.view);
 }
 _77.proxy.css({left:e.pageX-$(_78).offset().left-1,display:"none"});
 setTimeout(function(){

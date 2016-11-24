@@ -19,7 +19,7 @@
                 <th field="ck" checkbox="true"></th>
                 <th data-options="field:'uname',resizable:'true',sortable:'true'">用户名</th>
                 <th data-options="field:'password',sortable:'true'">密码</th>
-                <th data-options="field:'phone',sortable:'true'">手机号</th>
+                <th data-options="field:'ph',sortable:'true'">手机号</th>
                 <th data-options="field:'email',sortable:'true'">邮箱</th>
                 <th data-options="field:'ctime',sortable:'true',formatter:GridDateformater"
                 ">创建时间</th>

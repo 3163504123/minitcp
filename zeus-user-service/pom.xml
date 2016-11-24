@@ -21,8 +21,8 @@
     <dependencies>
         <dependency>
             <groupId>com.ptb.zeus</groupId>
-            <artifactId>zeus-common-config</artifactId>
-            <version>${common-config-version}</version>
+            <artifactId>zeus-common</artifactId>
+            <version>${common-version}</version>
         </dependency>
         <dependency>
             <groupId>com.ptb.zeus</groupId>

@@ -17,6 +17,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
@@ -79,8 +80,13 @@ public class ProxyMongoRespository implements ProxyRespository {
 			String host = document.getString("ip");
 			Integer port = document.getInteger("port");
 			executorService.submit(() -> {
-				if (isGoodProxy(host, port)) updateCheckTime(host);
-				else del(host);
+				if (isGoodProxy(host, port)) {
+					logger.info("check mProxy {}:{} {} {} [good]", Arrays.asList(host, port,document.getString("type"),document.getString("anonymity")));
+					updateCheckTime(host);
+				} else {
+					logger.info("check mProxy {}:{} [bad]", host, port);
+					del(host);
+				}
 			});
 		}
 	}
@@ -88,6 +94,12 @@ public class ProxyMongoRespository implements ProxyRespository {
 	@Override
 	public void genNewProxy() {
 		saveNewProxyFromGOUBANJIA();
+	}
+
+	@Override
+	public List<MProxy> getProxyFromRawProxyLib(
+			int size, MProxy mProxy) {
+		return null;
 	}
 
 	private void saveNewProxyFromGOUBANJIA() {
@@ -121,14 +133,11 @@ public class ProxyMongoRespository implements ProxyRespository {
 			statusCode = Request.Get("http://cdn.bootcss.com/moment.js/2.15.0/locale/es.js").
 					viaProxy(new HttpHost(host, port)).connectTimeout(1000).socketTimeout(1000).execute().returnResponse().getStatusLine().getStatusCode();
 			if (statusCode != 200) {
-				logger.info("check mProxy {}:{} [bad]", host, port);
 				return false;
 			} else {
-				logger.info("check mProxy {}:{} [good]", host, port);
 				return true;
 			}
 		} catch (IOException e) {
-			logger.info("check mProxy {}:{} [good]", host, port);
 			return false;
 		}
 	}

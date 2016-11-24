@@ -22,6 +22,18 @@ import javax.persistence.TemporalType;
 @TableName("tb_user")
 public class TbUser extends ZModel implements Serializable {
 
+	public TbUser() {
+	}
+
+	public TbUser(String uname, String phone, String password) {
+		this.uname = uname;
+		this.nickName = uname;
+		this.password = password;
+		this.phone = phone;
+		this.email = "";
+		this.ctime = new Date();
+	}
+
 	@TableField(exist = false)
 	protected static final long serialVersionUID = 1L;
 

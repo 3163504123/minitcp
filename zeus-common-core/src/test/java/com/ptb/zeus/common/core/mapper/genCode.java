@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.annotations.IdType;
 import com.baomidou.mybatisplus.generator.AutoGenerator;
 import com.baomidou.mybatisplus.generator.ConfigGenerator;
 
+import java.util.Arrays;
+
 /**
  * Created by eric on 16/9/27.
  */
@@ -15,15 +17,16 @@ public class genCode {
 		cg.setDbDriverName("com.mysql.jdbc.Driver");
 		cg.setDbUser("root");
 		cg.setDbPassword("");
-		cg.setDbUrl("jdbc:mysql://127.0.0.1:3306/minitcp-mTool?characterEncoding=utf8&useSSL=false");
+		cg.setDbUrl("jdbc:mysql://127.0.0.1:3306/minitcp_main?characterEncoding=utf8&useSSL=false");
 
+		cg.setTableNames((String[]) Arrays.asList("m_order", "m_order_item", "m_product", "m_user_service").toArray());
 		// 配置包名
 
 		cg.setXmlPackage("mapper/main");
-		cg.setEntityPackage("com.ptb.zeus.common.core.model.mTool");
-		cg.setMapperPackage("com.ptb.zeus.common.core.mapper.mTool");
-		cg.setServicePackage("com.ptb.zeus.common.core.service.mTool");
-		cg.setServiceImplPackage("com.ptb.zeus.common.core.service.mTool.impl");
+		cg.setEntityPackage("com.ptb.zeus.common.core.model.main");
+		cg.setMapperPackage("com.ptb.zeus.common.core.mapper.main");
+		cg.setServicePackage("com.ptb.zeus.service.main");
+		cg.setServiceImplPackage("com.ptb.zeus.service.main.impl");
 
 /*		cg.setConfigIdType(ConfigIdType.LONG);*/
 		cg.setIdType(IdType.AUTO);

@@ -13,8 +13,12 @@ import com.ptb.zeus.web.response.BaseResponse;
 public class UserWebExpection extends RuntimeException{
 
 
-	public static final UserWebExpection ArgError = new UserWebExpection("参数错误", 1000);
-	public static final UserWebExpection InerError = new UserWebExpection("系统内部错误", 500);
+	public static final UserWebExpection ArgError = new UserWebExpection("参数错误", 10000);
+	public static final UserWebExpection InerError = new UserWebExpection("系统内部错误",10500);
+	public static final UserWebExpection NoExistVaildCodeError = new UserWebExpection("验证码失效，请重新发送", 10600);
+	public static final UserWebExpection UsernameOrPhoneExist = new UserWebExpection("手机号或用户名已注册", 10601);
+	public static final UserWebExpection ErrorImgVcode = new UserWebExpection("错误的图片验证码", 11000);
+	public static final UserWebExpection NoExistUserError = new UserWebExpection("用户不存在", 10602);
 
 	int errorCode;
 	String errorMessage;

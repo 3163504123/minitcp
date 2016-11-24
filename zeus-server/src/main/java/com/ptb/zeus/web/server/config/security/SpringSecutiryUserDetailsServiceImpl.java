@@ -1,7 +1,9 @@
 package com.ptb.zeus.web.server.config.security;
 
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.ptb.zeus.common.core.model.user.TbUser;
 import com.ptb.zeus.service.user.ITbUserService;
+import com.ptb.zeus.web.exception.UserWebExpection;
 
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -11,6 +13,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
+import java.util.List;
 
 import javax.annotation.Resource;
 
@@ -25,15 +28,15 @@ public class SpringSecutiryUserDetailsServiceImpl implements UserDetailsService 
 	@Override
 	public UserDetails loadUserByUsername(
 			String s) throws UsernameNotFoundException {
-		TbUser tbUser = new TbUser();
-		tbUser.setUname(s);
-		TbUser queryedUser = iTbUserService.selectOne(tbUser);
-		boolean isEnable= queryedUser.getState() == 1;
+		List<TbUser> tbUsers = iTbUserService.selectList(new EntityWrapper<TbUser>().where("uname = {0}", s).or("phone = {0}", s));
 
-		User user = new User(queryedUser.getUname()
-				, queryedUser.getPassword()
-				, isEnable,true,true,true
-				, Arrays.asList(new SimpleGrantedAuthority("ROLE_ADMIN")));
-		return  user;
+		if (tbUsers == null || tbUsers.size() == 0) {
+			throw new UsernameNotFoundException("不存在的用户名", UserWebExpection.NoExistUserError);
+		}
+		TbUser tbUser = tbUsers.get(0);
+		boolean isEnable = tbUser.getState() == 1;
+
+		User user = new User(tbUser.getUname(), tbUser.getPassword(), isEnable, true, true, true, Arrays.asList(new SimpleGrantedAuthority("ROLE_ADMIN")));
+		return user;
 	}
 }

@@ -19,6 +19,16 @@
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.5.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpcore</artifactId>
+            <version>4.4.5</version>
+        </dependency>
 
         <!--spring的WEB依赖-->
         <dependency>
@@ -28,6 +38,11 @@
             <version>${spring-boot.version}</version>
             <type>pom</type>
             <scope>import</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot</artifactId>
+            <version>${spring-boot.version}</version>
         </dependency>
     <!--    <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -133,8 +148,8 @@
 
         <dependency>
             <groupId>com.ptb.zeus</groupId>
-            <artifactId>zeus-common-config</artifactId>
-            <version>${common-config-version}</version>
+            <artifactId>zeus-common</artifactId>
+            <version>${common-version}</version>
         </dependency>
 
         <dependency>
@@ -164,6 +179,17 @@
             <groupId>com.ptb.zeus</groupId>
             <artifactId>zeus-main-service</artifactId>
             <version>3.0.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot</artifactId>
+            <version>1.4.1.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpmime</artifactId>
+            <version>4.5.2</version>
+            <scope>test</scope>
         </dependency>
 
 

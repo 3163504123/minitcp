@@ -15,6 +15,14 @@ public interface IMProxyService {
 
 
 	List<MProxy> selectValidHost(int limit);
-	void genNewProxy();
 
+	List<MProxy> getFreeProxys(int size, MProxy mProxy);
+
+	List<MProxy> getGoodProxys(String serviceID, int size, MProxy mProxy);
+
+	List<MProxy> getPerfectProxys(String serviceID, int size);
+
+	List<MProxy> dynamic(String serviceID, int size);
+
+	<T> T changeDynamicProxy(String key, int size);
 }

@@ -11,7 +11,7 @@
     <properties>
         <common-core-version>3.0.0-SNAPSHOT</common-core-version>
         <common-web-version>3.0.0-SNAPSHOT</common-web-version>
-        <common-config-version>3.0.0-SNAPSHOT</common-config-version>
+        <common-version>3.0.0-SNAPSHOT</common-version>
         <user-service-version>3.0.0-SNAPSHOT</user-service-version>
         <user-facade-version>3.0.0-SNAPSHOT</user-facade-version>
         <main-service-version>3.0.0-SNAPSHOT</main-service-version>
@@ -45,7 +45,7 @@
     </properties>
     <modules>
         <module>zeus-common-core</module>
-        <module>zeus-common-config</module>
+        <module>zeus-common</module>
         <module>zeus-common-web</module>
         <module>zeus-user-service</module>
         <module>zeus-user-facade</module>

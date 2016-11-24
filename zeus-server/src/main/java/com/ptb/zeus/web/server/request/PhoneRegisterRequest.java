@@ -8,7 +8,6 @@ import javax.validation.constraints.Size;
  */
 public class PhoneRegisterRequest {
 
-
 	@Pattern(regexp = "^1[3-9]{1}\\d{9}$", message =   "手机号格式不正确")
 	String p;
 

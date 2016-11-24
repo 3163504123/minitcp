@@ -17,4 +17,6 @@ public interface ProxyRespository {
 	void del(String id);
 	void checkAndDelInvalidProxy(int threadNum);
 	void genNewProxy();
+
+	List<MProxy> getProxyFromRawProxyLib(int size, MProxy mProxy);
 }

@@ -23,7 +23,7 @@
         </tr>
         <tr>
             <td>电话</td>
-            <td><input name="phone"></input></td>
+            <td><input name="ph"></input></td>
             <td>邮箱</td>
             <td><input name="email" class="easyui-validatebox"></input></td>
         </tr>

@@ -31,7 +31,7 @@ public class AMProxyRestController extends BaseRestController {
 	@RequestMapping("free/get")
 	public Object freeProxy(MProxy mProxy, int size) {
 		if (!SecurityContextHolder.getContext().getAuthentication().isAuthenticated()) {
-			return new BaseResponse<>(imProxyService.getFreeProxys(20, mProxy));
+			return new BaseResponse<>(imProxyService.getFreeProxys(10, mProxy));
 		} else {
 			return new BaseResponse<>(imProxyService.getFreeProxys(adjustProxyNum(size), mProxy));
 		}

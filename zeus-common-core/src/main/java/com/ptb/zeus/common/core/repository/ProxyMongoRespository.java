@@ -10,9 +10,11 @@ import com.mongodb.client.model.Sorts;
 import com.ptb.zeus.common.core.model.main.MProxy;
 import com.ptb.zeus.common.core.utils.MongoUtils;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.http.HttpHost;
 import org.apache.http.client.fluent.Request;
 import org.bson.Document;
+import org.bson.conversions.Bson;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -22,6 +24,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Copyright ©2016 Beijing Tender Union Information co , LTD
@@ -35,22 +38,18 @@ public class ProxyMongoRespository implements ProxyRespository {
 
 	String tbName = "freeProxy";
 	String database = "minitcp";
+	enum E_PROXY_TYPE{
+		E_PROXY_TYPE_FREE,
+		E_PROXY_TYPE_GOOD,
+		E_PROXY_TYPE_PERFECT,
+		E_PROXY_TYPE_DYNAMIC,
+	}
 
 	private MongoCollection<Document> coll() {
 		return MongoUtils.i().getDatabase(database).getCollection(tbName);
 	}
 
-	public List<MProxy> selectValidHost(int limit) {
-		List<MProxy> list = new LinkedList<>();
 
-		FindIterable<Document> documents = coll().find().sort(Sorts.descending("checkTime")).limit(limit);
-
-		for (Document doc : documents) {
-			list.add(JSON.parseObject(doc.toJson(), MProxy.class));
-		}
-
-		return list;
-	}
 
 	public void add(MProxy mProxy) {
 		Document proxyDOC = Document.parse(JSON.toJSONString(mProxy));
@@ -75,13 +74,13 @@ public class ProxyMongoRespository implements ProxyRespository {
 	public void checkAndDelInvalidProxy(int threadNum) {
 		ExecutorService executorService = Executors.newFixedThreadPool(threadNum);
 
-		FindIterable<Document> documents = coll().find();
+		FindIterable<Document> documents = coll().find(Filters.lt("checkTime",System.currentTimeMillis()- TimeUnit.MINUTES.toMillis(5)));
 		for (Document document : documents) {
 			String host = document.getString("ip");
 			Integer port = document.getInteger("port");
 			executorService.submit(() -> {
 				if (isGoodProxy(host, port)) {
-					logger.info("check mProxy {}:{} {} {} [good]", Arrays.asList(host, port,document.getString("type"),document.getString("anonymity")));
+					logger.info("check mProxy {}:{} {} {} [good]", Arrays.asList(host, port, document.getString("type"), document.getString("anonymity")).toArray());
 					updateCheckTime(host);
 				} else {
 					logger.info("check mProxy {}:{} [bad]", host, port);
@@ -97,9 +96,29 @@ public class ProxyMongoRespository implements ProxyRespository {
 	}
 
 	@Override
-	public List<MProxy> getProxyFromRawProxyLib(
+	public List<MProxy> getFreeProxy(
 			int size, MProxy mProxy) {
-		return null;
+		return selectProxys(E_PROXY_TYPE.E_PROXY_TYPE_FREE,mProxy,size);
+	}
+
+	@Override
+	public List<MProxy> getGoodProxys(int size, MProxy mProxy) {
+		return selectProxys(E_PROXY_TYPE.E_PROXY_TYPE_GOOD,mProxy,size);
+	}
+
+	@Override
+	public List<MProxy> getPerfectProxy(int size) {
+		return selectProxys(E_PROXY_TYPE.E_PROXY_TYPE_PERFECT,null,size);
+	}
+
+	@Override
+	public void getDynamicProxy(String serviceID) {
+
+	}
+
+	@Override
+	public void changeDynamicProxy(String key) {
+
 	}
 
 	private void saveNewProxyFromGOUBANJIA() {
@@ -142,9 +161,65 @@ public class ProxyMongoRespository implements ProxyRespository {
 		}
 	}
 
+
+	public List<MProxy> selectProxys(E_PROXY_TYPE type, MProxy mProxy,int limit) {
+		List<MProxy> list = new LinkedList<>();
+		FindIterable<Document> documents = null;
+		List<Bson> filters = new LinkedList<Bson>();
+		if(mProxy != null) {
+			if (StringUtils.isNoneBlank(mProxy.getAnonymity())) {
+				filters.add(Filters.eq("anonymity", mProxy.getAnonymity()));
+			}
+
+			if (StringUtils.isNoneBlank(mProxy.getProvince())) {
+				filters.add(Filters.eq("province", mProxy.getProvince()));
+			}
+
+			if (StringUtils.isNoneBlank(mProxy.getCity())) {
+				filters.add(Filters.eq("city", mProxy.getCity()));
+			}
+
+			if (StringUtils.isNoneBlank(mProxy.getType())) {
+				filters.add(Filters.eq("type", mProxy.getType()));
+			}
+			if (mProxy.getPort() > 0) {
+				filters.add(Filters.eq("port", mProxy.getPort()));
+			}
+		}
+		switch (type) {
+			case E_PROXY_TYPE_FREE:
+				filters.add(Filters.ne("isDy", 1));
+				documents = coll().find().
+						sort(Sorts.descending("addTime")).filter(Filters.and(filters)).limit(limit);
+				break;
+			case E_PROXY_TYPE_GOOD:
+				filters.add(Filters.ne("isDy", 1));
+				documents = coll().find().
+						sort(Sorts.descending("checkTime")).filter(Filters.and(filters)).limit(limit);
+				break;
+			case E_PROXY_TYPE_PERFECT:
+				documents = coll().find().
+						sort(Sorts.descending("checkTime")).filter(Filters.eq("isDy", 1)).limit(limit);
+				break;
+		}
+
+		if(documents != null) {
+			for (Document doc : documents) {
+				list.add(JSON.parseObject(JSON.toJSONString(doc), MProxy.class));
+			}
+		}
+
+		return list;
+	}
+
 	public static void main(String[] args) {
 		ProxyMongoRespository proxyMongoRespository = new ProxyMongoRespository();
-		proxyMongoRespository.saveNewProxyFromGOUBANJIA();
-		proxyMongoRespository.checkAndDelInvalidProxy(5);
+/*		proxyMongoRespository.saveNewProxyFromGOUBANJIA();
+		proxyMongoRespository.checkAndDelInvalidProxy(5);*/
+		MProxy mProxy = new MProxy();
+		mProxy.setAnonymity("透明");
+		mProxy.setType("http");
+		List<MProxy> freeProxy = proxyMongoRespository.getGoodProxys(1,null);
+		System.out.println(JSON.toJSONString(freeProxy));
 	}
 }

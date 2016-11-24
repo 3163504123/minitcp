@@ -13,16 +13,13 @@ import java.util.List;
  */
 public interface IMProxyService {
 
-
-	List<MProxy> selectValidHost(int limit);
-
 	List<MProxy> getFreeProxys(int size, MProxy mProxy);
 
 	List<MProxy> getGoodProxys(String serviceID, int size, MProxy mProxy);
 
 	List<MProxy> getPerfectProxys(String serviceID, int size);
 
-	List<MProxy> dynamic(String serviceID, int size);
+	MProxy getDynamicProxys(String serviceID);
 
-	<T> T changeDynamicProxy(String key, int size);
+	void changeDynamicProxy(String key);
 }

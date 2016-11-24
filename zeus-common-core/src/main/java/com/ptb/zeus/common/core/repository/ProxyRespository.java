@@ -12,11 +12,17 @@ import java.util.List;
  * @description 类的功能
  */
 public interface ProxyRespository {
-	List<MProxy> selectValidHost(int limit) ;
 	void add(MProxy mProxy) ;
 	void del(String id);
 	void checkAndDelInvalidProxy(int threadNum);
-	void genNewProxy();
+	List<MProxy> getFreeProxy(int size, MProxy mProxy);
 
-	List<MProxy> getProxyFromRawProxyLib(int size, MProxy mProxy);
+	List<MProxy> getGoodProxys(int size, MProxy mProxy);
+
+	List<MProxy> getPerfectProxy(int size);
+
+	void genNewProxy();
+	void getDynamicProxy(String serviceID);
+
+	void changeDynamicProxy(String key);
 }

@@ -17,6 +17,16 @@ public class MProxy implements Serializable {
 	String type;
 	long addTime;
 	long checkTime;
+	int isDy=0;
+
+
+	public int getIsDy() {
+		return isDy;
+	}
+
+	public void setIsDy(int isDy) {
+		this.isDy = isDy;
+	}
 
 	public long getCheckTime() {
 		return checkTime;

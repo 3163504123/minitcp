@@ -30,6 +30,7 @@ public class BaseResponse<T> {
     public BaseResponse() {
     }
 
+
     public BaseResponse(T data) {
 
         this(0,"操作成功",data);

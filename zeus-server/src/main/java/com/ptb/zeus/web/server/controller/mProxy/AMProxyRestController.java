@@ -64,11 +64,11 @@ public class AMProxyRestController extends BaseRestController {
 	 * 获得动态代理
 	 *
 	 * @param proxyServiceRequest the proxy service request
-	 * @return the dynamic proxys
+	 * @return the getDynamicProxys proxys
 	 */
 	@RequestMapping("dynamic/get")
 	public Object getDynamicProxys(ProxyServiceRequest proxyServiceRequest) {
-		return new BaseResponse<>(imProxyService.dynamic(proxyServiceRequest.getKey(), proxyServiceRequest.getSize()));
+		return new BaseResponse<>(imProxyService.getDynamicProxys(proxyServiceRequest.getKey()));
 	}
 
 	/**
@@ -79,7 +79,8 @@ public class AMProxyRestController extends BaseRestController {
 	 */
 	@RequestMapping("dynamic/change")
 	public Object changeDynamicProxys(ProxyServiceRequest proxyServiceRequest) {
-		return new BaseResponse<>(imProxyService.changeDynamicProxy(proxyServiceRequest.getKey(), proxyServiceRequest.getSize()));
+		imProxyService.changeDynamicProxy(proxyServiceRequest.getKey());
+		return BaseResponse.NormalResponse;
 	}
 
 	/**
@@ -87,7 +88,7 @@ public class AMProxyRestController extends BaseRestController {
 	 *
 	 * @return 返回代理的最大数量
 	 */
-	private int  adjustProxyNum(int userNeedNum) {
+	private int adjustProxyNum(int userNeedNum) {
 		return userNeedNum > MAX_FREE_PROXY_NUM ? MAX_FREE_PROXY_NUM : userNeedNum;
 	}
 }

@@ -1,12 +1,12 @@
 package com.ptb.zeus.common.core.model.main;
 
-import java.io.Serializable;
-import java.util.Date;
-
 import com.baomidou.mybatisplus.annotations.IdType;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
+
+import java.io.Serializable;
+import java.util.Date;
 
 /**
  *
@@ -15,9 +15,22 @@ import com.baomidou.mybatisplus.annotations.TableName;
  */
 @TableName("m_user_service")
 public class MUserService implements Serializable {
+	enum EServiceType {
+		E_SERVICE_TYPE_GOOD_PORXY(10001),
+		E_SERVICE_TYPE_PERFECT_PROXY(10002),
+		E_SERVICE_TYPE_DYNAMIC_PROXY(10003),
+		;
+
+		int value;
+		EServiceType(int value) {
+			this.value = value;
+		}
+	}
 
 	@TableField(exist = false)
 	protected static final long serialVersionUID = 1L;
+
+
 
 	/** 服务编号 */
 	@TableId(type = IdType.AUTO)
@@ -35,6 +48,13 @@ public class MUserService implements Serializable {
 
 	/** 创建时间 */
 	protected Date ctime;
+
+	public MUserService(String key) {
+		this.key = key;
+	}
+
+	public MUserService() {
+	}
 
 	public Integer getId() {
 		return this.id;

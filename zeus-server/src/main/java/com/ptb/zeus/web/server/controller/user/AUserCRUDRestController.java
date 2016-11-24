@@ -6,9 +6,9 @@ import com.github.cage.Cage;
 import com.github.cage.GCage;
 import com.ptb.zeus.common.core.model.user.TbUser;
 import com.ptb.zeus.common.core.utils.PasswordUtils;
+import com.ptb.zeus.exception.UserException;
 import com.ptb.zeus.service.main.IMMobileMsgService;
 import com.ptb.zeus.service.user.ITbUserService;
-import com.ptb.zeus.web.exception.UserWebExpection;
 import com.ptb.zeus.web.response.BaseResponse;
 import com.ptb.zeus.web.server.controller.BaseRestCRUDRestController;
 import com.ptb.zeus.web.server.request.ChangePasswordReqeust;
@@ -71,7 +71,7 @@ public class AUserCRUDRestController extends BaseRestCRUDRestController<TbUser> 
 			httpSession.setAttribute(SESSION_PHONECODE, vcode);
 			return BaseResponse.NormalResponse;
 		} else {
-			throw UserWebExpection.ErrorImgVcode;
+			throw UserException.ErrorImgVcode;
 		}
 	}
 
@@ -111,7 +111,7 @@ public class AUserCRUDRestController extends BaseRestCRUDRestController<TbUser> 
 		String sessionPhone = httpSession.getAttribute(SESSION_PHONECODE).toString();
 		String sessionVcode = httpSession.getAttribute(SESSION_PHONENUMBER).toString();
 		if (StringUtils.isBlank(sessionVcode) || StringUtils.isBlank(sessionPhone) || sessionVcode.equals(changePasswordReqeust.getPhoneCode()) || sessionPhone.equals(changePasswordReqeust.getP())) {
-			throw UserWebExpection.NoExistVaildCodeError;
+			throw UserException.NoExistVaildCodeError;
 		}
 
 		if (sessionVcode.equals(changePasswordReqeust.getNpass()) && sessionPhone.equals(changePasswordReqeust.getP())) {
@@ -121,7 +121,7 @@ public class AUserCRUDRestController extends BaseRestCRUDRestController<TbUser> 
 			List<TbUser> tbUsers = iTbUserService.selectList(new EntityWrapper<TbUser>().where("phone", phone));
 
 			if (tbUsers.size() == 0) {
-				throw UserWebExpection.NoExistUserError;
+				throw UserException.NoExistUserError;
 			} else {
 				TbUser tbUser = tbUsers.get(0);
 				tbUser.setPassword(password);
@@ -131,7 +131,7 @@ public class AUserCRUDRestController extends BaseRestCRUDRestController<TbUser> 
 				return BaseResponse.NormalResponse;
 			}
 		} else {
-			throw UserWebExpection.NoExistVaildCodeError;
+			throw UserException.NoExistVaildCodeError;
 		}
 	}
 
@@ -143,7 +143,7 @@ public class AUserCRUDRestController extends BaseRestCRUDRestController<TbUser> 
 		String sessionPhone = httpSession.getAttribute(SESSION_PHONECODE).toString();
 		String sessionVcode = httpSession.getAttribute(SESSION_PHONENUMBER).toString();
 		if (StringUtils.isBlank(sessionVcode) || StringUtils.isBlank(sessionPhone) || sessionVcode.equals(phoneRegisterRequest.getV()) || sessionPhone.equals(phoneRegisterRequest.getP())) {
-			throw UserWebExpection.NoExistVaildCodeError;
+			throw UserException.NoExistVaildCodeError;
 		}
 
 		if (sessionVcode.equals(phoneRegisterRequest.getV()) && sessionPhone.equals(phoneRegisterRequest.getP())) {
@@ -155,14 +155,14 @@ public class AUserCRUDRestController extends BaseRestCRUDRestController<TbUser> 
 
 			List<TbUser> tbUsers = iTbUserService.selectList(new EntityWrapper<TbUser>().where("uname", nickname).or("phone", phone));
 			if (tbUsers.size() > 0) {
-				throw UserWebExpection.UsernameOrPhoneExist;
+				throw UserException.UsernameOrPhoneExist;
 			}
 			iTbUserService.insert(tbUser);
 			httpSession.removeAttribute(SESSION_PHONECODE);
 			httpSession.removeAttribute(SESSION_PHONENUMBER);
 			return BaseResponse.NormalResponse;
 		} else {
-			throw UserWebExpection.NoExistVaildCodeError;
+			throw UserException.NoExistVaildCodeError;
 		}
 	}
 

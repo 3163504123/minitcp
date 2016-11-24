@@ -25,7 +25,7 @@ public class BaseRestController {
 	public Object exp(Exception ex) {
 		if (ex instanceof HttpMessageNotReadableException) {
 			logger.warn(ex.getMessage(), ex);
-			UserWebExpection.ArgError.getResponse();
+			return BaseResponse.NormalResponse;
 		}
 
 		if (ex instanceof ClientAbortException) {
@@ -43,13 +43,13 @@ public class BaseRestController {
 			return objectBaseResponse;
 		} else {
 			logger.error(ex.getMessage(), ex);
-			return UserWebExpection.InerError.getResponse().setMessage(ex.getMessage());
+			return new BaseResponse<>(UserException.InerError.getErrorCode(), UserException.InerError.getErrorMessage(), null);
 		}
 	}
 
 	public void checkParams(BindingResult bindingResult) {
 		if (bindingResult.hasFieldErrors()) {
-			throw new UserWebExpection(bindingResult.getFieldError().getDefaultMessage(), UserWebExpection.ArgError.getErrorCode());
+			throw new UserWebExpection(bindingResult.getFieldError().getDefaultMessage(), UserException.ArgError.getErrorCode());
 		}
 	}
 }

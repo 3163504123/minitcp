@@ -6,6 +6,8 @@ import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
 import com.ptb.zeus.common.core.model.ZModel;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -48,6 +50,7 @@ public class MOrderItem extends ZModel<String> implements Serializable {
 	protected Integer amount;
 
 	/** 创建时间 */
+	@DateTimeFormat(pattern = "MM/dd/yyyy HH:mm:ss")
 	protected Date ctime;
 
 	public String getId() {

@@ -78,24 +78,24 @@
     <dubbo:service interface="com.ptb.zeus.service.user.ITbUserRoleService" ref="tbUserRoleServiceImpl" protocol="dubbo"/>
     <dubbo:service interface="com.ptb.zeus.service.user.ITbPermissionService" ref="tbPermissionServiceImpl" protocol="dubbo"/>
 
-<!--    <bean id="userService" class="com.ptb.zeus.service.user.impl.TbUserServiceImpl"  />-->
+<!--    <bean id="userService" class="com.ptb.zeus.service.mUser.impl.TbUserServiceImpl"  />-->
 
 <!--
-    &lt;!&ndash; we add the group property since there's another annotation-configured service impl: com.alibaba.dubbo.demo.user.facade.AnnotationDrivenUserRestServiceImpl &ndash;&gt;
-    <dubbo:service i="com.alibaba.dubbo.demo.user.UserService" ref="userService"  protocol="dubbo" group="xmlConfig"/>
+    &lt;!&ndash; we add the group property since there's another annotation-configured service impl: com.alibaba.dubbo.demo.mUser.facade.AnnotationDrivenUserRestServiceImpl &ndash;&gt;
+    <dubbo:service i="com.alibaba.dubbo.demo.mUser.UserService" ref="userService"  protocol="dubbo" group="xmlConfig"/>
 
-	<dubbo:service i="com.alibaba.dubbo.demo.user.facade.UserRestService" ref="userRestService"  protocol="rest" validation="true"/>
-	<dubbo:service i="com.alibaba.dubbo.demo.user.facade.AnotherUserRestService" ref="anotherUserRestService"  protocol="rest"  timeout="2000" connections="100" validation="true"/>
+	<dubbo:service i="com.alibaba.dubbo.demo.mUser.facade.UserRestService" ref="userRestService"  protocol="rest" validation="true"/>
+	<dubbo:service i="com.alibaba.dubbo.demo.mUser.facade.AnotherUserRestService" ref="anotherUserRestService"  protocol="rest"  timeout="2000" connections="100" validation="true"/>
 
     <bean id="bidService" class="com.alibaba.dubbo.demo.bid.BidServiceImpl" />
 
 
 
-    <bean id="userRestService" class="com.alibaba.dubbo.demo.user.facade.UserRestServiceImpl">
+    <bean id="userRestService" class="com.alibaba.dubbo.demo.mUser.facade.UserRestServiceImpl">
         <property name="userService" ref="userService"/>
     </bean>
 
-    <bean id="anotherUserRestService" class="com.alibaba.dubbo.demo.user.facade.AnotherUserRestServiceImpl">
+    <bean id="anotherUserRestService" class="com.alibaba.dubbo.demo.mUser.facade.AnotherUserRestServiceImpl">
         <property name="userService" ref="userService"/>
     </bean>-->
 </beans>

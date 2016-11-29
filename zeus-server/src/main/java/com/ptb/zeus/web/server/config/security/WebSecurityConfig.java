@@ -38,8 +38,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		//需要校验权限的部分
 
 		http.authorizeRequests().
-				antMatchers("/**","/api/user/getUserByIdentiy"
-						,"/api/user/logout","/","/static/**").
+				antMatchers("/**","/api/mUser/getUserByIdentiy"
+						,"/api/mUser/logout","/","/static/**").
 				permitAll();
 /*				.anyRequest().authenticated();*/
 		http.httpBasic().authenticationEntryPoint(new MyAuthenticationEntryPoint());

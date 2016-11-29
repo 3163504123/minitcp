@@ -34,7 +34,7 @@ i,em{font-style:normal;}
 
 .hx_admin_subnav{padding:5px;}
 .hx_admin_subnav dt{background-color:#f3f3f3;}
-.hx_admin_subnav dd{margin:6px 0;}
+.hx_admin_subnav dd{margin:2px 0;}
 .hx_admin_subnav dd a{display:block;color:#666;font-size:12px;padding:6px 10px;background-color:#f8f8f8;border-radius:2px;}
 .hx_admin_subnav a:hover,.hx_admin_subnav a.cur{background-color:#6ec8ad;color:#fff;}
 

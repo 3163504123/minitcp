@@ -6,6 +6,8 @@ import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
 import com.ptb.zeus.common.core.model.ZModel;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -48,7 +50,24 @@ public class MUserService extends ZModel<Integer> implements Serializable {
 	protected String pId;
 
 	/** 创建时间 */
+	@DateTimeFormat(pattern = "MM/dd/yyyy HH:mm:ss")
 	protected Date ctime;
+
+	/*剩余服务次数*/
+	@TableField(value = "cost_num")
+	protected Integer costNum;
+
+	/*购买的数量*/
+	@TableField(value = "init_num")
+	protected Integer initNum;
+
+	@TableField(value = "deadline_time")
+	@DateTimeFormat(pattern = "MM/dd/yyyy HH:mm:ss")
+	protected Date deadlineTime;
+
+	protected Integer method;
+
+
 
 	public MUserService(String key) {
 		this.key = key;

@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.util.UUID;
 
 /**
  * Copyright ©2016 Beijing Tender Union Information co , LTD
@@ -35,6 +34,9 @@ public class AMidentifyVCodeController {
 	@Value("${com.zeus.identity.img.max.size}")
 	private int uploadIMGMaxSize;
 
+	@Value("${com.zeus.static.resource.url.prefix}")
+	String urlPrefix;
+
 
 	@RequestMapping("get")
 	public String doIdentify() {
@@ -51,7 +53,9 @@ public class AMidentifyVCodeController {
 	public String handleFileUpload(@RequestParam("file") MultipartFile file) {
 		if (!file.isEmpty() && file.getSize() < uploadIMGMaxSize) {
 			try {
-				String uuid = storageService.saveFile(UUID.randomUUID().toString(), file.getInputStream());
+				String uuid = storageService.saveFile("vcodeImage", file.getOriginalFilename(), file.getInputStream());
+				System.out.println(String.format("%s/%s",urlPrefix,uuid));
+				return uuid;
 			} catch (IOException e) {
 				return "";
 			}

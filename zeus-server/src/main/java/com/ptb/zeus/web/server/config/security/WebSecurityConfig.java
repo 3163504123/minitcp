@@ -38,7 +38,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		//需要校验权限的部分
 
 		http.authorizeRequests().
-				antMatchers("/**","/api/user/login"
+				antMatchers("/**","/api/user/getUserByIdentiy"
 						,"/api/user/logout","/","/static/**").
 				permitAll();
 /*				.anyRequest().authenticated();*/
@@ -52,11 +52,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			public void onLogoutSuccess(
 					HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse,
 					Authentication authentication) throws IOException, ServletException {
-				System.out.println("i'm login out");
-				httpServletResponse.getWriter().write("i'm login out");
+				System.out.println("i'm getUserByIdentiy out");
+				httpServletResponse.getWriter().write("i'm getUserByIdentiy out");
 			}
 		}).logoutUrl("/u/logout").invalidateHttpSession(true);
-
 	}
 
 	@Override

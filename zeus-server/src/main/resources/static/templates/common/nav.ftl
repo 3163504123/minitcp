@@ -1,5 +1,5 @@
 <div region="west" split="true" title="导航" style="width:200px;padding: 0px;">
-    <div class="easyui-accordion" data-options="multiple:true,selected:false,fit:true"
+    <div class="easyui-accordion" data-options="multiple:false,selected:false,fit:true"
          border="false" style="witdh:100%">
         <div title="百宝箱管理" style="overflow:auto;padding:10px;">
             <dl class="hx_admin_subnav">

@@ -20,19 +20,20 @@ import javax.persistence.TemporalType;
  *
  */
 @TableName("tb_user")
-public class TbUser extends ZModel implements Serializable {
+public class TbUser extends ZModel<Integer> implements Serializable {
 
 	public TbUser() {
 	}
 
-	public TbUser(String uname, String phone, String password) {
-		this.uname = uname;
-		this.nickName = uname;
+	public TbUser(String username, String nickname, String phone, String password) {
+		this.uname = username;
+		this.nickName = nickname;
 		this.password = password;
 		this.phone = phone;
 		this.email = "";
 		this.ctime = new Date();
 	}
+
 
 	@TableField(exist = false)
 	protected static final long serialVersionUID = 1L;
@@ -72,8 +73,9 @@ public class TbUser extends ZModel implements Serializable {
 	protected String remark;
 
 
+
 	public Integer getId() {
-		return this.id;
+		return null;
 	}
 
 	public void setId(Integer id) {

@@ -1,4 +1,4 @@
-package com.ptb.zeus.web.server.controller;
+package com.ptb.zeus.web.server.controller.mBase;
 
 import com.baomidou.framework.service.ISuperService;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
@@ -16,19 +16,19 @@ import java.util.List;
 /**
  * Created by eric on 16/10/9.
  */
-public abstract class BaseRestCRUDRestController<R extends ZModel> extends BaseRestController {
-	protected abstract ISuperService<R> getBasicService();
+public abstract class BaseRestCRUDRestController<U,R extends ZModel<U>> extends BaseRestController {
+	protected abstract ISuperService getBasicService();
 
 	@RequestMapping("add")
 	@ResponseBody
-	public BaseResponse add(R r) {
+	public BaseResponse addEntity(R r) {
 		getBasicService().insert(r);
 		return BaseResponse.NormalResponse;
 	}
 
 	@RequestMapping("list")
 	@ResponseBody
-	public List<R> getUsers(PageRequest request, R r) {
+	public List<R> getEntitys(PageRequest request, R r) {
 		Page<R> page = new Page<R>(request.getPage(), request.getRows(), request.getSort());
 		page.setAsc(request.isAsc());
 
@@ -40,17 +40,20 @@ public abstract class BaseRestCRUDRestController<R extends ZModel> extends BaseR
 
 	@RequestMapping(value = "update")
 	@ResponseBody
-	public Object editUser(R r) {
+	public Object editEntity(R r) {
 		getBasicService().updateById(r);
 		return BaseResponse.NormalResponse;
 	}
 
 	@RequestMapping("del")
 	@ResponseBody
-	public BaseResponse delUser(R r) {
-		getBasicService().deleteById(Long.valueOf(r.getId()));
+	public BaseResponse delEntity(R r) {
+		getBasicService().deleteById(r.getId());
 		return BaseResponse.NormalResponse;
 	}
+
+
+
 
 }
 

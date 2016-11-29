@@ -1,16 +1,14 @@
 package com.ptb.zeus.service.main.impl;
 
-import com.alibaba.dubbo.common.utils.IOUtils;
+import com.ptb.zeus.common.core.repository.LocalStorageRespositoryImpl;
+import com.ptb.zeus.common.core.repository.StoreRespository;
 import com.ptb.zeus.service.main.StorageService;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.FileNotFoundException;
 import java.io.InputStream;
 
 /**
@@ -23,18 +21,14 @@ import java.io.InputStream;
 @Component
 public class MLocalStorageServiceImpl implements StorageService {
 	private static Logger logger = LoggerFactory.getLogger(MLocalStorageServiceImpl.class);
+	StoreRespository storeRespository = new LocalStorageRespositoryImpl();
+	@Override
+	public String saveFile(String fileType, String filename, InputStream inputStream) {
+		return storeRespository.saveFile(fileType, filename, inputStream);
+	}
 
 	@Override
-	public String saveFile(String filename, InputStream inputStream) {
-
-		BufferedOutputStream stream = null;
-		try {
-			stream = new BufferedOutputStream(new FileOutputStream(new File(filename)));
-			IOUtils.write(inputStream, stream);
-			stream.close();
-		} catch (IOException e) {
-			logger.error(String.format("write file error filename %s", filename),e);
-		}
-		return filename;
+	public InputStream getFileInputStream(String pathFileName) throws FileNotFoundException {
+		return storeRespository.getFileInputStream(pathFileName);
 	}
 }

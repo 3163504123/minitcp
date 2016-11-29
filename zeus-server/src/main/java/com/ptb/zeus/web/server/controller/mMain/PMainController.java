@@ -1,4 +1,4 @@
-package com.ptb.zeus.web.server.controller;
+package com.ptb.zeus.web.server.controller.mMain;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,16 +11,10 @@ import java.util.Map;
  */
 @Controller
 public class PMainController {
-	@RequestMapping("/")
+	@RequestMapping("admin")
 	public String welcome(Map<String, Object> model) {
 		model.put("time", new Date());
 		model.put("message", "hello");
 		return "common/mainPanel";
 	}
-
-/*	@RequestMapping("/toolSet")
-	public String toolboxPage(Map<String, Object> model) {
-		return "toolSet/main";
-	}*/
-
 }

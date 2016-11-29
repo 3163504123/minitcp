@@ -5,7 +5,7 @@
     <title>Hello World!</title>
 </head>
 <body>
-<form method="POST" enctype="multipart/form-data" action="/api/ivcode/upload">
+<form method="POST" enctype="multipart/form-data" action="/upload">
     <p>文件：<input type="file" name="file" /></p>
     <input type="text" name="xxxx">
     <p><input type="submit" value="上传" /></p>

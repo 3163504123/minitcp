@@ -20,7 +20,7 @@ import javax.persistence.TemporalType;
  *
  */
 @TableName("m_vedio_set")
-public class MVedioSet extends ZModel implements Serializable {
+public class MVedioSet extends ZModel<Integer> implements Serializable {
 
 	@TableField(exist = false)
 	protected static final long serialVersionUID = 1L;

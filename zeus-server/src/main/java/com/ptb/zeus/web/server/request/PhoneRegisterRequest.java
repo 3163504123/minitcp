@@ -17,6 +17,17 @@ public class PhoneRegisterRequest {
 	@Size(min = 6,max = 6,message = "验证码为6位数字字母")
 	String v;
 
+	@Size(min = 6,max = 20,message = "用户名应为6到20位")
+	String u;
+
+	public String getU() {
+		return u;
+	}
+
+	public void setU(String u) {
+		this.u = u;
+	}
+
 	public String getP() {
 		return p;
 	}

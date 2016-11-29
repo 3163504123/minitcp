@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.annotations.IdType;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
+import com.ptb.zeus.common.core.model.ZModel;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -14,7 +15,7 @@ import java.util.Date;
  *
  */
 @TableName("m_user_service")
-public class MUserService implements Serializable {
+public class MUserService extends ZModel<Integer> implements Serializable {
 	enum EServiceType {
 		E_SERVICE_TYPE_GOOD_PORXY(10001),
 		E_SERVICE_TYPE_PERFECT_PROXY(10002),

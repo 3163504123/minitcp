@@ -3,7 +3,7 @@ package com.ptb.zeus.web.server.controller.mTool;
 import com.baomidou.framework.service.ISuperService;
 import com.ptb.zeus.common.core.model.main.MToolSet;
 import com.ptb.zeus.service.main.IMToolSetService;
-import com.ptb.zeus.web.server.controller.BaseRestCRUDRestController;
+import com.ptb.zeus.web.server.controller.mBase.BaseRestCRUDRestController;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,7 +15,7 @@ import javax.annotation.Resource;
  */
 @Controller
 @RequestMapping("/api/toolSet")
-public class AMToolSetCRUDRestController extends BaseRestCRUDRestController<MToolSet> {
+public class AMToolSetCRUDRestController extends BaseRestCRUDRestController<Integer,MToolSet> {
 	@Resource
 	IMToolSetService imToolSetService;
 

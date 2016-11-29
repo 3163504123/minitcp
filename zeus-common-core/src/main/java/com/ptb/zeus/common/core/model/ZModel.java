@@ -7,6 +7,6 @@ package com.ptb.zeus.common.core.model;
  * @version 1.0.0
  * @description 类的功能
  */
-public abstract class ZModel {
-	public abstract Integer getId();
+public abstract class ZModel<T> {
+	public abstract T getId();
 }

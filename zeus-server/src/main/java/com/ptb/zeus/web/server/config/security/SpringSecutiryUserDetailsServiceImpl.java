@@ -1,6 +1,5 @@
 package com.ptb.zeus.web.server.config.security;
 
-import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.ptb.zeus.common.core.model.user.TbUser;
 import com.ptb.zeus.service.user.ITbUserService;
 
@@ -27,15 +26,14 @@ public class SpringSecutiryUserDetailsServiceImpl implements UserDetailsService 
 	@Override
 	public UserDetails loadUserByUsername(
 			String s) throws UsernameNotFoundException {
-		List<TbUser> tbUsers = iTbUserService.selectList(new EntityWrapper<TbUser>().where("uname = {0}", s).or("phone = {0}", s));
-
+		List<TbUser> tbUsers = iTbUserService.getUserByIdentiy(s);
 		if (tbUsers == null || tbUsers.size() == 0) {
 			throw new UsernameNotFoundException("不存在的用户名");
 		}
 		TbUser tbUser = tbUsers.get(0);
 		boolean isEnable = tbUser.getState() == 1;
 
-		User user = new User(tbUser.getUname(), tbUser.getPassword(), isEnable, true, true, true, Arrays.asList(new SimpleGrantedAuthority("ROLE_ADMIN")));
+		User user = new User(String.valueOf(tbUser.getId()), tbUser.getPassword(), isEnable, true, true, true, Arrays.asList(new SimpleGrantedAuthority("ROLE_ADMIN")));
 		return user;
 	}
 }

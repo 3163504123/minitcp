@@ -20,7 +20,7 @@ import javax.persistence.TemporalType;
  *
  */
 @TableName("m_tool")
-public class MTool extends ZModel implements Serializable {
+public class MTool extends ZModel<Integer> implements Serializable {
 
 	@TableField(exist = false)
 	protected static final long serialVersionUID = 1L;

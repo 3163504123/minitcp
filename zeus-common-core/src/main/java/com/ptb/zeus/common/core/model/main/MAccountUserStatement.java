@@ -14,31 +14,34 @@ import java.util.Date;
  * 
  *
  */
-@TableName("m_order")
-public class MOrder extends ZModel<String> implements Serializable {
+@TableName("m_account_user_statement")
+public class MAccountUserStatement extends ZModel<String> implements Serializable {
 
 	@TableField(exist = false)
 	protected static final long serialVersionUID = 1L;
 
-	/** 订单编号 */
+	/**  */
 	@TableId(type = IdType.UUID)
 	protected String id;
 
 	/** 用户ID */
 	protected Integer uid;
 
-	/** 消费金额 */
+	/** 帐户ID */
+	@TableField(value = "account_id")
+	protected Integer accountId;
+
+	/** 金额 */
 	protected Integer amount;
 
-	/** 创建时间
- */
-	protected Date ctime;
+	/** 流水来源 */
+	protected String source;
 
-	/** 订单状态 */
-	protected Integer state;
-
-	/** 备注信息 */
+	/** 备注 */
 	protected String remark;
+
+	/** 创建时间 */
+	protected Date ctime;
 
 	public String getId() {
 		return this.id;
@@ -56,6 +59,14 @@ public class MOrder extends ZModel<String> implements Serializable {
 		this.uid = uid;
 	}
 
+	public Integer getAccountId() {
+		return this.accountId;
+	}
+
+	public void setAccountId(Integer accountId) {
+		this.accountId = accountId;
+	}
+
 	public Integer getAmount() {
 		return this.amount;
 	}
@@ -64,20 +75,12 @@ public class MOrder extends ZModel<String> implements Serializable {
 		this.amount = amount;
 	}
 
-	public Date getCtime() {
-		return this.ctime;
+	public String getSource() {
+		return this.source;
 	}
 
-	public void setCtime(Date ctime) {
-		this.ctime = ctime;
-	}
-
-	public Integer getState() {
-		return this.state;
-	}
-
-	public void setState(Integer state) {
-		this.state = state;
+	public void setSource(String source) {
+		this.source = source;
 	}
 
 	public String getRemark() {
@@ -86,6 +89,14 @@ public class MOrder extends ZModel<String> implements Serializable {
 
 	public void setRemark(String remark) {
 		this.remark = remark;
+	}
+
+	public Date getCtime() {
+		return this.ctime;
+	}
+
+	public void setCtime(Date ctime) {
+		this.ctime = ctime;
 	}
 
 }

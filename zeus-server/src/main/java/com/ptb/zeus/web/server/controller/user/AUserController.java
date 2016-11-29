@@ -10,15 +10,15 @@ import com.ptb.zeus.exception.UserException;
 import com.ptb.zeus.service.main.IMMobileMsgService;
 import com.ptb.zeus.service.user.ITbUserService;
 import com.ptb.zeus.web.response.BaseResponse;
-import com.ptb.zeus.web.server.controller.BaseRestCRUDRestController;
+import com.ptb.zeus.web.server.controller.mBase.BaseRestCRUDRestController;
 import com.ptb.zeus.web.server.request.ChangePasswordReqeust;
 import com.ptb.zeus.web.server.request.LoginReqeust;
 import com.ptb.zeus.web.server.request.PhoneRegisterRequest;
 import com.ptb.zeus.web.server.request.SendRegVCodeRequest;
+import com.ptb.zeus.web.utils.SessionConstant;
 
 import org.apache.commons.lang.RandomStringUtils;
 import org.apache.commons.lang.StringUtils;
-import org.apache.commons.lang.math.RandomUtils;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestWrapper;
@@ -41,7 +41,7 @@ import javax.validation.Valid;
  */
 @RequestMapping("api/u")
 @RestController
-public class AUserCRUDRestController extends BaseRestCRUDRestController<TbUser> {
+public class AUserController extends BaseRestCRUDRestController<Integer, TbUser> {
 	@Resource(name = "myAuthenticationManagerBean")
 	AuthenticationManager authenticationManager;
 
@@ -53,9 +53,9 @@ public class AUserCRUDRestController extends BaseRestCRUDRestController<TbUser> 
 	IMMobileMsgService iMMobileMsgService;
 
 
-	String SESSION_IMGCODE = "imgVcode";
-	String SESSION_PHONECODE = "phoneCode";
-	String SESSION_PHONENUMBER = "phoneNumber";
+	String SESSION_IMGCODE = SessionConstant.E_SESSION_IMGCODE.name();
+	String SESSION_PHONECODE = SessionConstant.E_SESSION_PHONECODE.name();
+	String SESSION_PHONENUMBER = SessionConstant.E_SESSION_PHONENUM.name();
 
 
 	@RequestMapping("sendVCode")
@@ -137,26 +137,17 @@ public class AUserCRUDRestController extends BaseRestCRUDRestController<TbUser> 
 
 	@RequestMapping("reg")
 	public BaseResponse register(
-			@Valid PhoneRegisterRequest phoneRegisterRequest, BindingResult bindingResult,
+			@Valid PhoneRegisterRequest request, BindingResult bindingResult,
 			HttpSession httpSession) {
 		checkParams(bindingResult);
 		String sessionPhone = httpSession.getAttribute(SESSION_PHONECODE).toString();
 		String sessionVcode = httpSession.getAttribute(SESSION_PHONENUMBER).toString();
-		if (StringUtils.isBlank(sessionVcode) || StringUtils.isBlank(sessionPhone) || sessionVcode.equals(phoneRegisterRequest.getV()) || sessionPhone.equals(phoneRegisterRequest.getP())) {
+		if (StringUtils.isBlank(sessionVcode) || StringUtils.isBlank(sessionPhone) || sessionVcode.equals(request.getV()) || sessionPhone.equals(request.getP())) {
 			throw UserException.NoExistVaildCodeError;
 		}
 
-		if (sessionVcode.equals(phoneRegisterRequest.getV()) && sessionPhone.equals(phoneRegisterRequest.getP())) {
-			String nickname = "微采网用户" + RandomUtils.nextInt();
-			String password = PasswordUtils.encode(phoneRegisterRequest.getW());
-			String username = nickname;
-			String phone = phoneRegisterRequest.getP();
-			TbUser tbUser = new TbUser(username, phone, password);
-
-			List<TbUser> tbUsers = iTbUserService.selectList(new EntityWrapper<TbUser>().where("uname", nickname).or("phone", phone));
-			if (tbUsers.size() > 0) {
-				throw UserException.UsernameOrPhoneExist;
-			}
+		if (sessionVcode.equals(request.getV()) && sessionPhone.equals(request.getP())) {
+			TbUser tbUser = new TbUser(request.getU(), request.getP(), request.getP(), PasswordUtils.encode(request.getW()));
 			iTbUserService.insert(tbUser);
 			httpSession.removeAttribute(SESSION_PHONECODE);
 			httpSession.removeAttribute(SESSION_PHONENUMBER);
@@ -169,10 +160,16 @@ public class AUserCRUDRestController extends BaseRestCRUDRestController<TbUser> 
 
 	@RequestMapping("login")
 	@ResponseBody
-	public String login(SecurityContextHolderAwareRequestWrapper request,LoginReqeust loginReqeust) {
+	public String login(
+			SecurityContextHolderAwareRequestWrapper request, LoginReqeust loginReqeust,
+			HttpSession httpsession) {
 		try {
-			if (SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")) {
-				request.login(loginReqeust.getName(),loginReqeust.getPass());
+			if (!SecurityContextHolder.getContext().getAuthentication().isAuthenticated()) {
+				request.login(loginReqeust.getName(), loginReqeust.getPass());
+				List<TbUser> user = iTbUserService.getUserByIdentiy(loginReqeust.getName());
+				if (user.size() > 0) {
+					request.getSession().setAttribute(SessionConstant.E_SESSION_USERID.name(), user.get(0).getId());
+				}
 			} else {
 				return String.format("已登陆的用户");
 			}

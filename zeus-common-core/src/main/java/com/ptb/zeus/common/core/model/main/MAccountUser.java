@@ -6,22 +6,16 @@ import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
 import com.ptb.zeus.common.core.model.ZModel;
 
-
-import org.springframework.format.annotation.DateTimeFormat;
-
 import java.io.Serializable;
 import java.util.Date;
-
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 /**
  *
  * 
  *
  */
-@TableName("m_tool_set")
-public class MToolSet extends ZModel<Integer> implements Serializable {
+@TableName("m_account_user")
+public class MAccountUser extends ZModel<Integer> implements Serializable {
 
 	@TableField(exist = false)
 	protected static final long serialVersionUID = 1L;
@@ -30,13 +24,16 @@ public class MToolSet extends ZModel<Integer> implements Serializable {
 	@TableId(type = IdType.AUTO)
 	protected Integer id;
 
-	/** API分类名称 */
-	protected String name;
+	/** 用户点卷数 */
+	protected Integer point;
 
-	/** 添加时间 */
-	@TableField(value = "ctime")
-	@DateTimeFormat(pattern = "MM/dd/yyyy HH:mm:ss")
-	@Temporal(TemporalType.TIMESTAMP)
+	/** 可提现金额 */
+	protected Integer balance;
+
+	/** 用户ID */
+	protected Integer uid;
+
+	/** 创建时间 */
 	protected Date ctime;
 
 	public Integer getId() {
@@ -47,21 +44,35 @@ public class MToolSet extends ZModel<Integer> implements Serializable {
 		this.id = id;
 	}
 
-	public String getName() {
-		return this.name;
+	public Integer getPoint() {
+		return this.point;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setPoint(Integer point) {
+		this.point = point;
+	}
+
+	public Integer getBalance() {
+		return this.balance;
+	}
+
+	public void setBalance(Integer balance) {
+		this.balance = balance;
+	}
+
+	public Integer getUid() {
+		return this.uid;
+	}
+
+	public void setUid(Integer uid) {
+		this.uid = uid;
 	}
 
 	public Date getCtime() {
 		return this.ctime;
 	}
+
 	public void setCtime(Date ctime) {
-		if(ctime == null) {
-			ctime = new Date();
-		}
 		this.ctime = ctime;
 	}
 

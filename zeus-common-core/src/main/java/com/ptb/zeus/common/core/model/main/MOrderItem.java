@@ -1,12 +1,13 @@
 package com.ptb.zeus.common.core.model.main;
 
-import java.io.Serializable;
-import java.util.Date;
-
 import com.baomidou.mybatisplus.annotations.IdType;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
+import com.ptb.zeus.common.core.model.ZModel;
+
+import java.io.Serializable;
+import java.util.Date;
 
 /**
  *
@@ -14,14 +15,14 @@ import com.baomidou.mybatisplus.annotations.TableName;
  *
  */
 @TableName("m_order_item")
-public class MOrderItem implements Serializable {
+public class MOrderItem extends ZModel<String> implements Serializable {
 
 	@TableField(exist = false)
 	protected static final long serialVersionUID = 1L;
 
 	/** 订单项编号 */
-	@TableId(type = IdType.AUTO)
-	protected Integer id;
+	@TableId(type = IdType.UUID)
+	protected String id;
 
 	/** 订单编号
  */
@@ -49,11 +50,11 @@ public class MOrderItem implements Serializable {
 	/** 创建时间 */
 	protected Date ctime;
 
-	public Integer getId() {
+	public String getId() {
 		return this.id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 

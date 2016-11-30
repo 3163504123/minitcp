@@ -9,16 +9,16 @@ import java.util.Map;
  * Created by eric on 16/10/9.
  */
 @Controller
-@RequestMapping("admin/userService")
+@RequestMapping("/admin/userService")
 class PMUserServiceController {
 	@RequestMapping("")
 	public String userPage(Map<String, Object> model) {
-		return "/admin/tool/main";
+		return "/admin/userService/main";
 	}
 
 	@RequestMapping("/edit")
 	public String editUserPage(Map<String, Object>model) {
-		return "/admin/tool/edit";
+		return "/admin/userService/edit";
 	}
 }
 

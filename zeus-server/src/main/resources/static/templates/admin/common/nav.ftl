@@ -29,11 +29,23 @@
                 </dd>
             </dl>
         </div>
-        <div title="系统管理" style="overflow:auto;padding:10px;">
+        <div title="主营管理" style="overflow:auto;padding:10px;">
             <dl class="hx_admin_subnav">
                 <dd>
                     <a href="#"
                        onclick='addclass(this);s.openSelf($("#center_tabs"), "用户管理", "/admin/u")'>用户管理</a>
+                </dd>
+            </dl>
+            <dl class="hx_admin_subnav">
+                <dd>
+                    <a href="#"
+                       onclick='addclass(this);s.openSelf($("#center_tabs"), "商品管理", "/admin/product")'>商品管理</a>
+                </dd>
+            </dl>
+            <dl class="hx_admin_subnav">
+                <dd>
+                    <a href="#"
+                       onclick='addclass(this);s.openSelf($("#center_tabs"), "用户服务", "/admin/userService")'>用户服务</a>
                 </dd>
             </dl>
         </div>

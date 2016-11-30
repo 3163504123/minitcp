@@ -11,6 +11,9 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
 /**
  *
  * 
@@ -33,8 +36,6 @@ public class MUserService extends ZModel<Integer> implements Serializable {
 	@TableField(exist = false)
 	protected static final long serialVersionUID = 1L;
 
-
-
 	/** 服务编号 */
 	@TableId(type = IdType.AUTO)
 	protected Integer id;
@@ -43,34 +44,43 @@ public class MUserService extends ZModel<Integer> implements Serializable {
 	protected Integer uid;
 
 	/** 服务标识KEY */
-	protected String key;
+	protected String skey;
 
 	/** 商品ID */
 	@TableField(value = "p_id")
 	protected String pId;
 
 	/** 创建时间 */
+	/** 服务截至时间 */
 	@DateTimeFormat(pattern = "MM/dd/yyyy HH:mm:ss")
+	@Temporal(TemporalType.TIMESTAMP)
 	protected Date ctime;
 
-	/*剩余服务次数*/
+	/** 服务方式 */
+	protected Integer method;
+
+	/** 剩余量 */
 	@TableField(value = "cost_num")
 	protected Integer costNum;
 
-	/*购买的数量*/
+	/** 初始化时的服务量 */
 	@TableField(value = "init_num")
 	protected Integer initNum;
 
-	@TableField(value = "deadline_time")
+	/** 服务截至时间 */
 	@DateTimeFormat(pattern = "MM/dd/yyyy HH:mm:ss")
+	@Temporal(TemporalType.TIMESTAMP)
+	@TableField(value = "deadline_time")
 	protected Date deadlineTime;
 
-	protected Integer method;
+	/** 服务开始时间 */
+	@DateTimeFormat(pattern = "MM/dd/yyyy HH:mm:ss")
+	@Temporal(TemporalType.TIMESTAMP)
+	@TableField(value = "init_time")
+	protected Date initTime;
 
-
-
-	public MUserService(String key) {
-		this.key = key;
+	public MUserService(String skey) {
+		this.skey = skey;
 	}
 
 	public MUserService() {
@@ -92,12 +102,12 @@ public class MUserService extends ZModel<Integer> implements Serializable {
 		this.uid = uid;
 	}
 
-	public String getKey() {
-		return this.key;
+	public String getSkey() {
+		return this.skey;
 	}
 
-	public void setKey(String key) {
-		this.key = key;
+	public void setSkey(String skey) {
+		this.skey = skey;
 	}
 
 	public String getPId() {
@@ -113,7 +123,59 @@ public class MUserService extends ZModel<Integer> implements Serializable {
 	}
 
 	public void setCtime(Date ctime) {
+		if(ctime == null) {
+			ctime = new Date();
+		}
 		this.ctime = ctime;
+	}
+
+	public String getpId() {
+		return pId;
+	}
+
+	public void setpId(String pId) {
+		this.pId = pId;
+	}
+
+	public Integer getCostNum() {
+		return costNum;
+	}
+
+	public void setCostNum(Integer costNum) {
+		this.costNum = costNum;
+	}
+
+	public Integer getInitNum() {
+		return initNum;
+	}
+
+	public void setInitNum(Integer initNum) {
+
+		this.initNum = initNum;
+	}
+
+	public Date getDeadlineTime() {
+		return deadlineTime;
+	}
+
+	public void setDeadlineTime(Date deadlineTime) {
+		this.deadlineTime = deadlineTime;
+	}
+
+	public Integer getMethod() {
+		return method;
+	}
+
+	public void setMethod(Integer method) {
+		this.method = method;
+	}
+
+	public Date getInitTime() {
+		return initTime;
+	}
+
+	public void setInitTime(Date initTime) {
+		this.initTime = initTime;
 	}
 
 }

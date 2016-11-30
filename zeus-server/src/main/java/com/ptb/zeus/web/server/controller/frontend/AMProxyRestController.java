@@ -1,4 +1,4 @@
-package com.ptb.zeus.web.server.controller.admin.mProxy;
+package com.ptb.zeus.web.server.controller.frontend;
 
 import com.ptb.zeus.common.core.model.main.MProxy;
 import com.ptb.zeus.service.main.IMProxyService;

@@ -42,7 +42,6 @@
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>5.1.39</version>
-<!--            <version>${mysql.version}</version>-->
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>

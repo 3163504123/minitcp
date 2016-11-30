@@ -252,7 +252,7 @@ jcl_app_json.ns("jcl_app_json.ui", "jcl_app_json.util");
                 row = $(jqueryTbSelector).datagrid('getRows')[index];
             }
             if (row) {
-                $.messager.confirm('确认删除', '是否要删除这个用户?', function (r) {
+                $.messager.confirm('确认删除', '是否真的要删除?', function (r) {
                     if (r) {
                         var index = $(jqueryTbSelector).datagrid('getRowIndex', row);
                         $.post(options.del, {id: row.id}, function () {

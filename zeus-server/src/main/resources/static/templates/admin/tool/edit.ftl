@@ -77,7 +77,7 @@
 <div id="dlg-uploadFile" class="easyui-dialog" style="padding:5px;width:400px;height:200px;"
      title="上传封面图" iconCls="icon-ok" buttons="#dlg-buttons" closed="true">
     <div style="margin: 45px 50px">
-        <input id="file1" type="file" name="file" style="width: 300px;"/>
+        <input id="uploadFile" type="file" name="file1" style="width: 300px;"/>
     </div>
 </div>
 <div id="dlg-buttons">
@@ -85,7 +85,7 @@
         <tr>
             <td style="text-align:right">
                 <a href="#" class="easyui-linkbutton" iconCls="icon-save"
-                   onclick="ajaxFileUpload()save1(this)">上传</a>
+                   onclick="ajaxFileUpload()">上传</a>
                 <a href="#" class="easyui-linkbutton" iconCls="icon-cancel"
                    onclick="$('#dlg-uploadFile').dialog('close')">取消</a>
             </td>
@@ -103,8 +103,9 @@
                 {
                     url: '/upload', //用于文件上传的服务器端请求地址
                     secureuri: false, //是否需要安全协议，一般设置为false
-                    fileElementId: 'file1', //文件上传域的ID
+                    fileElementId: 'uploadFile', //文件上传域的ID
                     dataType: 'json', //返回值类型 一般设置为json
+                    data:{ Id: '123', fileType: 'lunis' },
                     success: function (data)  //服务器成功响应处理函数
                     {
                         $('#imgUrl').val(data.data)

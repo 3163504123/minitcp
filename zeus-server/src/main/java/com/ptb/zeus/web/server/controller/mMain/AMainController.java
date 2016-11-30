@@ -6,6 +6,7 @@ import com.ptb.zeus.web.response.BaseResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -28,7 +29,7 @@ public class AMainController {
 
 	@RequestMapping("/upload")
 	@ResponseBody
-	public Object handleFileUpload(MultipartFile file,String fileType) {
+	public Object handleFileUpload(@RequestParam("file1") MultipartFile file, String fileType) {
 		if(fileType == null) {
 			fileType = "default";
 		}
@@ -41,7 +42,6 @@ public class AMainController {
 				return "";
 			}
 		}
-
 		return "";
 	}
 }

@@ -1,4 +1,4 @@
-package com.ptb.zeus.web.server.controller.admin.mVcode;
+package com.ptb.zeus.web.server.controller.mMain;
 
 import com.ptb.zeus.service.main.MIdentifyVCodeService;
 import com.ptb.zeus.service.main.StorageService;

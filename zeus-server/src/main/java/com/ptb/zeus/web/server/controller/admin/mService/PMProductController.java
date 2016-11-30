@@ -13,12 +13,12 @@ import java.util.Map;
 class PMProductController {
 	@RequestMapping("")
 	public String userPage(Map<String, Object> model) {
-		return "/admin/tool/main";
+		return "/admin/product/main";
 	}
 
 	@RequestMapping("/edit")
 	public String editUserPage(Map<String, Object>model) {
-		return "/admin/tool/edit";
+		return "/admin/product/edit";
 	}
 }
 

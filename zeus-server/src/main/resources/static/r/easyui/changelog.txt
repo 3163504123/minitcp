@@ -32,7 +32,7 @@ Version 1.4.5
  * combotree: The 'setValue' and 'setValues' methods accept the paremter values in 'id' and 'text' pairs
  * combobox: Add 'showItemIcon' property.
  * combobox: Set 'groupPosition' property to 'sticky' to stick the item group to the top of drop-down panel.
- * messager: Pressing ENTER key on input box will trigger click event of the first button.
+ * messager: Pressing ENTER skey on input box will trigger click event of the first button.
  * validatebox: Add 'editable',disabled' and 'readonly' properties.
  * validatebox: Add 'enable','disable','readonly' methods.
  * validatebox: Allow the user to determine how to display the error message.
@@ -69,7 +69,7 @@ Version 1.4.3
 * Improvement
  * combobox: Improve the performance of displaying the drop-down panel.
  * combogrid: Remember the displaying text when the drop-down datagrid go to other pages.
- * combogrid: The 'setValue' and 'setValues' methods accept a key-value object.
+ * combogrid: The 'setValue' and 'setValues' methods accept a skey-value object.
  * window: The inline window's mask can auto-stretch its size to fill parent container.
  * tabs: The 'showTool' and 'hideTool' methods are available for users to show or hide the tools.
  * layout: Allow the user to override the 'cls','headerCls' and 'bodyCls' property values.
@@ -229,7 +229,7 @@ Version 1.3.3
  * combobox: Add 'loadFilter' option to allow users to change data format before loading into combobox.
  * tree: Add 'onBeforeDrop' callback event.
  * validatebox: Dependent on tooltip plugin now, add 'deltaX' property.
- * numberbox: The 'filter' options can be used to determine if the key pressed was accepted.
+ * numberbox: The 'filter' options can be used to determine if the skey pressed was accepted.
  * linkbutton: The group button is available.
  * layout: The 'minWidth','maxWidth','minHeight','maxHeight' and 'collapsible' properties are available for region panel.
 * New Plugins
@@ -366,7 +366,7 @@ Version 1.2.4
  * tabs: Cannot display the default selected tab panel in jQuery 1.6.2. fixed.
 * Improvement
  * menu: Allow users to disable or enable menu item.
- * combo: Add 'delay' property to set the delay time to do searching from the last key input event.
+ * combo: Add 'delay' property to set the delay time to do searching from the last skey input event.
  * treegrid: The 'getEditors' and 'getEditor' methods are supported now.
  * treegrid: The 'loadFilter' option is supported now.
  * messager: Add 'progress' method to display a message box with a progress bar.

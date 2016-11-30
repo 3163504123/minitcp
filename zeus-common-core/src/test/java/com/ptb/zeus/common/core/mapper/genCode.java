@@ -19,7 +19,7 @@ public class genCode {
 		cg.setDbPassword("");
 		cg.setDbUrl("jdbc:mysql://127.0.0.1:3306/minitcp_main?characterEncoding=utf8&useSSL=false");
 
-		cg.setTableNames((String[]) Arrays.asList("m_order", "m_order_item", "m_product","m_account_user_statement","m_account_user").toArray());
+		cg.setTableNames((String[]) Arrays.asList("m_user_service").toArray());
 		// 配置包名
 
 		cg.setXmlPackage("mapper/main");

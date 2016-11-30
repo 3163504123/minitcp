@@ -36,7 +36,7 @@ public class MProduct extends ZModel<Integer> implements Serializable {
 	protected String name;
 
 	/** 描述 */
-	protected String desc;
+	protected String des;
 
 	/** 详情链接 */
 	protected String url;
@@ -81,12 +81,12 @@ public class MProduct extends ZModel<Integer> implements Serializable {
 		this.name = name;
 	}
 
-	public String getDesc() {
-		return this.desc;
+	public String getDes() {
+		return this.des;
 	}
 
-	public void setDesc(String desc) {
-		this.desc = desc;
+	public void setDes(String des) {
+		this.des = des;
 	}
 
 	public String getUrl() {
@@ -102,6 +102,9 @@ public class MProduct extends ZModel<Integer> implements Serializable {
 	}
 
 	public void setCtime(Date ctime) {
+		if(ctime == null) {
+			ctime = new Date();
+		}
 		this.ctime = ctime;
 	}
 
@@ -110,6 +113,9 @@ public class MProduct extends ZModel<Integer> implements Serializable {
 	}
 
 	public void setUtime(Date utime) {
+		if(utime == null) {
+			utime = new Date();
+		}
 		this.utime = utime;
 	}
 

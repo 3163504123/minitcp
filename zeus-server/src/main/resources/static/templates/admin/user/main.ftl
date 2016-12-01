@@ -46,13 +46,13 @@
 <script>
     var tbtool = new jcl_app_json.tbTool({
         jobj: "#tb-user",
-        list: "/admin/api/u/list",
-        add: "/admin/api/u/add",
-        update: "/admin/api/u/update",
-        del: "/admin/api/u/del",
-        detailPage: "/admin/u/edit"
+        list: "${basePath}/admin/api/u/list",
+        add: "${basePath}/admin/api/u/add",
+        update: "${basePath}/admin/api/u/update",
+        del: "${basePath}/admin/api/u/del",
+        detailPage: "${basePath}/admin/u/edit"
     });
-    tbtool.create("/admin/api/u/list")
+    tbtool.create("${basePath}/admin/api/u/list")
 </script>
 </body>
 </html>

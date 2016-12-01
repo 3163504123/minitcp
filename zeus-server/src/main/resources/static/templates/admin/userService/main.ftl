@@ -45,14 +45,14 @@
 </div>
 <script>
     var tbtool = new jcl_app_json.tbTool({
-        jobj: "#tb-mUserService",
-        list: "/admin/api/userService/list",
-        add: "/admin/api/userService/add",
-        update: "/admin/api/userService/update",
-        del: "/admin/api/userService/del",
+        jobj: "${basePath}#tb-mUserService",
+        list: "${basePath}/admin/api/userService/list",
+        add: "${basePath}/admin/api/userService/add",
+        update: "${basePath}/admin/api/userService/update",
+        del: "${basePath}/admin/api/userService/del",
         detailPage: "/admin/userService/edit"
     });
-    tbtool.create("/admin/api/userService/list")
+    tbtool.create("${basePath}/admin/api/userService/list")
 </script>
 </body>
 </html>

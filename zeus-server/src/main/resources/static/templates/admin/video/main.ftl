@@ -43,13 +43,13 @@
 <script>
     var tbtool = new jcl_app_json.tbTool({
         jobj: "#tb-mvideo",
-        list: "/admin/api/video/list",
-        add: "/admin/api/video/add",
-        update: "/admin/api/video/update",
-        del: "/admin/api/video/del",
-        detailPage: "/admin/video/edit"
+        list: "${basePath}/admin/api/video/list",
+        add: "${basePath}/admin/api/video/add",
+        update: "${basePath}/admin/api/video/update",
+        del: "${basePath}/admin/api/video/del",
+        detailPage: "${basePath}/admin/video/edit"
     });
-    tbtool.create("/admin/api/video/list")
+    tbtool.create("${basePath}/admin/api/video/list")
 </script>
 </body>
 </html>

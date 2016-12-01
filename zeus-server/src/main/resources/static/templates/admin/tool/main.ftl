@@ -51,11 +51,11 @@
 <script>
     var tbtool = new jcl_app_json.tbTool({
         jobj: "#tb-mtool",
-        list: "/admin/api/tool/list",
-        add: "/admin/api/tool/add",
-        update: "/admin/api/tool/update",
-        del: "/admin/api/tool/del",
-        detailPage: "/admin/tool/edit"
+        list: "${basePath}/admin/api/tool/list",
+        add: "${basePath}/admin/api/tool/add",
+        update: "${basePath}/admin/api/tool/update",
+        del: "${basePath}/admin/api/tool/del",
+        detailPage: "${basePath}/admin/tool/edit"
     });
     tbtool.create("/admin/api/tool/list")
 </script>

@@ -48,13 +48,13 @@
 <script>
     var tbtool = new jcl_app_json.tbTool({
         jobj: "#tb-mvedio-set",
-        list: "/admin/api/videoSet/list",
-        add: "/admin/api/videoSet/add",
-        update: "/admin/api/videoSet/update",
-        del: "/admin/api/videoSet/del",
-        detailPage: "/admin/videoSet/edit"
+        list: "${basePath}/admin/api/videoSet/list",
+        add: "${basePath}/admin/api/videoSet/add",
+        update: "${basePath}/admin/api/videoSet/update",
+        del: "${basePath}/admin/api/videoSet/del",
+        detailPage: "${basePath}/admin/videoSet/edit"
     });
-    tbtool.create("/admin/api/videoSet/list")
+    tbtool.create("${basePath}/admin/api/videoSet/list")
 </script>
 </body>
 </html>

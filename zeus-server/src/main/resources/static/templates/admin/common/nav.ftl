@@ -5,13 +5,13 @@
             <dl class="hx_admin_subnav">
                 <dd>
                     <a href="#"
-                       onclick='addclass(this);s.openSelf($("#center_tabs"), "API分类管理", "/admin/toolSet")'>分类管理</a>
+                       onclick='addclass(this);s.openSelf($("#center_tabs"), "API分类管理", "${basePath}/admin/toolSet")'>分类管理</a>
                 </dd>
             </dl>
             <dl class="hx_admin_subnav">
                 <dd>
                     <a href="#"
-                       onclick='addclass(this);s.openSelf($("#center_tabs"), "API管理", "/admin/tool")'>API管理</a>
+                       onclick='addclass(this);s.openSelf($("#center_tabs"), "API管理", "${basePath}/admin/tool")'>API管理</a>
                 </dd>
             </dl>
         </div>
@@ -19,13 +19,13 @@
             <dl class="hx_admin_subnav">
                 <dd>
                     <a href="#"
-                       onclick='addclass(this);s.openSelf($("#center_tabs"), "分集管理", "/admin/video")'>视频管理</a>
+                       onclick='addclass(this);s.openSelf($("#center_tabs"), "分集管理", "${basePath}/admin/video")'>视频管理</a>
                 </dd>
             </dl>
             <dl class="hx_admin_subnav">
                 <dd>
                     <a href="#"
-                       onclick='addclass(this);s.openSelf($("#center_tabs"), "视频集管理", "/admin/videoSet")'>视频集</a>
+                       onclick='addclass(this);s.openSelf($("#center_tabs"), "视频集管理", "${basePath}/admin/videoSet")'>视频集</a>
                 </dd>
             </dl>
         </div>
@@ -33,19 +33,19 @@
             <dl class="hx_admin_subnav">
                 <dd>
                     <a href="#"
-                       onclick='addclass(this);s.openSelf($("#center_tabs"), "用户管理", "/admin/u")'>用户管理</a>
+                       onclick='addclass(this);s.openSelf($("#center_tabs"), "用户管理", "${basePath}/admin/u")'>用户管理</a>
                 </dd>
             </dl>
             <dl class="hx_admin_subnav">
                 <dd>
                     <a href="#"
-                       onclick='addclass(this);s.openSelf($("#center_tabs"), "商品管理", "/admin/product")'>商品管理</a>
+                       onclick='addclass(this);s.openSelf($("#center_tabs"), "商品管理", "${basePath}/admin/product")'>商品管理</a>
                 </dd>
             </dl>
             <dl class="hx_admin_subnav">
                 <dd>
                     <a href="#"
-                       onclick='addclass(this);s.openSelf($("#center_tabs"), "用户服务", "/admin/userService")'>用户服务</a>
+                       onclick='addclass(this);s.openSelf($("#center_tabs"), "用户服务", "${basePath}/admin/userService")'>用户服务</a>
                 </dd>
             </dl>
         </div>

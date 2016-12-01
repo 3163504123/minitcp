@@ -4,7 +4,7 @@
         <h1>后台管理系统</h1>
         <div class="hx_admin_header_r" style="display:none">
             <span>欢迎您！<em></em></span>
-            <a href="admin/login/logout">退出</a>
+            <a href="${basePath}/admin/login/logout">退出</a>
         </div>
     </div>
 </div>

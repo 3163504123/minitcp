@@ -47,11 +47,11 @@
 <script>
     var tbtool = new jcl_app_json.tbTool({
         jobj: "#tb-mProduct",
-        list: "/admin/api/product/list",
-        add: "/admin/api/product/add",
-        update: "/admin/api/product/update",
-        del: "/admin/api/product/del",
-        detailPage: "/admin/product/edit"
+        list: "${basePath}/admin/api/product/list",
+        add: "${basePath}/admin/api/product/add",
+        update: "${basePath}/admin/api/product/update",
+        del: "${basePath}/admin/api/product/del",
+        detailPage: "${basePath}/admin/product/edit"
     });
     tbtool.create("/admin/api/tool/list")
 </script>

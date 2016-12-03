@@ -33,7 +33,7 @@ public class SpringSecutiryUserDetailsServiceImpl implements UserDetailsService 
 		TbUser tbUser = tbUsers.get(0);
 		boolean isEnable = tbUser.getState() == 1;
 
-		User user = new User(String.valueOf(tbUser.getId()), tbUser.getPassword(), isEnable, true, true, true, Arrays.asList(new SimpleGrantedAuthority("ROLE_ADMIN")));
+		User user = new User(tbUser.getUname(), tbUser.getPassword(), isEnable, true, true, true, Arrays.asList(new SimpleGrantedAuthority("ROLE_ADMIN")));
 		return user;
 	}
 }

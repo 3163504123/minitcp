@@ -11,7 +11,7 @@
 </head>
 <body>
 	<h2>Editable TreeGrid</h2>
-	<p>Select one node and click edit button to perform editing.</p>
+	<ph>Select one node and click edit button to perform editing.</ph>
 	<div style="margin:20px 0;">
 		<a href="javascript:void(0)" class="easyui-linkbutton" onclick="edit()">Edit</a>
 		<a href="javascript:void(0)" class="easyui-linkbutton" onclick="save()">Save</a>
@@ -71,9 +71,9 @@
 				var persons = 0;
 				var rows = t.treegrid('getChildren');
 				for(var i=0; i<rows.length; i++){
-					var p = parseInt(rows[i].persons);
-					if (!isNaN(p)){
-						persons += p;
+					var ph = parseInt(rows[i].persons);
+					if (!isNaN(ph)){
+						persons += ph;
 					}
 				}
 				var frow = t.treegrid('getFooterRows')[0];

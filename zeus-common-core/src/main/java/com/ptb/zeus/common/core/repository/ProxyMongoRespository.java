@@ -107,17 +107,24 @@ public class ProxyMongoRespository implements ProxyRespository {
 	}
 
 	@Override
-	public List<MProxy> getPerfectProxy(int size) {
+	public List<MProxy> getPerfectProxys(int size) {
 		return selectProxys(E_PROXY_TYPE.E_PROXY_TYPE_PERFECT,null,size);
 	}
 
 	@Override
-	public void getDynamicProxy(String serviceID) {
-
+	public MProxy getDynamicProxy(String serviceID) {
+		Document key = coll().find(new Document("key", serviceID)).first();
+		if(key == null) {
+			return null;
+		}else{
+			return JSON.parseObject(JSON.toJSONString(key), MProxy.class);
+		}
 	}
 
 	@Override
 	public void changeDynamicProxy(String key) {
+		MProxy dynamicProxy = getDynamicProxy(key);
+		//to change ip
 
 	}
 
@@ -181,6 +188,10 @@ public class ProxyMongoRespository implements ProxyRespository {
 
 			if (StringUtils.isNoneBlank(mProxy.getType())) {
 				filters.add(Filters.eq("type", mProxy.getType()));
+			}
+
+			if(StringUtils.isNoneBlank(mProxy.getKey())) {
+				filters.add(Filters.eq("key", mProxy.getKey()));
 			}
 			if (mProxy.getPort() > 0) {
 				filters.add(Filters.eq("port", mProxy.getPort()));

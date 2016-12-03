@@ -11,7 +11,7 @@
 </head>
 <body>
 	<h2>ComboBox</h2>
-	<p>Click the buttons below to perform actions.</p>
+	<ph>Click the buttons below to perform actions.</ph>
 	
 	<div style="margin:20px 0;">
 		<a href="javascript:void(0)" class="easyui-linkbutton" onclick="setvalue()">SetValue</a>
@@ -77,9 +77,9 @@
 	</div>
 	<script type="text/javascript">
 		function setvalue(){
-			$.messager.prompt('SetValue','Please input the value(CO,NV,UT,etc):',function(v){
-				if (v){
-					$('#state').combobox('setValue',v);
+			$.messager.prompt('SetValue','Please input the value(CO,NV,UT,etc):',function(vcode){
+				if (vcode){
+					$('#state').combobox('setValue',vcode);
 				}
 			});
 		}

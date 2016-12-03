@@ -38,6 +38,11 @@ public class MProduct extends ZModel<Integer> implements Serializable {
 	/** 描述 */
 	protected String des;
 
+
+	/** 产品编号 其中前两位代表产品编号，后两位用来标识产品销售类型，
+	 * 如100001,则代表产品编号为1000，服务类型为01**/
+	protected Integer code;
+
 	/** 详情链接 */
 	protected String url;
 
@@ -99,6 +104,14 @@ public class MProduct extends ZModel<Integer> implements Serializable {
 
 	public Date getCtime() {
 		return this.ctime;
+	}
+
+	public Integer getCode() {
+		return code;
+	}
+
+	public void setCode(Integer code) {
+		this.code = code;
 	}
 
 	public void setCtime(Date ctime) {

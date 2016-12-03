@@ -6,9 +6,9 @@
 </head>
 <body>
 <form method="POST" enctype="multipart/form-data" action="/upload">
-    <p>文件：<input type="file" name="file" /></p>
+    <ph>文件：<input type="file" name="file" /></ph>
     <input type="text" name="xxxx">
-    <p><input type="submit" value="上传" /></p>
+    <ph><input type="submit" value="上传" /></ph>
 </form>
 </body>
 </html>

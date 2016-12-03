@@ -8,47 +8,48 @@ import javax.validation.constraints.Size;
  */
 public class PhoneRegisterRequest {
 
-	@Pattern(regexp = "^1[3-9]{1}\\d{9}$", message =   "手机号格式不正确")
-	String p;
+	@Pattern(regexp = "^1[3-9]{1}\\d{9}$", message = "手机号格式不正确")
+	String ph;
 
-	@Size(max = 25,min=6,message = "密码长度应为6-25位")
-	String w;
+	@Size(max = 25, min = 6, message = "密码长度应为6-25位")
+	String pw;
 
-	@Size(min = 6,max = 6,message = "验证码为6位数字字母")
-	String v;
+	@Size(min = 6, max = 6, message = "验证码为6位数字字母")
+	String vcode;
 
-	@Size(min = 6,max = 20,message = "用户名应为6到20位")
-	String u;
+	@Size(min = 6, max = 20, message = "用户名应为6到20位")
+	@Pattern(regexp = "\\w{6,20}", message = "用户名不合法，请用字母数字小划线定义用户名")
+	String un;
 
-	public String getU() {
-		return u;
+	public String getUn() {
+		return un;
 	}
 
-	public void setU(String u) {
-		this.u = u;
+	public void setUn(String un) {
+		this.un = un;
 	}
 
-	public String getP() {
-		return p;
+	public String getPh() {
+		return ph;
 	}
 
-	public void setP(String p) {
-		this.p = p;
+	public void setPh(String ph) {
+		this.ph = ph;
 	}
 
-	public String getW() {
-		return w;
+	public String getPw() {
+		return pw;
 	}
 
-	public void setW(String w) {
-		this.w = w;
+	public void setPw(String pw) {
+		this.pw = pw;
 	}
 
-	public String getV() {
-		return v;
+	public String getVcode() {
+		return vcode;
 	}
 
-	public void setV(String v) {
-		this.v = v;
+	public void setVcode(String vcode) {
+		this.vcode = vcode;
 	}
 }

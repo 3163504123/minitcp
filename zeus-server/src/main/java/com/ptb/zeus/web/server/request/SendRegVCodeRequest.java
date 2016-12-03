@@ -15,7 +15,7 @@ public class SendRegVCodeRequest {
 	String phone;
 
 
-	@Size(min = 6,max = 6,message = "图片验证码不正确")
+	@Size(min = 4,max = 4,message = "图片验证码不正确")
 	String imageVcode;
 
 

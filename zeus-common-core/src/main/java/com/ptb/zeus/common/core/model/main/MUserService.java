@@ -48,7 +48,7 @@ public class MUserService extends ZModel<Integer> implements Serializable {
 
 	/** 商品ID */
 	@TableField(value = "p_id")
-	protected String pId;
+	protected Integer pId;
 
 	/** 创建时间 */
 	/** 服务截至时间 */
@@ -79,6 +79,10 @@ public class MUserService extends ZModel<Integer> implements Serializable {
 	@TableField(value = "init_time")
 	protected Date initTime;
 
+
+	protected Integer enabled;
+
+
 	public MUserService(String skey) {
 		this.skey = skey;
 	}
@@ -86,38 +90,18 @@ public class MUserService extends ZModel<Integer> implements Serializable {
 	public MUserService() {
 	}
 
-	public Integer getId() {
-		return this.id;
+
+	public Integer getEnabled() {
+		return enabled;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public boolean enabled() {
+		return this.enabled == 1;
 	}
 
-	public Integer getUid() {
-		return this.uid;
+	public void setEnabled(Integer enabled) {
+		this.enabled = enabled;
 	}
-
-	public void setUid(Integer uid) {
-		this.uid = uid;
-	}
-
-	public String getSkey() {
-		return this.skey;
-	}
-
-	public void setSkey(String skey) {
-		this.skey = skey;
-	}
-
-	public String getPId() {
-		return this.pId;
-	}
-
-	public void setPId(String pId) {
-		this.pId = pId;
-	}
-
 	public Date getCtime() {
 		return this.ctime;
 	}
@@ -129,12 +113,45 @@ public class MUserService extends ZModel<Integer> implements Serializable {
 		this.ctime = ctime;
 	}
 
-	public String getpId() {
+	@Override
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public Integer getUid() {
+		return uid;
+	}
+
+	public void setUid(Integer uid) {
+		this.uid = uid;
+	}
+
+	public String getSkey() {
+		return skey;
+	}
+
+	public void setSkey(String skey) {
+		this.skey = skey;
+	}
+
+	public Integer getpId() {
 		return pId;
 	}
 
-	public void setpId(String pId) {
+	public void setpId(Integer pId) {
 		this.pId = pId;
+	}
+
+	public Integer getMethod() {
+		return method;
+	}
+
+	public void setMethod(Integer method) {
+		this.method = method;
 	}
 
 	public Integer getCostNum() {
@@ -150,7 +167,6 @@ public class MUserService extends ZModel<Integer> implements Serializable {
 	}
 
 	public void setInitNum(Integer initNum) {
-
 		this.initNum = initNum;
 	}
 
@@ -162,14 +178,6 @@ public class MUserService extends ZModel<Integer> implements Serializable {
 		this.deadlineTime = deadlineTime;
 	}
 
-	public Integer getMethod() {
-		return method;
-	}
-
-	public void setMethod(Integer method) {
-		this.method = method;
-	}
-
 	public Date getInitTime() {
 		return initTime;
 	}
@@ -177,5 +185,4 @@ public class MUserService extends ZModel<Integer> implements Serializable {
 	public void setInitTime(Date initTime) {
 		this.initTime = initTime;
 	}
-
 }

@@ -1,4 +1,6 @@
-package com.ptb.zeus.common.core.repository; import com.ptb.zeus.common.core.model.main.MProxy;
+package com.ptb.zeus.common.core.repository;
+
+import com.ptb.zeus.common.core.model.main.MProxy;
 
 import java.util.List;
 
@@ -17,11 +19,11 @@ public interface ProxyRespository {
 
 	List<MProxy> getGoodProxys(int size, MProxy mProxy);
 
-	List<MProxy> getPerfectProxy(int size);
+	List<MProxy> getPerfectProxys(int size);
 
 	void genNewProxy();
 	void checkAndDelInvalidProxy(int threadNum);
-	void getDynamicProxy(String serviceID);
+	MProxy getDynamicProxy(String serviceID);
 
 	void changeDynamicProxy(String key);
 }

@@ -9,7 +9,7 @@
 <div class="easyui-layout" style="min-height:500px;width:100%;height: 100%">
     <div region="center">
         <table id="tb-user" class="easyui-datagrid"
-               url="/admin/api/u/list" iconCls="icon-save"
+               url="/admin/api/un/list" iconCls="icon-save"
                rownumbers="true" fit="true" fitColumns="true"
                loadMsg="加载数据....."
                pagination="true" toolbar="#tb-user-toolbox" singleSelect="true"
@@ -46,13 +46,13 @@
 <script>
     var tbtool = new jcl_app_json.tbTool({
         jobj: "#tb-user",
-        list: "${basePath}/admin/api/u/list",
-        add: "${basePath}/admin/api/u/add",
-        update: "${basePath}/admin/api/u/update",
-        del: "${basePath}/admin/api/u/del",
-        detailPage: "${basePath}/admin/u/edit"
+        list: "${basePath}/admin/api/un/list",
+        add: "${basePath}/admin/api/un/add",
+        update: "${basePath}/admin/api/un/update",
+        del: "${basePath}/admin/api/un/del",
+        detailPage: "${basePath}/admin/un/edit"
     });
-    tbtool.create("${basePath}/admin/api/u/list")
+    tbtool.create("${basePath}/admin/api/un/list")
 </script>
 </body>
 </html>

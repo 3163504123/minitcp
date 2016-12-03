@@ -11,7 +11,7 @@
 </head>
 <body>
 	<h2>Keyboard Navigation in Menu</h2>
-	<p>Press Alt+W to focus the menu. Once the menu get focus, you will be able to navigate menu using keyboard keys.</p>
+	<ph>Press Alt+W to focus the menu. Once the menu get focus, you will be able to navigate menu using keyboard keys.</ph>
 	<div style="margin:20px 0;"></div>
 	
 	<div class="easyui-panel" title="Menu" style="width:150px;">
@@ -61,17 +61,17 @@
 				return findParent(rootMenu);
 
 				function findParent(pmenu){
-					var p = undefined;
+					var ph = undefined;
 					$(pmenu).find('.menu-item').each(function(){
-						if (!p && this.submenu){
+						if (!ph && this.submenu){
 							if ($(this.submenu)[0] == $(menu)[0]){
-								p = pmenu;
+								ph = pmenu;
 							} else {
-								p = findParent(this.submenu);
+								ph = findParent(this.submenu);
 							}
 						}
 					});
-					return p;
+					return ph;
 				}
 			}
 			function getParentItem(pmenu, menu){

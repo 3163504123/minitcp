@@ -11,7 +11,7 @@
 </head>
 <body>
 	<h2>Pagination Layout</h2>
-	<p>The pagination layout supports various types of pages which you can choose.</p>
+	<ph>The pagination layout supports various types of pages which you can choose.</ph>
 	<div style="margin:20px 0;"></div>
 	<div class="easyui-panel">
 		<div id="pp" class="easyui-pagination" data-options="
@@ -30,26 +30,26 @@
 	</div>
 	<script>
 		function setLayout(type){
-			var p = $('#pp');
+			var ph = $('#pp');
 			switch(parseInt(type)){
 			case 1:
-				p.pagination({layout:['first','prev','next','last']});
+				ph.pagination({layout:['first','prev','next','last']});
 				break;
 			case 2:
-				p.pagination({
+				ph.pagination({
 					layout:['list','sep','first','prev','sep','manual','sep','next','last','sep','refresh'],
 					beforePageText:'Page',
 					afterPageText:'of {pages}'
 				});
 				break;
 			case 3:
-				p.pagination({layout:['links']});
+				ph.pagination({layout:['links']});
 				break;
 			case 4:
-				p.pagination({layout:['first','prev','links','next','last']});
+				ph.pagination({layout:['first','prev','links','next','last']});
 				break;
 			case 5:
-				p.pagination({
+				ph.pagination({
 					layout:['first','prev','next','last','sep','links','sep','manual'],
 					beforePageText:'Go Page',
 					afterPageText:''

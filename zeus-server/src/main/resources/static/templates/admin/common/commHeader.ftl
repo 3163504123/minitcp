@@ -16,5 +16,10 @@
     function addclass(_this) {
         $('a').removeClass('cur');
         $(_this).addClass('cur');
+
     }
+
+
+
+
 </script>

@@ -8,7 +8,7 @@ package com.ptb.zeus.service.main;
  * @description 类的功能
  */
 public interface IMMobileMsgService {
-	void sendRegMessage(String phone, String vcode);
+	void sendRegisterSMS(String phone, String vcode);
 
 	void sendfindPasswordMessage(String phone, String vcode);
 

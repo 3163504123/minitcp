@@ -11,7 +11,7 @@
 </head>
 <body>
 	<h2>TextBox with Icons</h2>
-	<p>Click the icons on textbox to perform actions.</p>
+	<ph>Click the icons on textbox to perform actions.</ph>
 	<div style="margin:20px 0 40px 0;"></div>
     <div style="margin:10px 0 20px 0">
         <span>Select Icon Align: </span>
@@ -40,8 +40,8 @@
 					},{
 						iconCls:'icon-search',
 						handler: function(e){
-							var v = $(e.data.target).textbox('getValue');
-							alert('The inputed value is ' + (v ? v : 'empty'));
+							var vcode = $(e.data.target).textbox('getValue');
+							alert('The inputed value is ' + (vcode ? vcode : 'empty'));
 						}
 					}]
 					">

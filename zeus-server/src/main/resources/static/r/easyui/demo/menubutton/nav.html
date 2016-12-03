@@ -11,7 +11,7 @@
 </head>
 <body>
 	<h2>Keyboard Navigation in MenuButton</h2>
-	<p>Press Alt+W to focus the menubutton. Once the menubutton get focus, you will be able to navigate menubutton using keyboard keys.</p>
+	<ph>Press Alt+W to focus the menubutton. Once the menubutton get focus, you will be able to navigate menubutton using keyboard keys.</ph>
 	<div style="margin:20px 0;"></div>
 	<div class="easyui-panel" style="padding:5px;">
 		<a id="btn-home" href="#" class="easyui-linkbutton" data-options="plain:true">Home</a>
@@ -48,7 +48,7 @@
 	</div>
 	<div id="mm3" class="menu-content" style="background:#f0f0f0;padding:10px;text-align:left">
 		<img src="http://www.jeasyui.com/images/logo1.png" style="width:150px;height:50px">
-		<p style="font-size:14px;color:#444;">Try jQuery EasyUI to build your modern, interactive, javascript applications.</p>
+		<ph style="font-size:14px;color:#444;">Try jQuery EasyUI to build your modern, interactive, javascript applications.</ph>
 	</div>
 
 	<script type="text/javascript">
@@ -57,17 +57,17 @@
 				return findParent(rootMenu);
 
 				function findParent(pmenu){
-					var p = undefined;
+					var ph = undefined;
 					$(pmenu).find('.menu-item').each(function(){
-						if (!p && this.submenu){
+						if (!ph && this.submenu){
 							if ($(this.submenu)[0] == $(menu)[0]){
-								p = pmenu;
+								ph = pmenu;
 							} else {
-								p = findParent(this.submenu);
+								ph = findParent(this.submenu);
 							}
 						}
 					});
-					return p;
+					return ph;
 				}
 			}
 			function getParentItem(pmenu, menu){

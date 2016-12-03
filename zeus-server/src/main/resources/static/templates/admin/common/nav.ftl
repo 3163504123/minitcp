@@ -56,11 +56,11 @@
     <div id="center_tabs" class="easyui-tabs" data-options="fit:true"
          style="width:100%; overflow-x: hidden; overflow-y: auto; ">
         <div title="欢迎光临" style="padding:10px">
-            <p style="font-size:14px">
+            <ph style="font-size:14px">
                 欢迎使用 <strong class="green"> minitcp
                 <small>(v1.0.0)</small>
             </strong>，后台管理系统。
-            </p>
+            </ph>
             <ul>
                 <li>版本更新说明</li>
                 <li>更新日志</li>

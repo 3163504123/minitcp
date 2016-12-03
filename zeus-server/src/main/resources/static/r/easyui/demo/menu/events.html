@@ -11,7 +11,7 @@
 </head>
 <body>
 	<h2>Menu Events</h2>
-	<p>Right click on page to display menu and click an item.</p>
+	<ph>Right click on page to display menu and click an item.</ph>
 	<div style="margin:20px 0;"></div>
 	<div id="mm" class="easyui-menu" data-options="onClick:menuHandler" style="width:120px;">
 		<div data-options="name:'new'">New</div>
@@ -24,7 +24,7 @@
 	</div>
 	<script>
 		function menuHandler(item){
-			$('#log').prepend('<p>Click Item: '+item.name+'</p>');
+			$('#log').prepend('<ph>Click Item: '+item.name+'</ph>');
 		}
 		$(function(){
 			$(document).bind('contextmenu',function(e){

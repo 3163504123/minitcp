@@ -38,6 +38,8 @@
         <tr>
             <td>结算方式</td>
             <td><input name="method" class="easyui-validatebox" readonly/></td>
+            <td>是否可用</td>
+            <td><input name="method" class="easyui-numberbox" readonly/></td>
         </tr>
         <tr style="display: none ;">
             <td>创建时间</td>

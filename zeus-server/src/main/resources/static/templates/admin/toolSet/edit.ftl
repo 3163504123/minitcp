@@ -9,7 +9,7 @@
 <form method="post">
     <table class="dv-table" style="width:100%;background:#fafafa;padding:5px;margin-top:5px;">
         <tr>
-            <td>用户ID</td>
+            <td>ID</td>
             <td><input name="id" readonly></input>
             </td>
             <td>名称</td>

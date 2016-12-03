@@ -11,7 +11,7 @@
 </head>
 <body>
 	<h2>Snap Draggable</h2>
-	<p>This sample shows how to snap a draggable object to a 20x20 grid.</p>
+	<ph>This sample shows how to snap a draggable object to a 20x20 grid.</ph>
 	<div style="margin:20px 0;"></div>
 	<div class="easyui-panel" style="position:relative;overflow:hidden;width:500px;height:300px">
 		<div class="easyui-draggable" data-options="onDrag:onDrag" style="width:100px;height:100px;background:#fafafa;border:1px solid #ccc;">
@@ -23,10 +23,10 @@
 			d.left = repair(d.left);
 			d.top = repair(d.top);
 			
-			function repair(v){
-				var r = parseInt(v/20)*20;
-				if (Math.abs(v % 20) > 10){
-					r += v > 0 ? 20 : -20;
+			function repair(vcode){
+				var r = parseInt(vcode/20)*20;
+				if (Math.abs(vcode % 20) > 10){
+					r += vcode > 0 ? 20 : -20;
 				}
 				return r;
 			}

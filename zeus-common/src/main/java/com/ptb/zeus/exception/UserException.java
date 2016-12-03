@@ -8,7 +8,9 @@ public class UserException extends RuntimeException {
 	public static final UserException UsernameOrPhoneExist = new UserException("手机号或用户名已注册", 10601);
 	public static final UserException ErrorImgVcode = new UserException("错误的图片验证码", 11000);
 	public static final UserException NoExistUserError = new UserException("用户不存在", 10602);
-	public static final UserException NoServiceAuthError = new UserException("没有服务权限",10700);
+	public static final UserException NoServiceAuthError = new UserException("无效的KEY或权限已到期",10700);
+	public static final UserException LoginUndefineError = new UserException("登陆失败请重试",10700);
+	public static final UserException SwitchingIPError = new UserException("正在切换IP，请稍后", 10602);
 	int errorCode;
 	String errorMessage;
 

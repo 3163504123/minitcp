@@ -11,7 +11,7 @@
 </head>
 <body>
 	<h2>Basic Combo</h2>
-	<p>Click the right arrow button to show drop down panel that can be filled with any content.</p>
+	<ph>Click the right arrow button to show drop down panel that can be filled with any content.</ph>
 	<div style="margin:20px 0"></div>
 	<div class="easyui-panel" style="width:100%;max-width:400px;padding:30px 60px;">
 		<div style="margin-bottom:20px">
@@ -38,9 +38,9 @@
 			});
 			$('#sp').appendTo($('#cc').combo('panel'));
 			$('#sp input').click(function(){
-				var v = $(this).val();
+				var vcode = $(this).val();
 				var s = $(this).next('span').text();
-				$('#cc').combo('setValue', v).combo('setText', s).combo('hidePanel');
+				$('#cc').combo('setValue', vcode).combo('setText', s).combo('hidePanel');
 			});
 		});
 	</script>

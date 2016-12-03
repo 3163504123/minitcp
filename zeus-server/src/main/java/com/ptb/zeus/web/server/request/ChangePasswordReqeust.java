@@ -1,5 +1,9 @@
 package com.ptb.zeus.web.server.request;
 
+import org.hibernate.validator.constraints.NotBlank;
+
+import javax.validation.constraints.Pattern;
+
 /**
  * Copyright ©2016 Beijing Tender Union Information co , LTD
  *
@@ -8,13 +12,14 @@ package com.ptb.zeus.web.server.request;
  * @description 类的功能
  */
 public class ChangePasswordReqeust {
+	@Pattern(regexp = "\\d{11}",message = "手机号格式不正确")
 	String ph;
-	String phoneCode;
-	String imgCode;
-	String npass;
+	@NotBlank
+	String v;
+	@NotBlank
+	String ps;
 
-
-	public String getP() {
+	public String getPh() {
 		return ph;
 	}
 
@@ -22,27 +27,18 @@ public class ChangePasswordReqeust {
 		this.ph = ph;
 	}
 
-	public String getPhoneCode() {
-		return phoneCode;
+	public String getV() {
+		return v;
 	}
 
-	public void setPhoneCode(String phoneCode) {
-		this.phoneCode = phoneCode;
+	public void setV(String v) {
+		this.v = v;
+	}
+	public String getPs() {
+		return ps;
 	}
 
-	public String getImgCode() {
-		return imgCode;
-	}
-
-	public void setImgCode(String imgCode) {
-		this.imgCode = imgCode;
-	}
-
-	public String getNpass() {
-		return npass;
-	}
-
-	public void setNpass(String npass) {
-		this.npass = npass;
+	public void setPs(String ps) {
+		this.ps = ps;
 	}
 }

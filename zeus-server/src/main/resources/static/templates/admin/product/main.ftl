@@ -18,10 +18,11 @@
             <tr>
                 <th field="ck" checkbox="true"></th>
                 <th data-options="field:'id',sortable:'true'">id</th>
-                <th data-options="field:'img',resizable:'true',sortable:'true'">图片</th>
                 <th data-options="field:'price',sortable:'true'">价格</th>
                 <th data-options="field:'name',sortable:'true'">名称</th>
+                <th data-options="field:'code',sortable:'true'">价格</th>
                 <th data-options="field:'url',sortable:'true'">详细链接</th>
+                <th data-options="field:'img',resizable:'true',sortable:'true'">图片</th>
                 <th data-options="field:'ctime',sortable:'true',formatter:GridDateformater"
                 ">创建时间</th>
                 <th data-options="field:'utime',sortable:'true',formatter:GridDateformater"

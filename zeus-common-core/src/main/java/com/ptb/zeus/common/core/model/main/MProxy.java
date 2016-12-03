@@ -18,6 +18,7 @@ public class MProxy implements Serializable {
 	long addTime;
 	long checkTime;
 	int isDy=0;
+	String key;
 
 
 	public int getIsDy() {
@@ -106,5 +107,13 @@ public class MProxy implements Serializable {
 
 	public void setType(String type) {
 		this.type = type;
+	}
+
+	public String getKey() {
+		return key;
+	}
+
+	public void setKey(String key) {
+		this.key = key;
 	}
 }

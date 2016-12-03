@@ -7,14 +7,19 @@ import com.ptb.zeus.web.controller.BaseRestController;
 import com.ptb.zeus.web.response.BaseResponse;
 import com.ptb.zeus.web.server.request.ProxyServiceRequest;
 
-import org.springframework.security.core.context.SecurityContextHolder;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.validation.Valid;
 
 /**
  * The type Am proxy controller.
  */
-@RequestMapping("admin/api/proxy")
+@RequestMapping("/api/proxy")
 @RestController
 public class AMProxyRestController extends BaseRestController {
 	IMProxyService imProxyService = new MProxyServiceImpl();
@@ -29,10 +34,13 @@ public class AMProxyRestController extends BaseRestController {
 	 * @return the object
 	 */
 	@RequestMapping("free/get")
-	public Object freeProxy(MProxy mProxy, int size) {
-		if (!SecurityContextHolder.getContext().getAuthentication().isAuthenticated()) {
+	@ResponseBody
+	public Object freeProxy(MProxy mProxy, Integer size, @CookieValue(name = "E_SESSION_USERID",required = false,value = "") String uid) {
+
+		if (StringUtils.isBlank(uid)) {
 			return new BaseResponse<>(imProxyService.getFreeProxys(10, mProxy));
 		} else {
+			if(size == null) size = 10;
 			return new BaseResponse<>(imProxyService.getFreeProxys(adjustProxyNum(size), mProxy));
 		}
 	}
@@ -45,10 +53,10 @@ public class AMProxyRestController extends BaseRestController {
 	 * @return the object
 	 */
 	@RequestMapping("good/get")
-	public Object goodPrxoy(ProxyServiceRequest proxyServiceRequest, MProxy mProxy) {
+	public Object goodPrxoy(@Valid ProxyServiceRequest proxyServiceRequest,BindingResult bindingResult, MProxy mProxy) {
+		checkParams(bindingResult);
 		return new BaseResponse<>(imProxyService.getGoodProxys(proxyServiceRequest.getKey(), adjustProxyNum(proxyServiceRequest.getSize()), mProxy));
 	}
-
 
 	/**
 	 * 得到万能代理地址
@@ -56,7 +64,8 @@ public class AMProxyRestController extends BaseRestController {
 	 * @return the perfect proxys
 	 */
 	@RequestMapping("perfect/get")
-	public Object getPerfectProxys(ProxyServiceRequest proxyServiceRequest) {
+	public Object getPerfectProxys(@Valid ProxyServiceRequest proxyServiceRequest, BindingResult bindingResult) {
+		checkParams(bindingResult);
 		return new BaseResponse<>(imProxyService.getPerfectProxys(proxyServiceRequest.getKey(), proxyServiceRequest.getSize()));
 	}
 

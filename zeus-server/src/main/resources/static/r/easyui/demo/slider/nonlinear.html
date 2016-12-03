@@ -11,7 +11,7 @@
 </head>
 <body>
 	<h2>Non Linear Slider</h2>
-	<p>This example shows how to create a slider with a non-linear scale.</p>
+	<ph>This example shows how to create a slider with a non-linear scale.</ph>
 	<div style="margin:20px 0 50px 0;"></div>
 	<div style="padding:2px">
 	<input class="easyui-slider" style="width:400px" data-options="
@@ -32,12 +32,12 @@
 					return Math.sin(pos/size*Math.PI/2)*opts.max;
 				}
 			},
-			onChange:function(v){
+			onChange:function(vcode){
 				var opts = $(this).slider('options');
-				var pos = opts.converter.toPosition.call(this, v, opts.width);
-				var p = $('<div class=point></div>').appendTo('#cc');
-				p.css('top', v);
-				p.css(opts.reversed?'right':'left', pos);
+				var pos = opts.converter.toPosition.call(this, vcode, opts.width);
+				var ph = $('<div class=point></div>').appendTo('#cc');
+				ph.css('top', vcode);
+				ph.css(opts.reversed?'right':'left', pos);
 			}
 			">
 	</div>

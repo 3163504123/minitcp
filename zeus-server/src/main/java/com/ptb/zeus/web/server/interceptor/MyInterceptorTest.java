@@ -24,7 +24,6 @@ public class MyInterceptorTest implements HandlerInterceptor {
 		String path = request.getContextPath();
 		String basePath = scheme + "://" + serverName + ":" + port + path;
 		request.setAttribute("basePath", basePath);
-		System.out.println(basePath);
 		return true;
 	}
 

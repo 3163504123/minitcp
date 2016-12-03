@@ -21,6 +21,7 @@
                 <th data-options="field:'uid',resizable:'true',sortable:'true'">用户名</th>
                 <th data-options="field:'skey',resizable:'true',sortable:'true'">服务KEY</th>
                 <th data-options="field:'pId',resizable:'true',sortable:'true'">产品ID</th>
+                <th data-options="field:'enabled',resizable:'true',sortable:'true'">是否可用</th>
                 <th data-options="field:'costNum',resizable:'true',sortable:'true'">剩余次数</th>
                 <th data-options="field:'initNum',resizable:'true',sortable:'true'">已使用次数</th>
                 <th data-options="field:'method',resizable:'true',sortable:'true'">结算方式</th>

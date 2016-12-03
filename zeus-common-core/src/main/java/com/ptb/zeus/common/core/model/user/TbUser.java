@@ -32,6 +32,7 @@ public class TbUser extends ZModel<Integer> implements Serializable {
 		this.phone = phone;
 		this.email = "";
 		this.ctime = new Date();
+		this.state = 1;
 	}
 
 
@@ -75,7 +76,7 @@ public class TbUser extends ZModel<Integer> implements Serializable {
 
 
 	public Integer getId() {
-		return null;
+		return id;
 	}
 
 	public void setId(Integer id) {

@@ -16,7 +16,7 @@ public class BaseResponse<T> {
     private String msg;
     private boolean success;
 
-    public final static BaseResponse NormalResponse = new BaseResponse(0, "操作成功", "1111");
+    public final static BaseResponse NormalResponse = new BaseResponse(0, "操作成功", "");
     public BaseResponse(int code, String message, T data) {
         this.code = code;
         this.success = code == 0 ;

@@ -12,9 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 /**
- *
  * TbUser 表数据服务层接口实现类
- *
  */
 @Service
 public class TbUserServiceImpl extends SuperServiceImpl<TbUserMapper, TbUser> implements ITbUserService {
@@ -27,7 +25,8 @@ public class TbUserServiceImpl extends SuperServiceImpl<TbUserMapper, TbUser> im
 
 	@Override
 	public boolean insert(TbUser entity) {
-		List<TbUser> tbUsers = this.selectList(new EntityWrapper<TbUser>().where("uname", entity.getNickName()).or("phone", entity.getPhone()));
+		List<TbUser> tbUsers = this.selectList(new EntityWrapper<TbUser>()
+				                                       .where("uname = {0} or phone = {1}", entity.getNickName(), entity.getPhone()));
 		if (tbUsers.size() > 0) {
 			throw UserException.UsernameOrPhoneExist;
 		}

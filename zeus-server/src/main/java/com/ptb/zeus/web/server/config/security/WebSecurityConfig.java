@@ -37,11 +37,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			HttpSecurity http) throws Exception {
 		//需要校验权限的部分
 
+
 		http.authorizeRequests().
 				antMatchers("/**","/api/mUser/getUserByIdentiy"
 						,"/api/mUser/logout","/","/static/**").
-				permitAll();
-/*				.anyRequest().authenticated();*/
+				permitAll().anyRequest().authenticated();
+
 		http.httpBasic().authenticationEntryPoint(new MyAuthenticationEntryPoint());
 		http.csrf().disable();
 		http.headers().frameOptions().sameOrigin();
@@ -64,6 +65,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 		DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
 		daoAuthenticationProvider.setUserDetailsService(userDetailsService);
+		daoAuthenticationProvider.setPasswordEncoder(this.passwordEncoder());
 		auth.authenticationProvider(daoAuthenticationProvider);
 	}
 
@@ -73,7 +75,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		return super.authenticationManagerBean();
 	}
 
-/*	@Bean*/
+	@Bean
 	public PasswordEncoder passwordEncoder() {
 		return PasswordUtils.getPasswordEncoder();
 	}

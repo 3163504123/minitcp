@@ -47,11 +47,11 @@ public class MMobileMsgServiceJUHEImpl implements IMMobileMsgService {
 
 	public MMobileMsgServiceJUHEImpl() {
 		cacheManager = new CacheManager();
-		cacheManager.addCache(new Cache(CACHE_KEY, 10000, false, false, 60, 60));
+		cacheManager.addCache(new Cache(CACHE_KEY, 10000, false, false, 10, 60));
 	}
 
 	@Override
-	public void sendRegMessage(String phone, String vcode) {
+	public void sendRegisterSMS(String phone, String vcode) {
 		Map<String, Object> objectObjectHashMap = new HashMap<>();
 		objectObjectHashMap.put("#code#", vcode);
 		objectObjectHashMap.put("#name#", phone);

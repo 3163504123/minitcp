@@ -1,5 +1,9 @@
 package com.ptb.zeus.web.server.request;
 
+import org.hibernate.validator.constraints.NotBlank;
+
+import javax.validation.constraints.Size;
+
 /**
  * Copyright ©2016 Beijing Tender Union Information co , LTD
  *
@@ -8,7 +12,10 @@ package com.ptb.zeus.web.server.request;
  * @description 类的功能
  */
 public class ProxyServiceRequest {
+	@NotBlank
 	String key;  //服务的ID号
+
+	@Size(min = 0,max = 100)
 	int size;          //请求代理数量
 
 

@@ -1,6 +1,5 @@
 package com.ptb.zeus.web.server.controller.frontend;
 
-import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.github.cage.Cage;
 import com.github.cage.GCage;
 import com.ptb.zeus.common.core.model.user.TbUser;
@@ -126,7 +125,7 @@ public class AFUserController extends BaseRestController {
 		String password = PasswordUtils.encode(reqeust.getPs());
 		String phone = reqeust.getPh();
 
-		List<TbUser> tbUsers = iTbUserService.selectList(new EntityWrapper<TbUser>().where("phone", phone));
+		List<TbUser> tbUsers = iTbUserService.getUserByIdentiy(reqeust.getPh());
 
 		if (tbUsers.size() == 0) {
 			throw UserException.NoExistUserError;

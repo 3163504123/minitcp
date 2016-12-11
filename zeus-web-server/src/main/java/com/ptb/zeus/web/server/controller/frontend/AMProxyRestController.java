@@ -35,7 +35,8 @@ public class AMProxyRestController extends BaseRestController {
 	 */
 	@RequestMapping("free/get")
 	@ResponseBody
-	public Object freeProxy(MProxy mProxy, Integer size, @CookieValue(name = "E_SESSION_USERID",required = false,value = "") String uid) {
+	public Object freeProxy(MProxy mProxy, Integer size,
+	                        @CookieValue(name = "E_SESSION_USERID",required = false) String uid) {
 
 		if (StringUtils.isBlank(uid)) {
 			return new BaseResponse<>(imProxyService.getFreeProxys(10, mProxy));

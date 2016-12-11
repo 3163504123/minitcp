@@ -8,10 +8,10 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>zeus-server</artifactId>
+    <artifactId>zeus-web-server</artifactId>
     <packaging>jar</packaging>
 
-    <name>zeus-server</name>
+    <name>zeus-web-server</name>
     <url>http://maven.apache.org</url>
 
     <properties>

@@ -51,8 +51,7 @@
         <module>zeus-user-facade</module>
         <module>zeus-main-service</module>
         <module>zeus-main-facade</module>
-
-        <module>zeus-server</module>
+        <module>zeus-web-server</module>
     </modules>
     <dependencies>
         <dependency>

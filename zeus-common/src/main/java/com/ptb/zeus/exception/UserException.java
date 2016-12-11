@@ -2,15 +2,27 @@ package com.ptb.zeus.exception;
 
 public class UserException extends RuntimeException {
 
+	/*系统级别错误*/
 	public static final UserException ArgError = new UserException("参数错误", 10000);
 	public static final UserException InerError = new UserException("系统内部错误",10500);
-	public static final UserException NoExistVaildCodeError = new UserException("验证码失效，请重新发送", 10600);
-	public static final UserException UsernameOrPhoneExist = new UserException("手机号或用户名已注册", 10601);
-	public static final UserException ErrorImgVcode = new UserException("错误的图片验证码", 11000);
-	public static final UserException NoExistUserError = new UserException("用户不存在", 10602);
-	public static final UserException NoServiceAuthError = new UserException("无效的KEY或权限已到期",10700);
-	public static final UserException LoginUndefineError = new UserException("登陆失败请重试",10700);
-	public static final UserException SwitchingIPError = new UserException("正在切换IP，请稍后", 10602);
+
+	/*用户中心相关错误*/
+	public static final UserException NoExistVaildCodeError = new UserException("验证码失效，请重新发送", 11000);
+	public static final UserException UsernameOrPhoneExist = new UserException("手机号或用户名已注册", 11001);
+	public static final UserException ErrorImgVcode = new UserException("错误的图片验证码", 11002);
+	public static final UserException NoExistUserError = new UserException("用户不存在", 11003);
+	public static final UserException NoExistAccountError = new UserException("用户账户不存在", 11003);
+	public static final UserException UserTokenExpiredError  = new UserException("用户TOKEN过期", 11004);
+	public static final UserException UserTokenParseError= new UserException("用户TOKEN无效", 11005);
+
+	/*服务相关的错误*/
+	public static final UserException NoServiceAuthError = new UserException("无效的KEY或权限已到期",12001);
+	public static final UserException LoginUndefineError = new UserException("登陆失败请重试",12002);
+	public static final UserException SwitchingIPError = new UserException("正在切换IP，请稍后", 12003);
+
+	/*购买相关的错误*/
+	public static final UserException NoExistProductError = new UserException("不存在的商品", 13001);
+
 	int errorCode;
 	String errorMessage;
 

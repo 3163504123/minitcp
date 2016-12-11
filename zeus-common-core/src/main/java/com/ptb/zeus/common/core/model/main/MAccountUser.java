@@ -67,8 +67,9 @@ public class MAccountUser extends ZModel<Integer> implements Serializable {
 		return this.uid;
 	}
 
-	public void setUid(Integer uid) {
+	public MAccountUser setUid(Integer uid) {
 		this.uid = uid;
+		return this;
 	}
 
 	public Date getCtime() {

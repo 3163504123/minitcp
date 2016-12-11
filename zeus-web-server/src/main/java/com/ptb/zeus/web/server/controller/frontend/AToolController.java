@@ -34,7 +34,5 @@ public class AToolController extends BaseRestController {
 		Page<MTool> tbUserPage = imToolService.selectPage(page, ew);
 		return tbUserPage.getRecords();
 	}
-
-
 }
 

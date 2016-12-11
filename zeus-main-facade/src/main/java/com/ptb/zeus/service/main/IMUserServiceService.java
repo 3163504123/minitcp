@@ -11,4 +11,5 @@ import com.baomidou.framework.service.ISuperService;
 public interface IMUserServiceService extends ISuperService<MUserService> {
 
 
+	void buyProductService(Integer uid, int productID);
 }

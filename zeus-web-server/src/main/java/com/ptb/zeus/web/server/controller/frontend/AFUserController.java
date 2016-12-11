@@ -4,6 +4,7 @@ import com.github.cage.Cage;
 import com.github.cage.GCage;
 import com.ptb.zeus.common.core.model.user.TbUser;
 import com.ptb.zeus.common.core.utils.PasswordUtils;
+import com.ptb.zeus.common.core.utils.TokenUtils;
 import com.ptb.zeus.exception.UserException;
 import com.ptb.zeus.service.main.IMMobileMsgService;
 import com.ptb.zeus.service.user.ITbUserService;
@@ -35,9 +36,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+import static com.ptb.zeus.web.utils.SessionConstant.DEFAULT_UUID_EXPIRED_TIME;
 import static com.ptb.zeus.web.utils.SessionConstant.E_SESSION_IMGVCODE;
 import static com.ptb.zeus.web.utils.SessionConstant.E_SESSION_PHONENUM;
 import static com.ptb.zeus.web.utils.SessionConstant.E_SESSION_PHONEVCODE;
+import static com.ptb.zeus.web.utils.SessionConstant.KEY_UUID;
 
 /**
  * Copyright ©2016 Beijing Tender Union Information co , LTD
@@ -161,8 +164,7 @@ public class AFUserController extends BaseRestController {
 	@ResponseBody
 	public BaseResponse login(
 			SecurityContextHolderAwareRequestWrapper request, LoginReqeust loginReqeust,
-			HttpServletResponse resp,
-			BindingResult bindingResult) {
+			HttpServletResponse resp, BindingResult bindingResult) {
 		checkParams(bindingResult);
 		try {
 			//通过系统进行登陆操作
@@ -172,7 +174,9 @@ public class AFUserController extends BaseRestController {
 				TbUser user = users.get(0);
 				//记录用户ID
 				request.getSession().setAttribute(SessionConstant.E_SESSION_USERID.name(), user.getId());
-				resp.addCookie(new Cookie(SessionConstant.E_SESSION_USERID.name(),String.valueOf(user.getId())));
+				//添加访问密钥给客户端
+				resp.addCookie(new Cookie(KEY_UUID,
+				                          TokenUtils.encode(new TokenUtils.MUserToken(user.getId(), DEFAULT_UUID_EXPIRED_TIME))));
 			}
 		} catch (ServletException e) {
 			e.printStackTrace();

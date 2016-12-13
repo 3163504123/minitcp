@@ -4,7 +4,6 @@ import com.baomidou.mybatisplus.annotations.IdType;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
-import com.ptb.zeus.common.core.model.ZModel;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -17,7 +16,7 @@ import java.util.Date;
  *
  */
 @TableName("m_product")
-public class MProduct extends ZModel<Integer> implements Serializable {
+public class MProduct  implements Serializable {
 
 	@TableField(exist = false)
 	protected static final long serialVersionUID = 1L;

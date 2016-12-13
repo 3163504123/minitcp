@@ -51,7 +51,10 @@
         <module>zeus-user-facade</module>
         <module>zeus-main-service</module>
         <module>zeus-main-facade</module>
-        <module>zeus-web-server</module>
+        <module>zeus-web-basic</module>
+        <module>zeus-web-backend</module>
+        <module>zeus-web-main</module>
+
     </modules>
     <dependencies>
         <dependency>
@@ -60,24 +63,24 @@
             <version>${spring.version}</version>
         </dependency>
 
-        <dependency>
-            <groupId>com.101tec</groupId>
-            <artifactId>zkclient</artifactId>
-            <version>0.9</version>
-        </dependency>
+        <!--      <dependency>
+                  <groupId>com.101tec</groupId>
+                  <artifactId>zkclient</artifactId>
+                  <version>0.9</version>
+              </dependency>
 
-        <dependency>
-            <groupId>com.github.sgroschupf</groupId>
-            <artifactId>zkclient</artifactId>
-            <version>0.1</version>
-        </dependency>
+              <dependency>
+                  <groupId>com.github.sgroschupf</groupId>
+                  <artifactId>zkclient</artifactId>
+                  <version>0.1</version>
+              </dependency>-->
 
         <!--zookeeper package-->
-        <dependency>
-            <groupId>org.apache.zookeeper</groupId>
-            <artifactId>zookeeper</artifactId>
-            <version>${zk.version}</version>
-        </dependency>
+        <!-- <dependency>
+             <groupId>org.apache.zookeeper</groupId>
+             <artifactId>zookeeper</artifactId>
+             <version>${zk.version}</version>
+         </dependency>-->
 
         <!--        <dependency>
                     <groupId>mysql</groupId>
@@ -119,6 +122,16 @@
                 </dependency>-->
 
         <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.21</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>1.7.21</version>
+        </dependency>
+        <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.12</version>
@@ -135,6 +148,7 @@
             <artifactId>commons-configuration</artifactId>
             <version>${commons-configuration.version}</version>
         </dependency>
+
     </dependencies>
 
 
@@ -164,21 +178,13 @@
     </build>
 
     <distributionManagement>
-   <!--     <snapshotRepository>
-            <id>ylxy-snapshots</id>
-            <url>http://192.168.75.201:8081/nexus/content/repositories/snapshots</url>
+        <snapshotRepository>
+            <id>minitcp-snapshots</id>
+            <url>http://www.hotjk.com:8081/nexus/content/repositories/snapshots</url>
         </snapshotRepository>
         <repository>
-            <id>ylxy-releases</id>
-            <url>http://192.168.75.201:8081/nexus/content/repositories/releases</url>
-        </repository>-->
-    <snapshotRepository>
-        <id>minitcp-snapshots</id>
-        <url>http://www.hotjk.com:8081/nexus/content/repositories/snapshots</url>
-    </snapshotRepository>
-    <repository>
-        <id>minitcp-releases</id>
-        <url>http://www.hotjk.com:8081/nexus/content/repositories/releases</url>
-    </repository>
-</distributionManagement>
+            <id>minitcp-releases</id>
+            <url>http://www.hotjk.com:8081/nexus/content/repositories/releases</url>
+        </repository>
+    </distributionManagement>
 </project>

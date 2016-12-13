@@ -47,12 +47,12 @@ public class MUserServiceServiceImpl extends SuperServiceImpl<MUserServiceMapper
 
 		//查询用户账户信息
 		MAccountUser mAccountUser = mAccountUserMapper.selectOne(new MAccountUser().setUid(uid));
-
 		if(mAccountUser == null) {
 			throw  UserException.NoExistAccountError;
 		}
 
 		//判断用户是否有能力购买该商品
+
 		//有能力：
 		// 扣出账户金额
 		// 生成用户流水信息记录

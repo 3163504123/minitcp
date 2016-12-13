@@ -64,11 +64,7 @@
             <artifactId>hanlp</artifactId>
             <version>portable-1.2.7</version>
         </dependency>
-        <dependency>
-            <groupId>com.ptb.zeus</groupId>
-            <artifactId>zeus-common</artifactId>
-            <version>${parent.version}</version>
-        </dependency>
+
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus</artifactId>
@@ -98,6 +94,11 @@
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
             <version>2.5</version>
+        </dependency>
+        <dependency>
+            <groupId>com.ptb.zeus</groupId>
+            <artifactId>zeus-common</artifactId>
+            <version>${parent.version}</version>
         </dependency>
 
     </dependencies>

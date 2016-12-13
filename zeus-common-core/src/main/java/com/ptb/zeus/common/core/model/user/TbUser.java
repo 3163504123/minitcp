@@ -4,23 +4,24 @@ import com.baomidou.mybatisplus.annotations.IdType;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
-import com.ptb.zeus.common.core.model.ZModel;
+
 
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 /**
  *
- * 
+ *
  *
  */
 @TableName("tb_user")
-public class TbUser extends ZModel<Integer> implements Serializable {
+public class TbUser  implements Serializable {
 
 	public TbUser() {
 	}
@@ -43,37 +44,61 @@ public class TbUser extends ZModel<Integer> implements Serializable {
 	@TableId(type = IdType.AUTO)
 	protected Integer id;
 
-	/** 用户名 */
+	/**
+	 * 用户名
+	 */
 	@TableField(value = "uname")
 	protected String uname;
 
-	/** 密码
- */
+	/**
+	 * 密码
+	 */
 	protected String password;
 
-	/** 电话 */
+	/**
+	 * 电话
+	 */
 	protected String phone;
 
-	/** 邮箱 */
+	/**
+	 * 邮箱
+	 */
 	protected String email;
 
-	/** 创建时间 */
+	/**
+	 * 创建时间
+	 */
 	@TableField(value = "ctime")
 	@DateTimeFormat(pattern = "MM/dd/yyyy HH:mm:ss")
 	@Temporal(TemporalType.TIMESTAMP)
 	protected Date ctime;
 
-	/** 账户状态 */
+	/**
+	 * 账户状态
+	 */
 	protected Integer state;
 
-	/** 昵称 */
+	/**
+	 * 昵称
+	 */
 	@TableField(value = "nick_name")
 	protected String nickName;
 
-	/** 备注 */
+	/**
+	 * 备注
+	 */
 	protected String remark;
 
+	@TableField(exist = false)
+	public List<TbRole> roles;
 
+	public List<TbRole> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(List<TbRole> roles) {
+		this.roles = roles;
+	}
 
 	public Integer getId() {
 		return id;
@@ -120,7 +145,7 @@ public class TbUser extends ZModel<Integer> implements Serializable {
 	}
 
 	public void setCtime(Date ctime) {
-		if(ctime == null) {
+		if (ctime == null) {
 			ctime = new Date();
 		}
 		this.ctime = ctime;

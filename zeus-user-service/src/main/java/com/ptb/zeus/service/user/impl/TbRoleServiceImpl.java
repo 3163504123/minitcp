@@ -5,7 +5,10 @@ import com.ptb.zeus.common.core.mapper.user.TbRoleMapper;
 import com.ptb.zeus.common.core.model.user.TbRole;
 import com.ptb.zeus.service.user.ITbRoleService;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  *
@@ -15,5 +18,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class TbRoleServiceImpl extends SuperServiceImpl<TbRoleMapper, TbRole> implements ITbRoleService {
 
+	@Autowired
+	TbRoleMapper tbRoleMapper;
 
+	@Override
+	public List<TbRole> selectByUID(Integer id) {
+		return tbRoleMapper.selectByUID(id);
+	}
 }

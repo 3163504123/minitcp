@@ -7,4 +7,17 @@
 		 id, uname , password, ph, email, ctime, state, nick_name AS nickName, remark
 	</sql>
 
+	<resultMap id="queryForDetail" type="com.ptb.zeus.common.core.model.user.TbUser">
+		<id column="id" property="id" jdbcType="VARCHAR"/>
+		<result column="uname" property="uname" jdbcType="VARCHAR"/>
+		<collection property="roles" javaType="java.util.List" ofType="com.ptb.zeus.common.core.model.user.TbRole">
+			<id column="role_name" property="roleName" jdbcType="VARCHAR" />
+		</collection>
+	</resultMap>
+
+	<select id="selectDetail" resultMap="queryForDetail">
+        select u.*,r.role_name,r.role_sign,r.description from minitcp_user.tb_user u LEFT JOIN minitcp_user.tb_user_role ur on
+		u.id = ur.user_id LEFT JOIN minitcp_user.tb_role r ON ur.role_id = r.id;
+	</select>
+
 </mapper>

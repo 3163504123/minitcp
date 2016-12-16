@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.ptb.zeus.common.core.model.main.MTool;
 import com.ptb.zeus.service.main.IMToolService;
-import com.ptb.zeus.web.controller.BaseRestController;
+import com.ptb.zeus.web.basic.controller.BaseRestController;
 import com.ptb.zeus.web.main.request.PageRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;

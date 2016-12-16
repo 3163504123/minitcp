@@ -1,8 +1,8 @@
 package com.ptb.zeus.web.basic.config.security;
 
-import com.ptb.zeus.common.core.utils.PasswordUtils;
 import com.ptb.zeus.web.basic.config.security.entrypoint.MyAuthenticationEntryPoint;
 
+import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -65,7 +65,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Bean
 	public PasswordEncoder passwordEncoder() {
-		return PasswordUtils.getPasswordEncoder();
+		PasswordEncoder passwordEncoder = new PasswordEncoder() {
+			@Override
+			public String encode(CharSequence rawPassword) {
+				return DigestUtils.md5Hex(String.valueOf(rawPassword));
+			}
+
+			@Override
+			public boolean matches(CharSequence rawPassword, String encodedPassword) {
+				return encode(rawPassword).equals(encodedPassword);
+			}
+		};
+
+		return passwordEncoder;
 	}
 
 }

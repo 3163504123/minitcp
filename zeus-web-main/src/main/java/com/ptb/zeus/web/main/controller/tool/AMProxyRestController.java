@@ -3,7 +3,7 @@ package com.ptb.zeus.web.main.controller.tool;
 import com.ptb.zeus.common.core.model.main.MProxy;
 import com.ptb.zeus.service.main.IMProxyService;
 import com.ptb.zeus.service.main.impl.MProxyServiceImpl;
-import com.ptb.zeus.web.controller.BaseRestController;
+import com.ptb.zeus.web.basic.controller.BaseRestController;
 import com.ptb.zeus.web.response.BaseResponse;
 import com.ptb.zeus.web.main.request.ProxyServiceRequest;
 

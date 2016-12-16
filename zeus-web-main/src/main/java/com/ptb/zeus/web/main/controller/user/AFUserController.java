@@ -3,24 +3,25 @@ package com.ptb.zeus.web.main.controller.user;
 import com.github.cage.Cage;
 import com.github.cage.GCage;
 import com.ptb.zeus.common.core.model.user.TbUser;
-import com.ptb.zeus.common.core.utils.PasswordUtils;
 import com.ptb.zeus.common.core.utils.security.security.Token;
 import com.ptb.zeus.common.core.utils.security.security.TokenUtils;
 import com.ptb.zeus.exception.UserException;
 import com.ptb.zeus.service.main.IMMobileMsgService;
 import com.ptb.zeus.service.user.ITbUserService;
-import com.ptb.zeus.web.controller.BaseRestController;
-import com.ptb.zeus.web.response.BaseResponse;
+import com.ptb.zeus.web.basic.controller.BaseRestController;
 import com.ptb.zeus.web.main.request.ChangePasswordReqeust;
 import com.ptb.zeus.web.main.request.LoginReqeust;
 import com.ptb.zeus.web.main.request.PhoneRegisterRequest;
 import com.ptb.zeus.web.main.request.SendRegVCodeRequest;
+import com.ptb.zeus.web.response.BaseResponse;
 import com.ptb.zeus.web.utils.SessionConstant;
 
 import org.apache.commons.lang.RandomStringUtils;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestWrapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -54,6 +55,9 @@ import static com.ptb.zeus.web.utils.SessionConstant.KEY_UUID;
 @RequestMapping("/api/u")
 public class AFUserController extends BaseRestController {
 	static Logger logger = LoggerFactory.getLogger(AFUserController.class);
+
+	@Autowired
+	PasswordEncoder passwordEncoder;
 
 	@Resource
 	IMMobileMsgService iMMobileMsgService;
@@ -126,7 +130,7 @@ public class AFUserController extends BaseRestController {
 		checkParams(bindingResult);
 		checkPhoneAndVcode(reqeust.getPh(), reqeust.getV(), httpSession);
 
-		String password = PasswordUtils.encode(reqeust.getPs());
+		String password = passwordEncoder.encode(reqeust.getPs());
 		String phone = reqeust.getPh();
 
 		List<TbUser> tbUsers = iTbUserService.getUserByIdentiy(reqeust.getPh());
@@ -152,7 +156,7 @@ public class AFUserController extends BaseRestController {
 		checkParams(bindingResult);
 		checkPhoneAndVcode(request.getPh(), request.getVcode(), httpSession);
 
-		iTbUserService.insert(new TbUser(request.getUn(), request.getPh(), request.getPh(), PasswordUtils.encode(request.getPw())));
+		iTbUserService.insert(new TbUser(request.getUn(), request.getPh(), request.getPh(), passwordEncoder.encode(request.getPw())));
 
 		/*删除上下文信息*/
 		httpSession.removeAttribute(E_SESSION_PHONEVCODE.name());
@@ -170,22 +174,30 @@ public class AFUserController extends BaseRestController {
 		try {
 			//通过系统进行登陆操作
 			List<TbUser> users = iTbUserService.getUserByIdentiy(loginReqeust.getName());
-
-			request.logout();
-			request.login(users.get(0).getUname(), loginReqeust.getPass());
-
-			if (users.size() > 0) {
-				TbUser user = users.get(0);
-				//记录用户ID
-				request.getSession().setAttribute(SessionConstant.E_SESSION_USERID.name(), user.getId());
-				//添加访问密钥给客户端
-				resp.addCookie(new Cookie(KEY_UUID, TokenUtils.encode(new Token(user.getId(), DEFAULT_UUID_EXPIRED_TIME))));
+			if (users.size() == 0) {
+				throw UserException.NoExistUserError;
 			}
+			TbUser user = users.get(0);
+			request.logout();
+			request.login(user.getUname(), loginReqeust.getPass());
+			buildLoginResponse(user);
+			return new BaseResponse(user);
 		} catch (ServletException e) {
-			e.printStackTrace();
 			throw UserException.LoginUndefineError;
 		}
-		return BaseResponse.NormalResponse;
+	}
+
+
+	private void buildLoginResponse(TbUser user) {
+		//添加访问密钥给客户端
+		getRequest().getSession().setAttribute(SessionConstant.KEY_UUID, user.getId());
+		String encodedToken = TokenUtils.encode(new Token(user.getId(), DEFAULT_UUID_EXPIRED_TIME));
+		Cookie cookie = new Cookie(KEY_UUID, encodedToken);
+		cookie.setPath("/");
+		getResponse().addCookie(cookie);
+		getResponse().addHeader(KEY_UUID, encodedToken);
+		//清除信息中的账户密码信息
+		user.setPassword(null);
 	}
 
 	@RequestMapping("logout")

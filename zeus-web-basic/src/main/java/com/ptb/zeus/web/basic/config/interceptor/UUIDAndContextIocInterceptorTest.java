@@ -1,4 +1,4 @@
-package com.ptb.zeus.web.basic.interceptor;
+package com.ptb.zeus.web.basic.config.interceptor;
 
 import com.ptb.zeus.common.core.utils.security.security.TokenUtils;
 
@@ -13,9 +13,9 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author shuai.zhang  on 2016/12/1
  * @version 1.0.0
- * @description 解析出TOKEN和PATH 路径到上下文
+ * @description 解析出TOKEN和BASEPATH 路径到上下文
  */
-public class UUIDInterceptorTest implements HandlerInterceptor {
+public class UUIDAndContextIocInterceptorTest implements HandlerInterceptor {
 	@Override
 	public boolean preHandle(
 			HttpServletRequest request, HttpServletResponse httpServletResponse,
@@ -28,6 +28,8 @@ public class UUIDInterceptorTest implements HandlerInterceptor {
 
 		//设置页面的基本路径
 		request.setAttribute("basePath", basePath);
+		request.setAttribute("fullPath",basePath+request.getServletPath());
+		request.setAttribute("contextPath",request.getContextPath());
 
 		//将用户TOKEN解析到上下文中，方便使用
 		if (request.getHeader("uuid") != null) {
@@ -46,6 +48,5 @@ public class UUIDInterceptorTest implements HandlerInterceptor {
 	public void afterCompletion(
 			HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse,
 			Object o, Exception e) throws Exception {
-/*		System.out.println(3);*/
 	}
 }

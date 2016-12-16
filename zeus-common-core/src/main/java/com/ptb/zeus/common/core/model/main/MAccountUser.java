@@ -79,4 +79,12 @@ public class MAccountUser  implements Serializable {
 		this.ctime = ctime;
 	}
 
+	public static MAccountUser newAccount(Integer uid) {
+		MAccountUser mAccountUser = new MAccountUser();
+		mAccountUser.setPoint(0);
+		mAccountUser.setBalance(0);
+		mAccountUser.setCtime(new Date());
+		mAccountUser.setUid(uid);
+		return mAccountUser;
+	}
 }

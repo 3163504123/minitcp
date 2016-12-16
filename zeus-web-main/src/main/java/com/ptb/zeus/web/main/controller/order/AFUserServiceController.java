@@ -1,7 +1,7 @@
 package com.ptb.zeus.web.main.controller.order;
 
 import com.ptb.zeus.service.main.IMUserServiceService;
-import com.ptb.zeus.web.controller.BaseRestController;
+import com.ptb.zeus.web.basic.controller.BaseRestController;
 import com.ptb.zeus.web.main.request.BuyServiceRequest;
 import com.ptb.zeus.web.response.BaseResponse;
 
@@ -27,7 +27,7 @@ public class AFUserServiceController extends BaseRestController {
 	@Autowired
 	IMUserServiceService imUserServiceService;
 
-	@RequestMapping("order/pay")
+	@RequestMapping("order/buyProduct")
 	@ResponseBody
 	public Object buyProductService(@CookieValue(name = "E_SESSION_USERID",required = false) String uid,
 	                                BuyServiceRequest request) {

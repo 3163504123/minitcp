@@ -1,4 +1,4 @@
-package com.ptb.zeus.web.controller;
+package com.ptb.zeus.web.basic.controller;
 
 
 import com.ptb.zeus.exception.UserException;
@@ -24,7 +24,7 @@ import javax.servlet.http.HttpSession;
 /**
  * Created by eric on 16/5/20.
  */
-public class BaseRestController {
+public class BaseRestController extends BaseController {
 	static Logger logger = LoggerFactory.getLogger(BaseRestController.class);
 
 	@ExceptionHandler(Exception.class)

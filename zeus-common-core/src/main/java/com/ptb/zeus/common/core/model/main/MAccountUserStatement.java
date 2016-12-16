@@ -45,6 +45,15 @@ public class MAccountUserStatement  implements Serializable {
 	@DateTimeFormat(pattern = "MM/dd/yyyy HH:mm:ss")
 	protected Date ctime;
 
+	public MAccountUserStatement(
+			Integer uid, Integer id, Integer price, Integer code, String des) {
+		this.uid = uid;
+		this.accountId = id;
+		this.amount = price;
+		this.source = String.valueOf(code);
+		this.remark = des;
+	}
+
 	public String getId() {
 		return this.id;
 	}

@@ -3,7 +3,6 @@ package com.ptb.zeus.web.basic.controller;
 import com.baomidou.framework.service.IService;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
-import com.ptb.zeus.web.controller.BaseRestController;
 import com.ptb.zeus.web.response.BaseResponse;
 import com.ptb.zeus.web.basic.request.PageRequest;
 

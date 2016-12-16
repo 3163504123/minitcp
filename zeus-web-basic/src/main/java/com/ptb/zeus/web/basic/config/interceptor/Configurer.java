@@ -1,7 +1,5 @@
 package com.ptb.zeus.web.basic.config.interceptor;
 
-import com.ptb.zeus.web.basic.interceptor.UUIDInterceptorTest;
-
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
@@ -18,7 +16,7 @@ public class Configurer extends WebMvcConfigurerAdapter {
 	@Override
 	public void addInterceptors(
 			InterceptorRegistry registry) {
-		registry.addInterceptor(new UUIDInterceptorTest()).addPathPatterns("/**");
+		registry.addInterceptor(new UUIDAndContextIocInterceptorTest()).addPathPatterns("/**");
 		super.addInterceptors(registry);
 	}
 }

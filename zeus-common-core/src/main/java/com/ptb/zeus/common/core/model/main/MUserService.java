@@ -10,6 +10,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.UUID;
 
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -21,12 +22,58 @@ import javax.persistence.TemporalType;
  */
 @TableName("m_user_service")
 public class MUserService  implements Serializable {
+
+
+	public void initNew() {
+		this.enabled = 1;
+		this.uid = 0;
+		this.remark = "";
+		this.method = -1;
+		this.costNum = 0;
+		this.initNum = 0;
+		this.initTime = new Date();
+		this.deadlineTime = new Date();
+		this.ctime = new Date();
+		this.skey = "";
+	}
+
+	public MUserService(Integer code,Integer uid,int method,String remark) {
+		initNew();
+		this.enabled = 1;
+		this.uid = uid;
+		this.remark = remark;
+		this.method = method;
+		this.skey = UUID.randomUUID().toString();
+	}
+
+	public MUserService(Integer code,int method, Integer uid, String remark, Long timeServiceSeconds) {
+		this.pId = code;
+		this.uid = uid;
+		this.skey = UUID.randomUUID().toString();
+		this.enabled = 1;
+		this.deadlineTime = new Date(System.currentTimeMillis() + timeServiceSeconds*1000);
+		this.method = method;
+		this.remark = remark;
+	}
+
+	public MUserService(Integer code,int method, Integer uid, String remark, Integer timeServiceSeconds) {
+		this.pId = code;
+		this.uid = uid;
+		this.skey = UUID.randomUUID().toString();
+		this.enabled = 1;
+		this.deadlineTime = new Date(System.currentTimeMillis() + timeServiceSeconds*1000);
+		this.method = method;
+		this.remark = remark;
+	}
+
+
+
+
+
 	enum EServiceType {
 		E_SERVICE_TYPE_GOOD_PORXY(10001),
 		E_SERVICE_TYPE_PERFECT_PROXY(10002),
-		E_SERVICE_TYPE_DYNAMIC_PROXY(10003),
-		;
-
+		E_SERVICE_TYPE_DYNAMIC_PROXY(10003),;
 		int value;
 		EServiceType(int value) {
 			this.value = value;
@@ -58,6 +105,9 @@ public class MUserService  implements Serializable {
 
 	/** 服务方式 */
 	protected Integer method;
+
+	/*备注信息*/
+	protected String remark;
 
 	/** 剩余量 */
 	@TableField(value = "cost_num")
@@ -179,6 +229,14 @@ public class MUserService  implements Serializable {
 
 	public Date getInitTime() {
 		return initTime;
+	}
+
+	public String getRemark() {
+		return remark;
+	}
+
+	public void setRemark(String remark) {
+		this.remark = remark;
 	}
 
 	public void setInitTime(Date initTime) {

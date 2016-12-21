@@ -205,7 +205,7 @@ public class ProxyMongoRespository implements ProxyRespository {
 			case E_PROXY_TYPE_FREE:
 				filters.add(Filters.ne("isDy", 1));
 				documents = coll().find().
-						sort(Sorts.descending("addTime")).filter(Filters.and(filters)).limit(limit);
+						sort(Sorts.ascending("addTime")).filter(Filters.and(filters)).limit(limit);
 				break;
 			case E_PROXY_TYPE_GOOD:
 				filters.add(Filters.ne("isDy", 1));

@@ -9,6 +9,7 @@ import com.ptb.zeus.service.main.IMUserServiceService;
 import com.ptb.zeus.service.user.ITbUserService;
 import com.ptb.zeus.web.basic.controller.BaseRestController;
 import com.ptb.zeus.web.basic.request.PageRequest;
+import com.ptb.zeus.web.main.request.BuyServiceRequest;
 import com.ptb.zeus.web.response.BaseResponse;
 
 import org.slf4j.Logger;
@@ -64,6 +65,14 @@ public class AFUserServiceController extends BaseRestController{
 			return new BaseResponse<>(map);
 		}
 		return map;
+	}
+
+	@RequestMapping("buy")
+	@ResponseBody
+	public Object buyProductService(BuyServiceRequest request) {
+		//购买商品
+		imUserServiceService.buyProductService(getToken().getUid(),request.getProductID());
+		return BaseResponse.NormalResponse;
 	}
 
 

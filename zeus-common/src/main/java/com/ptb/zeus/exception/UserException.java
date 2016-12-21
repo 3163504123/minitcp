@@ -24,6 +24,7 @@ public class UserException extends RuntimeException {
 	/*购买相关的错误*/
 	public static final UserException NoExistProductError = new UserException("不存在的商品", 13001);
 	public static final UserException NotEnoughPointError = new UserException("账户点数不足，请充值", 13001);
+	public static final UserException InvaildUIDRequest = new UserException("无效用户ID或你不能查看其它用户信息", 13001);
 
 
 	int errorCode;

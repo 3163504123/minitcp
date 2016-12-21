@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.ptb.zeus.common.core.model.main.MAccountUser;
 import com.ptb.zeus.common.core.model.main.MAccountUserStatement;
+import com.ptb.zeus.exception.UserException;
 import com.ptb.zeus.service.main.IMAccountUserService;
 import com.ptb.zeus.service.main.IMAccountUserStatementService;
 import com.ptb.zeus.service.user.ITbUserService;
@@ -55,6 +56,10 @@ public class AFUserAccountController extends BaseRestController {
 	@ResponseBody
 	public Object getEntitys(PageRequest request, MAccountUserStatement accountUserStatement,
 	                         @RequestParam(name = "f", defaultValue = "0") int f) {
+
+		if(accountUserStatement == null || accountUserStatement.getUid() == null || getToken().getUid() !=  accountUserStatement.getUid()) {
+			throw UserException.InvaildUIDRequest;
+		}
 
 		Page<MAccountUserStatement> page = new Page<MAccountUserStatement>(request.getPage(), request.getRows(), request.getSort());
 		page.setAsc(request.isAsc());

@@ -13,7 +13,7 @@
             <td><input name="id" readonly/>
             </td>
             <td>用户ID</td>
-            <td><input name="uid" class="easyui-validatebox"/></td>
+            <td><input name="accountId" class="easyui-validatebox"/></td>
         </tr>
         <tr>
 

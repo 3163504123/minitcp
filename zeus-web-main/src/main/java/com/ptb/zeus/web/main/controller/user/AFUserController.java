@@ -21,6 +21,7 @@ import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestWrapper;
 import org.springframework.stereotype.Controller;
@@ -53,8 +54,8 @@ import static com.ptb.zeus.web.utils.SessionConstant.KEY_UUID;
  */
 @Controller
 @RequestMapping("/api/u")
-public class AFUserBasicController extends BaseRestController {
-	static Logger logger = LoggerFactory.getLogger(AFUserBasicController.class);
+public class AFUserController extends BaseRestController {
+	static Logger logger = LoggerFactory.getLogger(AFUserController.class);
 
 	@Autowired
 	PasswordEncoder passwordEncoder;
@@ -154,7 +155,7 @@ public class AFUserBasicController extends BaseRestController {
 		checkParams(bindingResult);
 		checkPhoneAndVcode(request.getPh(), request.getVcode(), httpSession);
 
-		iTbUserService.insert(new TbUser(request.getUn(), request.getPh(), request.getPh(), passwordEncoder.encode(request.getPw())));
+		iTbUserService.register(new TbUser(request.getUn(), request.getPh(), request.getPh(), passwordEncoder.encode(request.getPw())));
 
 		/*删除上下文信息*/
 		httpSession.removeAttribute(E_SESSION_PHONEVCODE.name());
@@ -216,6 +217,17 @@ public class AFUserBasicController extends BaseRestController {
 		}
 
 	}
+
+
+	@RequestMapping("basicInfo")
+	@ResponseBody
+	@PreAuthorize(value = "!isAnonymous()")
+	public BaseResponse baseInfo() {
+		TbUser tbUser = iTbUserService.selectById(getToken().getUid());
+		tbUser.setPassword("");
+		return new BaseResponse(tbUser);
+	}
+
 	private void buildLoginResponse(TbUser user) {
 		//添加访问密钥给客户端
 		getRequest().getSession().setAttribute(SessionConstant.KEY_UUID, user.getId());
@@ -227,5 +239,6 @@ public class AFUserBasicController extends BaseRestController {
 		//清除信息中的账户密码信息
 		user.setPassword(null);
 	}
+
 
 }

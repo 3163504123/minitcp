@@ -3,8 +3,10 @@
 <mapper namespace="com.ptb.zeus.common.core.mapper.user.TbUserRoleMapper">
 
 	<!-- 通用查询结果列-->
-	<sql id="Base_Column_List">
-		 id, user_id AS userId, role_id AS roleId
-	</sql>
+	<resultMap id="TbUserRoleResultMap" type="com.ptb.zeus.common.core.model.user.TbUserRole">
+		<id column="id" property="id" />
+ 		<result column="user_id" property="userId" />
+ 		<result column="role_id" property="roleId" />
+	</resultMap>
 
 </mapper>

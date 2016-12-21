@@ -46,9 +46,9 @@ public class MUserServiceServiceImpl extends SuperServiceImpl<MUserServiceMapper
 
 	@Override
 	@Transactional
-	public void buyProductService(Integer uid, int productID) {
+	public void buyProductService(Long uid, Long productID) {
 		//获得商品信息
-		MProduct mProduct = mProductMapper.selectById(Long.valueOf(productID));
+		MProduct mProduct = mProductMapper.selectById(productID);
 		if (mProduct == null) {
 			throw UserException.NoExistProductError;
 		}
@@ -81,8 +81,8 @@ public class MUserServiceServiceImpl extends SuperServiceImpl<MUserServiceMapper
 				break;
 			default:
 				mUserService = new MUserService(mProduct.getCode(),
-				                                uid,
 				                                getServiceMethod(mProduct.getCode()),
+				                                uid,
 				                                mProduct.getDes(),
 				                                ProductUtil.getServiceCount(mProduct.getCode()));
 				break;

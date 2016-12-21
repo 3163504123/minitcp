@@ -17,8 +17,12 @@ public class MAccountUserServiceImpl extends SuperServiceImpl<MAccountUserMapper
 
 
 	@Override
-	public void getAccountByUserID(long uid) {
-		baseMapper.selectOne(new MAccountUser(uid));
-
+	public MAccountUser getAccountByUserID(long uid) {
+		MAccountUser mAccountUser = baseMapper.selectOne(new MAccountUser(uid));
+		if(mAccountUser == null) {
+			mAccountUser= MAccountUser.newAccount(uid);
+			baseMapper.insert(mAccountUser);
+		};
+		return mAccountUser;
 	}
 }

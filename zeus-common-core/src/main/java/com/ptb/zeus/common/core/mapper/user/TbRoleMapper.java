@@ -16,5 +16,5 @@ import java.util.List;
 @Component
 public interface TbRoleMapper extends AutoMapper<TbRole> {
 
-	List<TbRole> selectByUID(@Param("id") Integer id);
+	List<TbRole> selectByUID(@Param("id") Long id);
 }

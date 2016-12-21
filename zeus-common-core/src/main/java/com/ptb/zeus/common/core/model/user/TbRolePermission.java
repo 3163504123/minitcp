@@ -1,11 +1,11 @@
 package com.ptb.zeus.common.core.model.user;
 
-import java.io.Serializable;
-
 import com.baomidou.mybatisplus.annotations.IdType;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
+
+import java.io.Serializable;
 
 /**
  *
@@ -16,41 +16,42 @@ import com.baomidou.mybatisplus.annotations.TableName;
 public class TbRolePermission implements Serializable {
 
 	@TableField(exist = false)
-	protected static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
 	/**  */
 	@TableId(type = IdType.AUTO)
-	protected Integer id;
+	private Long id;
 
 	/**  */
 	@TableField(value = "role_id")
-	protected Integer roleId;
+	private Long roleId;
 
 	/**  */
 	@TableField(value = "permission_id")
-	protected Integer permissionId;
+	private Long permissionId;
 
-	public Integer getId() {
+
+	public Long getId() {
 		return this.id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
-	public Integer getRoleId() {
+	public Long getRoleId() {
 		return this.roleId;
 	}
 
-	public void setRoleId(Integer roleId) {
+	public void setRoleId(Long roleId) {
 		this.roleId = roleId;
 	}
 
-	public Integer getPermissionId() {
+	public Long getPermissionId() {
 		return this.permissionId;
 	}
 
-	public void setPermissionId(Integer permissionId) {
+	public void setPermissionId(Long permissionId) {
 		this.permissionId = permissionId;
 	}
 

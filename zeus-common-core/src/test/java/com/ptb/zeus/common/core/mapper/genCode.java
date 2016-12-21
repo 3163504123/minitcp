@@ -20,7 +20,7 @@ public class genCode {
 		cg.setDbPassword("");
 		cg.setDbUrl("jdbc:mysql://127.0.0.1:3306/minitcp_main?characterEncoding=utf8&useSSL=false");
 
-		cg.setTableNames((String[]) Arrays.asList("m_user_service").toArray());
+		cg.setTableNames((String[]) Arrays.asList("m_order").toArray());
 		// 配置包名
 
 		cg.setXmlPackage("mapper/main");
@@ -29,8 +29,8 @@ public class genCode {
 		cg.setServicePackage("com.ptb.zeus.service.main");
 		cg.setServiceImplPackage("com.ptb.zeus.service.main.impl");
 
-		cg.setConfigIdType(ConfigIdType.LONG);
-		cg.setIdType(IdType.AUTO);
+		cg.setConfigIdType(ConfigIdType.STRING);
+		cg.setIdType(IdType.UUID);
 		// 配置保存路径
 		cg.setSaveDir("./generate");
 		cg.setResultMap(true);

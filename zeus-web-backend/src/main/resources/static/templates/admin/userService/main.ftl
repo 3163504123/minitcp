@@ -18,7 +18,7 @@
             <tr>
                 <th field="ck" checkbox="true"></th>
                 <th data-options="field:'id',resizable:'true',sortable:'true'">id</th>
-                <th data-options="field:'uid',resizable:'true',sortable:'true'">用户名</th>
+                <th data-options="field:'accountId',resizable:'true',sortable:'true'">用户名</th>
                 <th data-options="field:'skey',resizable:'true',sortable:'true'">服务KEY</th>
                 <th data-options="field:'pId',resizable:'true',sortable:'true'">产品ID</th>
                 <th data-options="field:'enabled',resizable:'true',sortable:'true'">是否可用</th>

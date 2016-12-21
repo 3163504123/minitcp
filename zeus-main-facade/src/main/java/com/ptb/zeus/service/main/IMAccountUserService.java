@@ -11,5 +11,5 @@ import com.ptb.zeus.common.core.model.main.MAccountUser;
 public interface IMAccountUserService extends ISuperService<MAccountUser> {
 
 
-	void getAccountByUserID(long uid);
+	MAccountUser getAccountByUserID(long uid);
 }

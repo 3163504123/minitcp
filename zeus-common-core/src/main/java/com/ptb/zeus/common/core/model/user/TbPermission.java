@@ -16,28 +16,29 @@ import java.io.Serializable;
 public class TbPermission implements Serializable {
 
 	@TableField(exist = false)
-	protected static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
 	/**  */
 	@TableId(type = IdType.AUTO)
-	protected Integer id;
+	private Long id;
 
 	/** 权限名 */
 	@TableField(value = "permisson_name")
-	protected String permissonName;
+	private String permissonName;
 
 	/** 权限标识 */
 	@TableField(value = "permisson_sign")
-	protected String permissonSign;
+	private String permissonSign;
 
 	/** 描述 */
-	protected String description;
+	private String description;
 
-	public Integer getId() {
+
+	public Long getId() {
 		return this.id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

@@ -12,5 +12,5 @@ import java.util.List;
  */
 public interface ITbRoleService extends ISuperService<TbRole> {
 
-	List<TbRole> selectByUID(Integer id);
+	List<TbRole> selectByUID(Long id);
 }

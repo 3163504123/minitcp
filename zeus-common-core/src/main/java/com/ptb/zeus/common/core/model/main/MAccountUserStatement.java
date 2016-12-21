@@ -26,11 +26,11 @@ public class MAccountUserStatement  implements Serializable {
 	protected String id;
 
 	/** 用户ID */
-	protected Integer uid;
+	protected Long uid;
 
 	/** 帐户ID */
 	@TableField(value = "account_id")
-	protected Integer accountId;
+	protected Long accountId;
 
 	/** 金额 */
 	protected Integer amount;
@@ -46,7 +46,7 @@ public class MAccountUserStatement  implements Serializable {
 	protected Date ctime;
 
 	public MAccountUserStatement(
-			Integer uid, Integer id, Integer price, Integer code, String des) {
+			Long uid, Long id, Integer price, Integer code, String des) {
 		this.uid = uid;
 		this.accountId = id;
 		this.amount = price;
@@ -62,19 +62,19 @@ public class MAccountUserStatement  implements Serializable {
 		this.id = id;
 	}
 
-	public Integer getUid() {
-		return this.uid;
+	public Long getUid() {
+		return uid;
 	}
 
-	public void setUid(Integer uid) {
+	public void setUid(Long uid) {
 		this.uid = uid;
 	}
 
-	public Integer getAccountId() {
-		return this.accountId;
+	public Long getAccountId() {
+		return accountId;
 	}
 
-	public void setAccountId(Integer accountId) {
+	public void setAccountId(Long accountId) {
 		this.accountId = accountId;
 	}
 

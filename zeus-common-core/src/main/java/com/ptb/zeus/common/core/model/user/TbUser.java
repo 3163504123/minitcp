@@ -42,7 +42,7 @@ public class TbUser  implements Serializable {
 
 	/**  */
 	@TableId(type = IdType.AUTO)
-	protected Integer id;
+	protected Long id;
 
 	/**
 	 * 用户名
@@ -100,11 +100,11 @@ public class TbUser  implements Serializable {
 		this.roles = roles;
 	}
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -150,6 +150,7 @@ public class TbUser  implements Serializable {
 		}
 		this.ctime = ctime;
 	}
+
 
 	public Integer getState() {
 		return this.state;

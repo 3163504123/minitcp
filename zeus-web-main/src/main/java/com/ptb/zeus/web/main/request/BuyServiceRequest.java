@@ -11,14 +11,14 @@ import javax.validation.constraints.Size;
  */
 public class BuyServiceRequest {
 	@Size(min = 9)
-	int productID;
+	Long productID;
 
 
-	public int getProductID() {
+	public Long getProductID() {
 		return productID;
 	}
 
-	public void setProductID(int productID) {
+	public void setProductID(Long productID) {
 		this.productID = productID;
 	}
 }

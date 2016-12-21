@@ -1,6 +1,6 @@
 package com.ptb.zeus.web.main.controller.user;
 
-import com.ptb.zeus.common.core.model.user.TbUser;
+import com.ptb.zeus.common.core.model.main.MAccountUser;
 import com.ptb.zeus.service.main.IMAccountUserService;
 import com.ptb.zeus.service.user.ITbUserService;
 import com.ptb.zeus.web.basic.controller.BaseRestController;
@@ -24,30 +24,21 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 @RequestMapping("/api/u")
 @PreAuthorize(value = "!isAnonymous()")
-public class AFUserDetailController extends BaseRestController {
-	static Logger logger = LoggerFactory.getLogger(AFUserDetailController.class);
+public class AFAccountController extends BaseRestController {
+	static Logger logger = LoggerFactory.getLogger(AFAccountController.class);
 
 	@Autowired
 	ITbUserService iTbUserService;
 	@Autowired
 	IMAccountUserService imAccountUserService;
 
-	@RequestMapping("basicInfo")
-	@ResponseBody
-	public BaseResponse baseInfo() {
-		TbUser tbUser = iTbUserService.selectById(getToken().getUid());
-		tbUser.setPassword("");
-		return new BaseResponse(tbUser);
-	}
 
-/*	@RequestMapping("acctInfo")
+
+	@RequestMapping("acctInfo")
 	@ResponseBody
 	public BaseResponse acctInfo() {
-		imAccountUserService.getAccountByUserID(getToken().getUid());
-		return new BaseResponse(tbUser);
-	}*/
-
-
-
+		MAccountUser acctInfo = imAccountUserService.getAccountByUserID(getToken().getUid());
+		return new BaseResponse(acctInfo);
+	}
 
 }

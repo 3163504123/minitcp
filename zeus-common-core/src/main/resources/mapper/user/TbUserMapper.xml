@@ -3,9 +3,18 @@
 <mapper namespace="com.ptb.zeus.common.core.mapper.user.TbUserMapper">
 
 	<!-- 通用查询结果列-->
-	<sql id="Base_Column_List">
-		 id, uname , password, ph, email, ctime, state, nick_name AS nickName, remark
-	</sql>
+	<resultMap id="TbUserResultMap" type="com.ptb.zeus.common.core.model.user.TbUser">
+		<id column="id" property="id" />
+ 		<result column="uname" property="uname" />
+ 		<result column="`password`" property="password" />
+ 		<result column="phone" property="phone" />
+ 		<result column="email" property="email" />
+ 		<result column="ctime" property="ctime" />
+ 		<result column="`state`" property="state" />
+ 		<result column="nick_name" property="nickName" />
+ 		<result column="remark" property="remark" />
+	</resultMap>
+
 
 	<resultMap id="queryForDetail" type="com.ptb.zeus.common.core.model.user.TbUser">
 		<id column="id" property="id" jdbcType="VARCHAR"/>
@@ -16,8 +25,7 @@
 	</resultMap>
 
 	<select id="selectDetail" resultMap="queryForDetail">
-        select u.*,r.role_name,r.role_sign,r.description from minitcp_user.tb_user u LEFT JOIN minitcp_user.tb_user_role ur on
+		select u.*,r.role_name,r.role_sign,r.description from minitcp_user.tb_user u LEFT JOIN minitcp_user.tb_user_role ur on
 		u.id = ur.user_id LEFT JOIN minitcp_user.tb_role r ON ur.role_id = r.id;
 	</select>
-
 </mapper>

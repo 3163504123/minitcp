@@ -5,8 +5,6 @@ import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
 import java.io.Serializable;
 import java.util.Date;
 
@@ -16,31 +14,32 @@ import java.util.Date;
  *
  */
 @TableName("m_order")
-public class MOrder  implements Serializable {
+public class MOrder implements Serializable {
 
 	@TableField(exist = false)
-	protected static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
 	/** 订单编号 */
 	@TableId(type = IdType.UUID)
-	protected String id;
+	private String id;
 
 	/** 用户ID */
-	protected Integer uid;
+	@TableField(value = "account_id")
+	private Long accountId;
 
 	/** 消费金额 */
-	protected Integer amount;
+	private Integer amount;
 
 	/** 创建时间
  */
-	@DateTimeFormat(pattern = "MM/dd/yyyy HH:mm:ss")
-	protected Date ctime;
+	private Date ctime;
 
 	/** 订单状态 */
-	protected Integer state;
+	private Integer state;
 
 	/** 备注信息 */
-	protected String remark;
+	private String remark;
+
 
 	public String getId() {
 		return this.id;
@@ -50,12 +49,12 @@ public class MOrder  implements Serializable {
 		this.id = id;
 	}
 
-	public Integer getUid() {
-		return this.uid;
+	public Long getAccountId() {
+		return this.accountId;
 	}
 
-	public void setUid(Integer uid) {
-		this.uid = uid;
+	public void setAccountId(Long accountId) {
+		this.accountId = accountId;
 	}
 
 	public Integer getAmount() {

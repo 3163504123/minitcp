@@ -23,7 +23,7 @@ public class MAccountUser  implements Serializable {
 
 	/**  */
 	@TableId(type = IdType.AUTO)
-	protected Integer id;
+	protected Long id;
 
 	/** 用户点卷数 */
 	protected Integer point;
@@ -32,7 +32,7 @@ public class MAccountUser  implements Serializable {
 	protected Integer balance;
 
 	/** 用户ID */
-	protected Integer uid;
+	protected Long uid;
 
 	/** 创建时间 */
 	@DateTimeFormat(pattern = "MM/dd/yyyy HH:mm:ss")
@@ -45,11 +45,11 @@ public class MAccountUser  implements Serializable {
 
 	}
 
-	public Integer getId() {
-		return this.id;
+	public Long getId() {
+		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -69,11 +69,11 @@ public class MAccountUser  implements Serializable {
 		this.balance = balance;
 	}
 
-	public Integer getUid() {
-		return this.uid;
+	public Long getUid() {
+		return uid;
 	}
 
-	public MAccountUser setUid(Integer uid) {
+	public MAccountUser setUid(Long uid) {
 		this.uid = uid;
 		return this;
 	}
@@ -86,7 +86,7 @@ public class MAccountUser  implements Serializable {
 		this.ctime = ctime;
 	}
 
-	public static MAccountUser newAccount(Integer uid) {
+	public static MAccountUser newAccount(Long uid) {
 		MAccountUser mAccountUser = new MAccountUser();
 		mAccountUser.setPoint(0);
 		mAccountUser.setBalance(0);

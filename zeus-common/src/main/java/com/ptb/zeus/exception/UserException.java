@@ -13,6 +13,7 @@ public class UserException extends RuntimeException {
 	public static final UserException NoExistUserError = new UserException("用户不存在", 11003);
 	public static final UserException NoExistAccountError = new UserException("用户账户不存在", 11003);
 	public static final UserException UserTokenExpiredError  = new UserException("用户TOKEN过期", 11004);
+	public static final UserException NoRegistUserError = new UserException("注册用户失败", 13001);
 	public static final UserException UserTokenParseError= new UserException("用户TOKEN无效", 11005);
 
 	/*服务相关的错误*/
@@ -23,6 +24,7 @@ public class UserException extends RuntimeException {
 	/*购买相关的错误*/
 	public static final UserException NoExistProductError = new UserException("不存在的商品", 13001);
 	public static final UserException NotEnoughPointError = new UserException("账户点数不足，请充值", 13001);
+
 
 	int errorCode;
 	String errorMessage;

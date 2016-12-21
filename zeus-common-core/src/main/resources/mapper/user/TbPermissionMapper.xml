@@ -3,8 +3,11 @@
 <mapper namespace="com.ptb.zeus.common.core.mapper.user.TbPermissionMapper">
 
 	<!-- 通用查询结果列-->
-	<sql id="Base_Column_List">
-		 id, permisson_name AS permissonName, permisson_sign AS permissonSign, description
-	</sql>
+	<resultMap id="TbPermissionResultMap" type="com.ptb.zeus.common.core.model.user.TbPermission">
+		<id column="id" property="id" />
+ 		<result column="permisson_name" property="permissonName" />
+ 		<result column="permisson_sign" property="permissonSign" />
+ 		<result column="description" property="description" />
+	</resultMap>
 
 </mapper>

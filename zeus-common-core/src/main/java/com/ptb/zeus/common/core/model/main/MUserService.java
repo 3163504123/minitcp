@@ -24,9 +24,9 @@ import javax.persistence.TemporalType;
 public class MUserService  implements Serializable {
 
 
-	public void initNew() {
+	public void initNew(Long uid) {
 		this.enabled = 1;
-		this.uid = 0;
+		this.uid = uid;
 		this.remark = "";
 		this.method = -1;
 		this.costNum = 0;
@@ -37,8 +37,8 @@ public class MUserService  implements Serializable {
 		this.skey = "";
 	}
 
-	public MUserService(Integer code,Integer uid,int method,String remark) {
-		initNew();
+	public MUserService(Integer code,Long uid,int method,String remark) {
+		initNew(uid);
 		this.enabled = 1;
 		this.uid = uid;
 		this.remark = remark;
@@ -46,7 +46,7 @@ public class MUserService  implements Serializable {
 		this.skey = UUID.randomUUID().toString();
 	}
 
-	public MUserService(Integer code,int method, Integer uid, String remark, Long timeServiceSeconds) {
+	public MUserService(Integer code,int method, Long uid, String remark, Long timeServiceSeconds) {
 		this.pId = code;
 		this.uid = uid;
 		this.skey = UUID.randomUUID().toString();
@@ -56,7 +56,7 @@ public class MUserService  implements Serializable {
 		this.remark = remark;
 	}
 
-	public MUserService(Integer code,int method, Integer uid, String remark, Integer timeServiceSeconds) {
+	public MUserService(Integer code,int method, Long uid, String remark, Integer timeServiceSeconds) {
 		this.pId = code;
 		this.uid = uid;
 		this.skey = UUID.randomUUID().toString();
@@ -85,10 +85,10 @@ public class MUserService  implements Serializable {
 
 	/** 服务编号 */
 	@TableId(type = IdType.AUTO)
-	protected Integer id;
+	protected Long id;
 
 	/** 服务的归属人 */
-	protected Integer uid;
+	protected Long uid;
 
 	/** 服务标识KEY */
 	protected String skey;
@@ -163,19 +163,19 @@ public class MUserService  implements Serializable {
 		this.ctime = ctime;
 	}
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
-	public Integer getUid() {
+	public Long getUid() {
 		return uid;
 	}
 
-	public void setUid(Integer uid) {
+	public void setUid(Long uid) {
 		this.uid = uid;
 	}
 

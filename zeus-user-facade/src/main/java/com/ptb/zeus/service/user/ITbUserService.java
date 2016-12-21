@@ -13,4 +13,6 @@ import java.util.List;
  */
 public interface ITbUserService extends ISuperService<TbUser> {
 	List<TbUser> getUserByIdentiy(String s);
+
+	boolean register(TbUser tbUser);
 }

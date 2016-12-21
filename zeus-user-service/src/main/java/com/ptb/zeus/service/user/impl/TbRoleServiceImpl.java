@@ -22,7 +22,7 @@ public class TbRoleServiceImpl extends SuperServiceImpl<TbRoleMapper, TbRole> im
 	TbRoleMapper tbRoleMapper;
 
 	@Override
-	public List<TbRole> selectByUID(Integer id) {
+	public List<TbRole> selectByUID(Long id) {
 		return tbRoleMapper.selectByUID(id);
 	}
 }

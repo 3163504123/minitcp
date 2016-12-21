@@ -3,8 +3,13 @@
 <mapper namespace="com.ptb.zeus.common.core.mapper.main.MOrderMapper">
 
 	<!-- 通用查询结果列-->
-	<sql id="Base_Column_List">
-		 id, uid, amount, ctime, state, remark
-	</sql>
+	<resultMap id="MOrderResultMap" type="com.ptb.zeus.common.core.model.main.MOrder">
+		<id column="id" property="id" />
+ 		<result column="account_id" property="accountId" />
+ 		<result column="amount" property="amount" />
+ 		<result column="ctime" property="ctime" />
+ 		<result column="`state`" property="state" />
+ 		<result column="remark" property="remark" />
+	</resultMap>
 
 </mapper>

@@ -54,6 +54,10 @@ public class MAccountUserStatement  implements Serializable {
 		this.remark = des;
 	}
 
+	public MAccountUserStatement(Long accountId) {
+		this.accountId = accountId;
+	}
+
 	public String getId() {
 		return this.id;
 	}

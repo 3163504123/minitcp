@@ -16,4 +16,9 @@ import org.springframework.stereotype.Service;
 public class MAccountUserServiceImpl extends SuperServiceImpl<MAccountUserMapper, MAccountUser> implements IMAccountUserService {
 
 
+	@Override
+	public void getAccountByUserID(long uid) {
+		baseMapper.selectOne(new MAccountUser(uid));
+
+	}
 }

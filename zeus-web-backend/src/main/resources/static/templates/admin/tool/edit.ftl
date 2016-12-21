@@ -10,7 +10,7 @@
     <table class="dv-table" style="width:100%;background:#fafafa;padding:5px;margin-top:5px;">
         <tr>
             <td>id</td>
-            <td><input name="id" readonly></input>
+            <td><input name="id"/>
             </td>
             <td>名称</td>
             <td><input name="name" class="easyui-validatebox"/></td>
@@ -21,9 +21,9 @@
             <td><input name="useCnt" class="easyui-validatebox" readonly/></td>
             <td>状态</td>
             <td>
-                <select id=”cc” class=”easyui-combobox” name=”state” style=”width:200px;”>
-                    <option value=”0”>可用</option>
-                    <option value=”1”>不可用</option>
+                <select id="cc" class="easyui-combobox" name="state" style=”width:200px;”>
+                    <option value="1">可用</option>
+                    <option value="0">不可用</option>
                 </select>
             </td>
         </tr>

@@ -1,7 +1,8 @@
 package com.ptb.zeus.web.basic.config.security;
 
 
-import com.ptb.zeus.common.core.utils.security.security.TokenUtils;
+import com.ptb.zeus.common.core.utils.security.security.Token;
+import com.ptb.zeus.web.basic.config.interceptor.CommonAttributionParser;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,10 +36,13 @@ public class MyHttpSessionSecurityContextRepository extends HttpSessionSecurityC
 	@Override
 	public SecurityContext loadContext(
 			HttpRequestResponseHolder requestResponseHolder) {
-		String uuid = requestResponseHolder.getRequest().getHeader("uuid");
+		CommonAttributionParser.parseTokenFromRequest(requestResponseHolder.getRequest());
+
+		Token token = (Token) requestResponseHolder.getRequest().getAttribute("token");
+
 		SecurityContext securityContext = new SecurityContextImpl();
-		if (uuid != null) {
-			Authentication auth = springSecutiryUserDetailsService.getAuth(Math.toIntExact(TokenUtils.decode(uuid).getUid()));
+		if (token != null) {
+			Authentication auth = springSecutiryUserDetailsService.getAuth(Math.toIntExact(token.getUid()));
 			securityContext.setAuthentication(auth);
 			return securityContext;
 		}
@@ -48,7 +52,7 @@ public class MyHttpSessionSecurityContextRepository extends HttpSessionSecurityC
 	@Override
 	public void saveContext(
 			SecurityContext context, HttpServletRequest request, HttpServletResponse response) {
-		super.saveContext(context, request, response);
+/*		super.saveContext(context, request, response);*/
 	}
 
 	@Override

@@ -49,12 +49,12 @@ import static com.ptb.zeus.web.utils.SessionConstant.KEY_UUID;
  *
  * @author shuai.zhang  on 2016/11/26
  * @version 1.0.0
- * @description 用户相关的API
+ * @description 用户注册，登陆，找回密码，相关的API
  */
 @Controller
 @RequestMapping("/api/u")
-public class AFUserController extends BaseRestController {
-	static Logger logger = LoggerFactory.getLogger(AFUserController.class);
+public class AFUserBasicController extends BaseRestController {
+	static Logger logger = LoggerFactory.getLogger(AFUserBasicController.class);
 
 	@Autowired
 	PasswordEncoder passwordEncoder;
@@ -64,7 +64,6 @@ public class AFUserController extends BaseRestController {
 
 	@Resource
 	ITbUserService iTbUserService;
-
 
 	@RequestMapping("sendVCode")
 	@ResponseBody
@@ -77,7 +76,6 @@ public class AFUserController extends BaseRestController {
 
 			//生成验证码
 			String vcode = RandomStringUtils.random(6, false, true);
-
 
 			System.out.println(vcode);
 			//发送短信
@@ -133,7 +131,7 @@ public class AFUserController extends BaseRestController {
 		String password = passwordEncoder.encode(reqeust.getPs());
 		String phone = reqeust.getPh();
 
-		List<TbUser> tbUsers = iTbUserService.getUserByIdentiy(reqeust.getPh());
+		List<TbUser> tbUsers = iTbUserService.getUserByIdentiy(phone);
 
 		if (tbUsers.size() == 0) {
 			throw UserException.NoExistUserError;
@@ -168,8 +166,8 @@ public class AFUserController extends BaseRestController {
 	@RequestMapping("login")
 	@ResponseBody
 	public BaseResponse login(
-			SecurityContextHolderAwareRequestWrapper request, LoginReqeust loginReqeust,
-			HttpServletResponse resp, BindingResult bindingResult) {
+			SecurityContextHolderAwareRequestWrapper request, @Valid LoginReqeust loginReqeust,
+			BindingResult bindingResult) {
 		checkParams(bindingResult);
 		try {
 			//通过系统进行登陆操作
@@ -183,32 +181,26 @@ public class AFUserController extends BaseRestController {
 			buildLoginResponse(user);
 			return new BaseResponse(user);
 		} catch (ServletException e) {
+			e.printStackTrace();
 			throw UserException.LoginUndefineError;
 		}
 	}
 
 
-	private void buildLoginResponse(TbUser user) {
-		//添加访问密钥给客户端
-		getRequest().getSession().setAttribute(SessionConstant.KEY_UUID, user.getId());
-		String encodedToken = TokenUtils.encode(new Token(user.getId(), DEFAULT_UUID_EXPIRED_TIME));
-		Cookie cookie = new Cookie(KEY_UUID, encodedToken);
-		cookie.setPath("/");
-		getResponse().addCookie(cookie);
-		getResponse().addHeader(KEY_UUID, encodedToken);
-		//清除信息中的账户密码信息
-		user.setPassword(null);
-	}
-
 	@RequestMapping("logout")
 	@ResponseBody
-	public String logout(SecurityContextHolderAwareRequestWrapper request) {
+	public BaseResponse logout(SecurityContextHolderAwareRequestWrapper request) {
 		try {
 			request.logout();
+			/*删除COOKIE*/
+			Cookie cookie = new Cookie(KEY_UUID, null);
+			cookie.setPath("/");
+			cookie.setMaxAge(0);
+			getResponse().addCookie(cookie);
 		} catch (ServletException e) {
 			e.printStackTrace();
 		}
-		return String.format("logout");
+		return BaseResponse.NormalResponse;
 	}
 
 	private void checkPhoneAndVcode(String phone, String vcode, HttpSession httpSession) {
@@ -223,6 +215,17 @@ public class AFUserController extends BaseRestController {
 			throw UserException.NoExistVaildCodeError;
 		}
 
+	}
+	private void buildLoginResponse(TbUser user) {
+		//添加访问密钥给客户端
+		getRequest().getSession().setAttribute(SessionConstant.KEY_UUID, user.getId());
+		String encodedToken = TokenUtils.encode(new Token(user.getId(), DEFAULT_UUID_EXPIRED_TIME));
+		Cookie cookie = new Cookie(KEY_UUID, encodedToken);
+		cookie.setPath("/");
+		getResponse().addCookie(cookie);
+		getResponse().addHeader(KEY_UUID, encodedToken);
+		//清除信息中的账户密码信息
+		user.setPassword(null);
 	}
 
 }

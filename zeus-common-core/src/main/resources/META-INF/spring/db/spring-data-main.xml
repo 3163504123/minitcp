@@ -20,23 +20,10 @@ http://www.springframework.org/schema/context/spring-context-4.0.xsd">
         <property name="uniqueResourceName" value="mainDB" />
         <property name="xaProperties">
             <props>
-                <prop key="driverClassName">org.gjt.mm.mysql.Driver</prop>
-                <prop key="url">${com.ptb.zeus.db.main.url}</prop>
+                <prop key="URL">${com.ptb.zeus.db.main.url}</prop>
                 <prop key="password">${com.ptb.zeus.db.main.password}</prop>
                 <!--  <prop key="user">${jdbc.username}</prop> --> <!-- mysql -->
-                <prop key="username">${com.ptb.zeus.db.main.username}</prop>   <!-- durid -->
-                <prop key="initialSize">0</prop>
-                <prop key="maxActive">20</prop> <!-- 若不配置则代码执行"{dataSource-1} inited"此处停止  -->
-                <prop key="minIdle">0</prop>
-                <prop key="maxWait">60000</prop>
-                <prop key="validationQuery">select 1</prop>
-                <prop key="testOnBorrow">false</prop>
-                <prop key="testOnReturn">false</prop>
-                <prop key="testWhileIdle">true</prop>
-                <prop key="removeAbandoned">true</prop>
-                <prop key="removeAbandonedTimeout">1800</prop>
-                <prop key="logAbandoned">true</prop>
-                <prop key="filters">mergeStat</prop>
+                <prop key="user">${com.ptb.zeus.db.main.username}</prop>   <!-- durid -->
             </props>
         </property>
     </bean>

@@ -46,6 +46,11 @@
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jetty</artifactId>
+            <version>${spring-boot.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
             <version>${spring-boot.version}</version>
             <exclusions>
@@ -110,7 +115,6 @@
             <version>${spring-boot.version}</version>
         </dependency>
 
-        <!--dubbo的依赖-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>

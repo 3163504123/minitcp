@@ -1,11 +1,11 @@
 package com.ptb.zeus.web.main.controller.tool;
 
-import com.baomidou.mybatisplus.mapper.EntityWrapper;
-import com.baomidou.mybatisplus.plugins.Page;
+import com.baomidou.framework.service.IService;
 import com.ptb.zeus.common.core.model.main.MTool;
+import com.ptb.zeus.exception.UserException;
 import com.ptb.zeus.service.main.IMToolService;
-import com.ptb.zeus.web.basic.controller.BaseRestController;
-import com.ptb.zeus.web.main.request.PageRequest;
+import com.ptb.zeus.web.basic.controller.ListRestController;
+import com.ptb.zeus.web.response.BaseResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,30 +13,32 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
-
 /**
  * The type Am proxy controller.
  */
 @RequestMapping("/api/tool")
 @RestController
-public class AToolController extends BaseRestController {
+public class AToolController extends ListRestController<MTool,Long> {
 
 	@Autowired
 	IMToolService imToolService;
-	@RequestMapping("list")
+
+	@RequestMapping("get")
 	@ResponseBody
-	public List<MTool> getEntitys(PageRequest request, MTool r,@RequestParam(value = "type",required = false) String type) {
-		Page<MTool> page = new Page<MTool>(request.getPage(), request.getRows(), request.getSort());
-		page.setAsc(request.isAsc());
-		EntityWrapper<MTool> ew;
-		if(type != null) {
-			ew = new EntityWrapper(r).where("type like {0}", type);
-		}else{
-			ew = new EntityWrapper(r);
+	public Object getEntity(@RequestParam("id")  Integer id) {
+		if(id == null) {
+			throw UserException.ArgError;
 		}
-		Page<MTool> tbUserPage = imToolService.selectPage(page, ew);
-		return tbUserPage.getRecords();
+		MTool mTool = getBasicService().selectById(id);
+		if(mTool == null) {
+			throw  UserException.ArgError;
+		}
+		return new BaseResponse<>(getBasicService().selectById(id));
+	}
+
+	@Override
+	protected IService<MTool, Long> getBasicService() {
+		return this.imToolService;
 	}
 }
 

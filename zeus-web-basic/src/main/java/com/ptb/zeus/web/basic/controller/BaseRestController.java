@@ -9,12 +9,12 @@ import org.apache.catalina.connector.ClientAbortException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
-import org.springframework.web.context.request.ServletWebRequest;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -37,6 +37,10 @@ public class BaseRestController extends BaseController {
 
 		if (ex instanceof ClientAbortException) {
 			return BaseResponse.NormalResponse;
+		}
+
+		if(ex instanceof AccessDeniedException) {
+			return new BaseResponse<>(UserException.NoServiceAuthError.getErrorCode(), UserException.NoServiceAuthError.getErrorMessage(), null);
 		}
 
 		if (ex instanceof UserWebExpection) {
@@ -66,7 +70,7 @@ public class BaseRestController extends BaseController {
 	}
 
 	protected HttpServletResponse getResponse() {
-		return ((ServletWebRequest)RequestContextHolder.getRequestAttributes()).getResponse();
+		return ((ServletRequestAttributes)RequestContextHolder.getRequestAttributes()).getResponse();
 	}
 
 	protected  HttpSession getSession() {

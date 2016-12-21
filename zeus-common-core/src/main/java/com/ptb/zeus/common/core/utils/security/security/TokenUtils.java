@@ -3,6 +3,9 @@ package com.ptb.zeus.common.core.utils.security.security;
 
 import com.ptb.zeus.exception.UserException;
 
+import java.net.URLDecoder;
+import java.net.URLEncoder;
+
 import javax.crypto.Cipher;
 
 /**
@@ -32,7 +35,7 @@ public class TokenUtils {
 
 	public static String encode(Token token) {
 		try {
-			return AESTool.encrypt(String.format("%d:::%d:::tail", token.getUid(), token.getExpiredTime()), encryptCipher);
+			return URLEncoder.encode(AESTool.encrypt(String.format("%d:::%d:::tail", token.getUid(), token.getExpiredTime()), encryptCipher));
 		} catch (Exception e) {
 			throw UserException.UserTokenParseError;
 		}
@@ -40,7 +43,7 @@ public class TokenUtils {
 
 	public static Token decode(String encodeStr) {
 		try {
-			String s = new String(AESTool.decrypt(encodeStr, decryptCipher));
+			String s = new String(AESTool.decrypt(URLDecoder.decode(encodeStr), decryptCipher));
 			String[] split = s.split(":::");
 			Token token = new Token(split[0], split[1]);
 			if (token.expiredTime < System.currentTimeMillis()) {
@@ -51,6 +54,9 @@ public class TokenUtils {
 			throw UserException.UserTokenParseError;
 		}
 	}
+
+
+
 
 	public static void main(String[] args) {
 		Token token = new Token(123456L, 1000);

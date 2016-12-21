@@ -1,7 +1,7 @@
 package com.ptb.zeus.service.main;
 
-import com.ptb.zeus.common.core.model.main.MAccountUser;
 import com.baomidou.framework.service.ISuperService;
+import com.ptb.zeus.common.core.model.main.MAccountUser;
 
 /**
  *
@@ -11,4 +11,5 @@ import com.baomidou.framework.service.ISuperService;
 public interface IMAccountUserService extends ISuperService<MAccountUser> {
 
 
+	void getAccountByUserID(long uid);
 }

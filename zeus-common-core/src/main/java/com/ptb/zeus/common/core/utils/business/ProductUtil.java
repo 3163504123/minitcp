@@ -13,6 +13,7 @@ public class ProductUtil {
 	/*编码含义 前三位带表父类，中三位代表子类，后三表代码服务类型*/
 	final static int CODE_PROXY_GOOD = 1001001;
 	final static int CODE_PROXY_PERFECT = 1001002;
+	final static int CODE_PROXY_FREE=1001000;
 	final static int CODE_PROXY_DYNAMIC = 1001003;
 
 	final static int CODE_PRODUCT_TYPE_DAY = 1;
@@ -27,6 +28,10 @@ public class ProductUtil {
 	public final static int CODE_PRODUCT_SERVICE_TYPE_PERCENT_COUNT=5; //百次类型
 	public final static int CODE_PRODUCT_SERVICE_TYPE_THOUSAND_COUNT=6; //千次类型
 	public final static int CODE_PRODUCT_SERVICE_TYPE_TEN_THOUSAND_COUNT=7; //万次类型
+
+	public static boolean isFreeProxy(int code) {
+		return CODE_PROXY_FREE == (code / 100);
+	}
 
 	public static boolean isGoodProxy(int code) {
 		return CODE_PROXY_GOOD == (code / 100);

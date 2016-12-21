@@ -1,12 +1,13 @@
 package com.ptb.zeus.web.basic.config.interceptor;
 
-import com.ptb.zeus.common.core.utils.security.security.TokenUtils;
-
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import static com.ptb.zeus.web.utils.SessionConstant.KEY_UUID;
 
 /**
  * Copyright ©2016 Beijing Tender Union Information co , LTD
@@ -15,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
  * @version 1.0.0
  * @description 解析出TOKEN和BASEPATH 路径到上下文
  */
-public class UUIDAndContextIocInterceptorTest implements HandlerInterceptor {
+public class UUIDAndContextIocInterceptor implements HandlerInterceptor {
 	@Override
 	public boolean preHandle(
 			HttpServletRequest request, HttpServletResponse httpServletResponse,
@@ -31,12 +32,16 @@ public class UUIDAndContextIocInterceptorTest implements HandlerInterceptor {
 		request.setAttribute("fullPath",basePath+request.getServletPath());
 		request.setAttribute("contextPath",request.getContextPath());
 
-		//将用户TOKEN解析到上下文中，方便使用
-		if (request.getHeader("uuid") != null) {
-			request.setAttribute("token", TokenUtils.decode(request.getHeader("uuid")));
+		CommonAttributionParser.parseTokenFromRequest(request);
+		if(request.getAttribute("token") == null) {
+			Cookie cookie = new Cookie(KEY_UUID, null);
+			cookie.setPath("/");
+			cookie.setMaxAge(0);
+			httpServletResponse.addCookie(cookie);
 		}
 		return true;
 	}
+
 
 	@Override
 	public void postHandle(

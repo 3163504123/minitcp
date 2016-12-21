@@ -4,12 +4,10 @@ import com.ptb.zeus.common.core.model.main.MProxy;
 import com.ptb.zeus.service.main.IMProxyService;
 import com.ptb.zeus.service.main.impl.MProxyServiceImpl;
 import com.ptb.zeus.web.basic.controller.BaseRestController;
-import com.ptb.zeus.web.response.BaseResponse;
 import com.ptb.zeus.web.main.request.ProxyServiceRequest;
+import com.ptb.zeus.web.response.BaseResponse;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -35,10 +33,8 @@ public class AMProxyRestController extends BaseRestController {
 	 */
 	@RequestMapping("free/get")
 	@ResponseBody
-	public Object freeProxy(MProxy mProxy, Integer size,
-	                        @CookieValue(name = "E_SESSION_USERID",required = false) String uid) {
-
-		if (StringUtils.isBlank(uid)) {
+	public Object freeProxy(MProxy mProxy, Integer size) {
+		if (getToken() == null) {
 			return new BaseResponse<>(imProxyService.getFreeProxys(10, mProxy));
 		} else {
 			if(size == null) size = 10;

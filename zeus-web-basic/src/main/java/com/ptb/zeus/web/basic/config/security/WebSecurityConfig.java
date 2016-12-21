@@ -24,6 +24,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	UserDetailsService userDetailsService;
 
+	@Autowired
+	MyHttpSessionSecurityContextRepository myHttpSessionSecurityContextRepository;
+
 	@Override
 	protected void configure(
 			HttpSecurity http) throws Exception {
@@ -40,7 +43,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		http.csrf().disable();
 		http.headers().frameOptions().sameOrigin();
 
-		http.securityContext().securityContextRepository(new MyHttpSessionSecurityContextRepository());
+		http.securityContext().securityContextRepository(myHttpSessionSecurityContextRepository);
 		//退出的相关配置
 		http.logout().logoutSuccessHandler((httpServletRequest, httpServletResponse, authentication) -> {
 			System.out.println("i'm getUserByIdentiy out");

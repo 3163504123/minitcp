@@ -2,9 +2,13 @@ package com.ptb.zeus.service.main.impl;
 
 import com.baomidou.framework.service.impl.SuperServiceImpl;
 import com.ptb.zeus.common.core.mapper.main.MToolMapper;
+import com.ptb.zeus.common.core.mapper.user.TbUserMapper;
 import com.ptb.zeus.common.core.model.main.MTool;
+import com.ptb.zeus.common.core.model.user.TbUser;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 
 /**
@@ -15,5 +19,18 @@ import org.springframework.stereotype.Service;
 @Service
 public class MToolServiceImpl extends SuperServiceImpl<MToolMapper, MTool> implements com.ptb.zeus.service.main.IMToolService {
 
+	@Autowired
+	TbUserMapper userMapper;
 
+	@Autowired
+	MToolMapper mToolMapper;
+	@Override
+	@Transactional
+	public void testJXA() {
+		userMapper.insert(new TbUser("123","123","123","123"));
+		MTool mTool = new MTool();
+		mTool.setName("test");
+		mToolMapper.insert(mTool);
+		throw new RuntimeException();
+	}
 }

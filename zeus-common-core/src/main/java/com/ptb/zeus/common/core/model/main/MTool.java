@@ -25,7 +25,7 @@ public class MTool  implements Serializable {
 	protected static final long serialVersionUID = 1L;
 
 	/**  */
-	@TableId(type = IdType.AUTO)
+	@TableId(type = IdType.INPUT)
 	protected Integer id;
 
 	@TableField(value = "ctime")

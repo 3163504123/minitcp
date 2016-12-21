@@ -16,7 +16,7 @@ public class Configurer extends WebMvcConfigurerAdapter {
 	@Override
 	public void addInterceptors(
 			InterceptorRegistry registry) {
-		registry.addInterceptor(new UUIDAndContextIocInterceptorTest()).addPathPatterns("/**");
+		registry.addInterceptor(new UUIDAndContextIocInterceptor()).addPathPatterns("/**");
 		super.addInterceptors(registry);
 	}
 }

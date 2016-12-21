@@ -7,14 +7,15 @@ import org.springframework.boot.autoconfigure.data.mongo.MongoDataAutoConfigurat
 import org.springframework.boot.autoconfigure.data.mongo.MongoRepositoriesAutoConfiguration;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration;
+import org.springframework.context.annotation.ImportResource;
 import org.springframework.context.annotation.PropertySource;
 
 @SpringBootApplication
 @EnableAutoConfiguration(exclude = {DataSourceAutoConfiguration.class,MongoAutoConfiguration.class, MongoDataAutoConfiguration.class, MongoRepositoriesAutoConfiguration.class})
 @PropertySource("config.properties")
+@ImportResource("classpath*:META-INFO/spring/single.xml")
 public class Application {
 	public static void main(String[] args) {
-		Object[] objects = {Application.class, "classpath*:META-INFO/spring/single.xml"};
-		SpringApplication.run(objects, args);
+		SpringApplication.run(Application.class, args);
 	}
 }

@@ -38,6 +38,13 @@ public class MAccountUser  implements Serializable {
 	@DateTimeFormat(pattern = "MM/dd/yyyy HH:mm:ss")
 	protected Date ctime;
 
+	public MAccountUser() {
+	}
+
+	public MAccountUser(long uid) {
+
+	}
+
 	public Integer getId() {
 		return this.id;
 	}

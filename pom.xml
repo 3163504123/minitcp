@@ -41,7 +41,7 @@
         <persistence-api.version>1.0</persistence-api.version>
         <hibernate-validator>5.2.4.Final</hibernate-validator>
         <pinyin4j.version>2.5.0</pinyin4j.version>
-        <atomikos.version>4.0.2</atomikos.version>
+        <atomikos.version>4.0.4</atomikos.version>
         <cglib.version>3.2.2</cglib.version>
 
     </properties>

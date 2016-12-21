@@ -8,7 +8,7 @@ http://www.springframework.org/schema/context
 http://www.springframework.org/schema/context/spring-context-4.0.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
 
     <bean id="abstractXADataSource" class="com.atomikos.jdbc.AtomikosDataSourceBean" init-method="init" destroy-method="close" abstract="true">
-        <property name="xaDataSourceClassName" value="com.alibaba.druid.pool.xa.DruidXADataSource"/>  <!-- SQLErrorCodes loaded: [DB2, Derby, H2, HSQL, Informix, MS-SQL, MySQL, Oracle, PostgreSQL, Sybase, Hana]  -->
+        <property name="xaDataSourceClassName" value="com.mysql.jdbc.jdbc2.optional.MysqlXADataSource"/>  <!-- SQLErrorCodes loaded: [DB2, Derby, H2, HSQL, Informix, MS-SQL, MySQL, Oracle, PostgreSQL, Sybase, Hana]  -->
         <property name="poolSize" value="10" />
         <property name="minPoolSize" value="10"/>
         <property name="maxPoolSize" value="30"/>
@@ -17,7 +17,7 @@ http://www.springframework.org/schema/context/spring-context-4.0.xsd http://www.
         <property name="maxIdleTime" value="60"/>
         <property name="maintenanceInterval" value="60"/>
         <property name="loginTimeout" value="60"/>
-        <property name="testQuery" value="select 1"/>
+        <property name="maxLifetime" value="60"/>
     </bean>
 
     <import resource="classpath*:/META-INF/spring/db/spring-data-*.xml"/>

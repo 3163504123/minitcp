@@ -10,5 +10,6 @@ import com.baomidou.framework.service.ISuperService;
  */
 public interface IMToolService extends ISuperService<MTool> {
 
+	void testJXA();
 
 }

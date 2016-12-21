@@ -3,8 +3,16 @@
 <mapper namespace="com.ptb.zeus.common.core.mapper.main.MVedioSetMapper">
 
 	<!-- 通用查询结果列-->
-	<sql id="Base_Column_List">
-		 id, name, instruction, study_level AS studyLevel, teacher_id AS teacherId, student_cnt AS studentCnt, ctime, utime, img_url AS imgUrl
-	</sql>
+	<resultMap id="MVedioSetResultMap" type="com.ptb.zeus.common.core.model.main.MVedioSet">
+		<id column="id" property="id" />
+ 		<result column="`name`" property="name" />
+ 		<result column="instruction" property="instruction" />
+ 		<result column="study_level" property="studyLevel" />
+ 		<result column="teacher_id" property="teacherId" />
+ 		<result column="student_cnt" property="studentCnt" />
+ 		<result column="ctime" property="ctime" />
+ 		<result column="utime" property="utime" />
+ 		<result column="img_url" property="imgUrl" />
+	</resultMap>
 
 </mapper>

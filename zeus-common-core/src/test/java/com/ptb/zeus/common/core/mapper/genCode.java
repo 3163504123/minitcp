@@ -5,8 +5,6 @@ import com.baomidou.mybatisplus.generator.AutoGenerator;
 import com.baomidou.mybatisplus.generator.ConfigGenerator;
 import com.baomidou.mybatisplus.generator.ConfigIdType;
 
-import java.util.Arrays;
-
 /**
  * Created by eric on 16/9/27.
  */
@@ -20,7 +18,8 @@ public class genCode {
 		cg.setDbPassword("");
 		cg.setDbUrl("jdbc:mysql://127.0.0.1:3306/minitcp_main?characterEncoding=utf8&useSSL=false");
 
-		cg.setTableNames((String[]) Arrays.asList("m_order").toArray());
+		//cg.setTableNames((String[]) Arrays.asList("m_order").toArray());
+		cg.setTableNames(null);
 		// 配置包名
 
 		cg.setXmlPackage("mapper/main");

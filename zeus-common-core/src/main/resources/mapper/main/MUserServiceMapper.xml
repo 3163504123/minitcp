@@ -3,8 +3,19 @@
 <mapper namespace="com.ptb.zeus.common.core.mapper.main.MUserServiceMapper">
 
 	<!-- 通用查询结果列-->
-	<sql id="Base_Column_List">
-		 id, accountId, skey, p_id AS pId, ctime, method, cost_num AS costNum, init_num AS initNum, deadline_time AS deadlineTime, init_time AS initTime,enabled
-	</sql>
+	<resultMap id="MUserServiceResultMap" type="com.ptb.zeus.common.core.model.main.MUserService">
+		<id column="id" property="id" />
+ 		<result column="`uid`" property="uid" />
+ 		<result column="skey" property="skey" />
+ 		<result column="p_id" property="pId" />
+ 		<result column="ctime" property="ctime" />
+ 		<result column="`method`" property="method" />
+ 		<result column="cost_num" property="costNum" />
+ 		<result column="init_num" property="initNum" />
+ 		<result column="deadline_time" property="deadlineTime" />
+ 		<result column="init_time" property="initTime" />
+ 		<result column="enabled" property="enabled" />
+ 		<result column="remark" property="remark" />
+	</resultMap>
 
 </mapper>

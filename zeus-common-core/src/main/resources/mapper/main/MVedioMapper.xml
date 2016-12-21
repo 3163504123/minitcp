@@ -3,8 +3,13 @@
 <mapper namespace="com.ptb.zeus.common.core.mapper.main.MVedioMapper">
 
 	<!-- 通用查询结果列-->
-	<sql id="Base_Column_List">
-		 id, name, instruction, resource_url AS resourceUrl, uv, ctime
-	</sql>
+	<resultMap id="MVedioResultMap" type="com.ptb.zeus.common.core.model.main.MVedio">
+		<id column="id" property="id" />
+ 		<result column="`name`" property="name" />
+ 		<result column="instruction" property="instruction" />
+ 		<result column="resource_url" property="resourceUrl" />
+ 		<result column="uv" property="uv" />
+ 		<result column="ctime" property="ctime" />
+	</resultMap>
 
 </mapper>

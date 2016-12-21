@@ -3,8 +3,10 @@
 <mapper namespace="com.ptb.zeus.common.core.mapper.main.MToolSetMapper">
 
 	<!-- 通用查询结果列-->
-	<sql id="Base_Column_List">
-		 id, name, ctime
-	</sql>
+	<resultMap id="MToolSetResultMap" type="com.ptb.zeus.common.core.model.main.MToolSet">
+		<id column="id" property="id" />
+ 		<result column="`name`" property="name" />
+ 		<result column="ctime" property="ctime" />
+	</resultMap>
 
 </mapper>

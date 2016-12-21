@@ -3,8 +3,19 @@
 <mapper namespace="com.ptb.zeus.common.core.mapper.main.MToolMapper">
 
 	<!-- 通用查询结果列-->
-	<sql id="Base_Column_List">
-		 id, ctime, name, instruction, state, price, demo_url AS demoUrl, img_url AS imgUrl, api_desc_url AS apiDescUrl, vedio_url AS vedioUrl, use_cnt AS useCnt, used_user_cnt AS usedUserCnt
-	</sql>
+	<resultMap id="MToolResultMap" type="com.ptb.zeus.common.core.model.main.MTool">
+		<id column="id" property="id" />
+ 		<result column="ctime" property="ctime" />
+ 		<result column="`name`" property="name" />
+ 		<result column="instruction" property="instruction" />
+ 		<result column="`state`" property="state" />
+ 		<result column="price" property="price" />
+ 		<result column="demo_url" property="demoUrl" />
+ 		<result column="img_url" property="imgUrl" />
+ 		<result column="api_desc_url" property="apiDescUrl" />
+ 		<result column="vedio_url" property="vedioUrl" />
+ 		<result column="use_cnt" property="useCnt" />
+ 		<result column="used_user_cnt" property="usedUserCnt" />
+	</resultMap>
 
 </mapper>

@@ -24,4 +24,6 @@ public interface IMProxyService {
 	void getNews();
 
 	void changeDynamicProxy(String key);
+
+	void checkPooledProxy(Integer threadNum);
 }

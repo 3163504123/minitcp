@@ -38,6 +38,8 @@ public class ProxyMongoRespository implements ProxyRespository {
 
 	String tbName = "freeProxy";
 	String database = "minitcp";
+	static ExecutorService executorService = Executors.newFixedThreadPool(5);
+
 	enum E_PROXY_TYPE{
 		E_PROXY_TYPE_FREE,
 		E_PROXY_TYPE_GOOD,
@@ -45,11 +47,13 @@ public class ProxyMongoRespository implements ProxyRespository {
 		E_PROXY_TYPE_DYNAMIC,
 	}
 
+	public ProxyMongoRespository() {
+
+	}
+
 	private MongoCollection<Document> coll() {
 		return MongoUtils.i().getDatabase(database).getCollection(tbName);
 	}
-
-
 
 	public void add(MProxy mProxy) {
 		Document proxyDOC = Document.parse(JSON.toJSONString(mProxy));
@@ -71,8 +75,8 @@ public class ProxyMongoRespository implements ProxyRespository {
 		coll().updateOne(Filters.eq("_id", id), new Document("checkTime", System.currentTimeMillis()));
 	}
 
-	public void checkAndDelInvalidProxy(int threadNum) {
-		ExecutorService executorService = Executors.newFixedThreadPool(threadNum);
+
+	public synchronized void   checkAndDelInvalidProxy(int threadNum) {
 
 		FindIterable<Document> documents = coll().find(Filters.lt("checkTime",System.currentTimeMillis()- TimeUnit.MINUTES.toMillis(5)));
 		for (Document document : documents) {
@@ -225,8 +229,8 @@ public class ProxyMongoRespository implements ProxyRespository {
 
 	public static void main(String[] args) {
 		ProxyMongoRespository proxyMongoRespository = new ProxyMongoRespository();
-/*		proxyMongoRespository.saveNewProxyFromGOUBANJIA();
-		proxyMongoRespository.checkAndDelInvalidProxy(5);*/
+/*		proxyMongoRespository.saveNewProxyFromGOUBANJIA();*/
+		proxyMongoRespository.checkAndDelInvalidProxy(5);
 		MProxy mProxy = new MProxy();
 		mProxy.setAnonymity("透明");
 		mProxy.setType("http");

@@ -9,6 +9,7 @@ import com.ptb.zeus.web.response.BaseResponse;
 
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -30,6 +31,15 @@ public class AMProxyRestController extends BaseRestController {
 		imProxyService.getNews();
 		return BaseResponse.NormalResponse;
 	}
+
+	@RequestMapping("free/check")
+	@ResponseBody
+	public Object check(@RequestParam(value = "t",required = false,defaultValue = "1") Integer threadNum) {
+		imProxyService.checkPooledProxy(threadNum);
+		imProxyService.checkPooledProxy(threadNum);
+		return BaseResponse.NormalResponse;
+	}
+
 	/**
 	 * 免费代理获取
 	 *

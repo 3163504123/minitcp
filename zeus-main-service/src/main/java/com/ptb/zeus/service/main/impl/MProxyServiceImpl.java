@@ -90,4 +90,9 @@ public class MProxyServiceImpl implements IMProxyService {
 	public void changeDynamicProxy(String key) {
 		proxyRespository.changeDynamicProxy(key);
 	}
+
+	@Override
+	public void checkPooledProxy(Integer threadNum) {
+		proxyRespository.checkAndDelInvalidProxy(threadNum);
+	}
 }

@@ -21,5 +21,7 @@ public interface IMProxyService {
 
 	MProxy getDynamicProxys(String serviceID);
 
+	void getNews();
+
 	void changeDynamicProxy(String key);
 }

@@ -82,6 +82,11 @@ public class MProxyServiceImpl implements IMProxyService {
 	}
 
 	@Override
+	public void getNews() {
+		proxyRespository.genNewProxy();
+	}
+
+	@Override
 	public void changeDynamicProxy(String key) {
 		proxyRespository.changeDynamicProxy(key);
 	}

@@ -24,6 +24,12 @@ public class AMProxyRestController extends BaseRestController {
 
 	private static final int MAX_FREE_PROXY_NUM = 500; //请求返回的最大代理数量
 
+	@RequestMapping("free/new")
+	@ResponseBody
+	public Object getNew() {
+		imProxyService.getNews();
+		return BaseResponse.NormalResponse;
+	}
 	/**
 	 * 免费代理获取
 	 *

@@ -1,6 +1,7 @@
 package com.ptb.zeus.common.core.repository;
 
 import com.ptb.zeus.common.core.model.main.MProxy;
+import com.ptb.zeus.common.core.model.main.ProxyFilter;
 
 import java.util.List;
 
@@ -15,9 +16,9 @@ public interface ProxyRespository {
 	void add(MProxy mProxy) ;
 	void del(String id);
 
-	List<MProxy> getFreeProxy(int size, MProxy mProxy);
+	List<MProxy> getFreeProxy(int size, ProxyFilter mProxy);
 
-	List<MProxy> getGoodProxys(int size, MProxy mProxy);
+	List<MProxy> getGoodProxys(int size, ProxyFilter mProxy);
 
 	List<MProxy> getPerfectProxys(int size);
 

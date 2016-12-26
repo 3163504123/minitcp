@@ -12,4 +12,7 @@ public interface IMAccountUserService extends ISuperService<MAccountUser> {
 
 
 	MAccountUser getAccountByUserID(long uid);
+
+	void recharge(MAccountUser acctID, int point, String source, String desc);
+
 }

@@ -42,9 +42,12 @@ public class MyHttpSessionSecurityContextRepository extends HttpSessionSecurityC
 
 		SecurityContext securityContext = new SecurityContextImpl();
 		if (token != null) {
-			Authentication auth = springSecutiryUserDetailsService.getAuth(Math.toIntExact(token.getUid()));
-			securityContext.setAuthentication(auth);
-			return securityContext;
+			try {
+				Authentication auth = springSecutiryUserDetailsService.getAuth(Math.toIntExact(token.getUid()));
+				securityContext.setAuthentication(auth);
+				return securityContext;
+			}catch (Exception e) {
+			}
 		}
 		return super.loadContext(requestResponseHolder);
 	}

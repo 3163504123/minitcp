@@ -1,7 +1,11 @@
 package com.ptb.zeus.service.main;
 
-import com.ptb.zeus.common.core.model.main.MAccountUserStatement;
 import com.baomidou.framework.service.ISuperService;
+import com.baomidou.mybatisplus.plugins.Page;
+import com.ptb.zeus.common.core.model.main.MAccountUser;
+import com.ptb.zeus.common.core.model.main.MAccountUserStatement;
+
+import java.util.Date;
 
 /**
  *
@@ -9,6 +13,7 @@ import com.baomidou.framework.service.ISuperService;
  *
  */
 public interface IMAccountUserStatementService extends ISuperService<MAccountUserStatement> {
-
-
+	Page<MAccountUserStatement> selectPage(
+			Page<MAccountUserStatement> page, MAccountUser mAccountUser, Date startDate,
+			Date stopDate);
 }

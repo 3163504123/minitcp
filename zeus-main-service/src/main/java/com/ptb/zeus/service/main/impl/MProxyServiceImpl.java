@@ -4,6 +4,7 @@ import com.ptb.zeus.common.core.mapper.main.MProductMapper;
 import com.ptb.zeus.common.core.mapper.main.MUserServiceMapper;
 import com.ptb.zeus.common.core.model.main.MProxy;
 import com.ptb.zeus.common.core.model.main.MUserService;
+import com.ptb.zeus.common.core.model.main.ProxyFilter;
 import com.ptb.zeus.common.core.repository.ProxyMongoRespository;
 import com.ptb.zeus.common.core.repository.ProxyRespository;
 import com.ptb.zeus.common.core.utils.business.ProductUtil;
@@ -33,13 +34,13 @@ public class MProxyServiceImpl implements IMProxyService {
 	}
 
 	@Override
-	public List<MProxy> getFreeProxys(int size, MProxy mProxy) {
+	public List<MProxy> getFreeProxys(int size, ProxyFilter mProxy) {
 		return proxyRespository.getFreeProxy(size, mProxy);
 	}
 
 	@Override
 	public List<MProxy> getGoodProxys(
-			String serviceID, int size, MProxy mProxy) {
+			String serviceID, int size, ProxyFilter mProxy) {
 		//todo 根据KEY判断是否有使用该服务的权限
 		MUserService mUserService = userServiceMapper.selectOne(new MUserService(serviceID));
 		if (mUserService.enabled() && ProductUtil.isGoodProxy(mUserService.getpId())) {

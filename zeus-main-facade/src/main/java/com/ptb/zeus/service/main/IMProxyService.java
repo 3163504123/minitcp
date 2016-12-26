@@ -1,6 +1,7 @@
 package com.ptb.zeus.service.main;
 
 import com.ptb.zeus.common.core.model.main.MProxy;
+import com.ptb.zeus.common.core.model.main.ProxyFilter;
 
 import java.util.List;
 
@@ -13,9 +14,9 @@ import java.util.List;
  */
 public interface IMProxyService {
 
-	List<MProxy> getFreeProxys(int size, MProxy mProxy);
+	List<MProxy> getFreeProxys(int size, ProxyFilter mProxy);
 
-	List<MProxy> getGoodProxys(String serviceID, int size, MProxy mProxy);
+	List<MProxy> getGoodProxys(String serviceID, int size, ProxyFilter mProxy);
 
 	List<MProxy> getPerfectProxys(String serviceID, int size);
 

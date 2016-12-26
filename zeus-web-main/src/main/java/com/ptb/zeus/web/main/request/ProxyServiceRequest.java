@@ -2,7 +2,8 @@ package com.ptb.zeus.web.main.request;
 
 import org.hibernate.validator.constraints.NotBlank;
 
-import javax.validation.constraints.Size;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 
 /**
  * Copyright ©2016 Beijing Tender Union Information co , LTD
@@ -15,8 +16,9 @@ public class ProxyServiceRequest {
 	@NotBlank
 	String key;  //服务的ID号
 
-	@Size(min = 0,max = 100)
-	int size;          //请求代理数量
+	@Min(0)
+	@Max(100)
+	int size = 1;          //请求代理数量
 
 
 	public String getKey() {

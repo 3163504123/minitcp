@@ -19,17 +19,6 @@
     </properties>
 
     <dependencies>
-        <dependency>
-            <groupId>org.apache.httpcomponents</groupId>
-            <artifactId>httpclient</artifactId>
-            <version>4.5.2</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.httpcomponents</groupId>
-            <artifactId>httpcore</artifactId>
-            <version>4.4.5</version>
-        </dependency>
-
         <!--spring的WEB依赖-->
         <dependency>
             <!-- Import dependency management from Spring Boot -->
@@ -39,16 +28,17 @@
             <type>pom</type>
             <scope>import</scope>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot</artifactId>
-            <version>${spring-boot.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-jetty</artifactId>
-            <version>${spring-boot.version}</version>
-        </dependency>
+        <!--       <dependency>
+       <dependency>
+           <groupId>org.springframework.boot</groupId>
+           <artifactId>spring-boot</artifactId>
+           <version>${spring-boot.version}</version>
+       </dependency>
+
+           <groupId>org.springframework.boot</groupId>
+           <artifactId>spring-boot-starter-jetty</artifactId>
+           <version>${spring-boot.version}</version>
+       </dependency>-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>

@@ -15,7 +15,6 @@ public class UserException extends RuntimeException {
 	public static final UserException UserTokenExpiredError  = new UserException("用户TOKEN过期", 11004);
 	public static final UserException NoRegistUserError = new UserException("注册用户失败", 13001);
 	public static final UserException UserTokenParseError= new UserException("用户TOKEN无效", 11005);
-
 	/*服务相关的错误*/
 	public static final UserException NoServiceAuthError = new UserException("无效的KEY或权限已到期",12001);
 	public static final UserException LoginUndefineError = new UserException("登陆失败请重试",12002);

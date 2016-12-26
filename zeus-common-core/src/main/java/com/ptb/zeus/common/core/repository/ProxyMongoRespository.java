@@ -8,6 +8,7 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.Sorts;
 import com.ptb.zeus.common.core.model.main.MProxy;
+import com.ptb.zeus.common.core.model.main.ProxyFilter;
 import com.ptb.zeus.common.core.utils.MongoUtils;
 
 import org.apache.commons.lang3.StringUtils;
@@ -84,10 +85,10 @@ public class ProxyMongoRespository implements ProxyRespository {
 			Integer port = document.getInteger("port");
 			executorService.submit(() -> {
 				if (isGoodProxy(host, port)) {
-					logger.info("check mProxy {}:{} {} {} [good]", Arrays.asList(host, port, document.getString("type"), document.getString("anonymity")).toArray());
+					logger.info("check filter {}:{} {} {} [good]", Arrays.asList(host, port, document.getString("type"), document.getString("anonymity")).toArray());
 					updateCheckTime(host);
 				} else {
-					logger.info("check mProxy {}:{} [bad]", host, port);
+					logger.info("check filter {}:{} [bad]", host, port);
 					del(host);
 				}
 			});
@@ -101,12 +102,12 @@ public class ProxyMongoRespository implements ProxyRespository {
 
 	@Override
 	public List<MProxy> getFreeProxy(
-			int size, MProxy mProxy) {
+			int size, ProxyFilter mProxy) {
 		return selectProxys(E_PROXY_TYPE.E_PROXY_TYPE_FREE,mProxy,size);
 	}
 
 	@Override
-	public List<MProxy> getGoodProxys(int size, MProxy mProxy) {
+	public List<MProxy> getGoodProxys(int size, ProxyFilter mProxy) {
 		return selectProxys(E_PROXY_TYPE.E_PROXY_TYPE_GOOD,mProxy,size);
 	}
 
@@ -145,7 +146,7 @@ public class ProxyMongoRespository implements ProxyRespository {
 				try {
 					MProxy mProxy = data.getObject(i, MProxy.class);
 					this.add(mProxy);
-					logger.info("add mProxy [{}:{}]", mProxy.getIp(), mProxy.getPort());
+					logger.info("add filter [{}:{}]", mProxy.getIp(), mProxy.getPort());
 				} catch (Exception e) {
 
 				}
@@ -173,32 +174,29 @@ public class ProxyMongoRespository implements ProxyRespository {
 	}
 
 
-	public List<MProxy> selectProxys(E_PROXY_TYPE type, MProxy mProxy,int limit) {
+	public List<MProxy> selectProxys(E_PROXY_TYPE type, ProxyFilter filter, int limit) {
 		List<MProxy> list = new LinkedList<>();
 		FindIterable<Document> documents = null;
 		List<Bson> filters = new LinkedList<Bson>();
-		if(mProxy != null) {
-			if (StringUtils.isNoneBlank(mProxy.getAnonymity())) {
-				filters.add(Filters.eq("anonymity", mProxy.getAnonymity()));
+		if(filter != null) {
+			if (filter.getAnonymity() != null && filter.getAnonymity().size() > 0) {
+				filters.add(Filters.in("anonymity", filter.getAnonymity()));
 			}
 
-			if (StringUtils.isNoneBlank(mProxy.getProvince())) {
-				filters.add(Filters.eq("province", mProxy.getProvince()));
+			if (filter.getType() != null && filter.getType().size() > 0) {
+				filters.add(Filters.in("type", filter.getType()));
 			}
 
-			if (StringUtils.isNoneBlank(mProxy.getCity())) {
-				filters.add(Filters.eq("city", mProxy.getCity()));
+			if (filter.getPort() != null && filter.getPort().size() > 0) {
+				filters.add(Filters.in("port", filter.getPort()));
 			}
 
-			if (StringUtils.isNoneBlank(mProxy.getType())) {
-				filters.add(Filters.eq("type", mProxy.getType()));
-			}
-
-			if(StringUtils.isNoneBlank(mProxy.getKey())) {
-				filters.add(Filters.eq("key", mProxy.getKey()));
-			}
-			if (mProxy.getPort() > 0) {
-				filters.add(Filters.eq("port", mProxy.getPort()));
+			if (StringUtils.isNoneBlank(filter.getCountry())) {
+				if(filter.getCountry().equals("外国")) {
+					filters.add(Filters.not(Filters.eq("country","中国")));
+				}else{
+					filters.add(Filters.eq("country","中国"));
+				}
 			}
 		}
 		switch (type) {

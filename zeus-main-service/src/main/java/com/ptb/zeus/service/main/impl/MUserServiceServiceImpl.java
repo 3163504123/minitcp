@@ -69,7 +69,6 @@ public class MUserServiceServiceImpl extends SuperServiceImpl<MUserServiceMapper
 			mAccountUserMapper.updateById(mAccountUser);
 		}
 
-
 		MUserService mUserService = null;
 		// 生成该服务的服务KEY
 		switch (ProductUtil.getServiceMethod(mProduct.getCode())) {
@@ -88,6 +87,7 @@ public class MUserServiceServiceImpl extends SuperServiceImpl<MUserServiceMapper
 				break;
 		}
 
+		//插入用户服务记录
 		userServiceMapper.insert(mUserService);
 
 		// 生成用户流水信息记录
@@ -95,7 +95,7 @@ public class MUserServiceServiceImpl extends SuperServiceImpl<MUserServiceMapper
 			uid,
 		    mAccountUser.getId(),
 		    mProduct.getPrice() * -1,
-		    mProduct.getCode(),
+		    String.valueOf(mProduct.getCode()),
 		    mProduct.getDes()
 		));
 	}

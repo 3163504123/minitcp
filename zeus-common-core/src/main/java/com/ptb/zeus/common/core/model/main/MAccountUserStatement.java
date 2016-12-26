@@ -46,12 +46,18 @@ public class MAccountUserStatement  implements Serializable {
 	protected Date ctime;
 
 	public MAccountUserStatement(
-			Long uid, Long id, Integer price, Integer code, String des) {
+			Long uid, Long id, Integer price, String source, String des) {
 		this.uid = uid;
 		this.accountId = id;
 		this.amount = price;
-		this.source = String.valueOf(code);
+		this.source = source;
 		this.remark = des;
+		this.ctime = new Date();
+	}
+
+	public MAccountUserStatement() {
+
+
 	}
 
 	public MAccountUserStatement(Long accountId) {

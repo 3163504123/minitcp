@@ -1,7 +1,7 @@
 package com.ptb.zeus.common.core.mapper.main;
 
+import com.baomidou.mybatisplus.mapper.CommonMapper;
 import com.ptb.zeus.common.core.model.main.MOrder;
-import com.baomidou.mybatisplus.mapper.AutoMapper;
 
 import org.springframework.stereotype.Repository;
 
@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
  *
  */
 @Repository
-public interface MOrderMapper extends AutoMapper<MOrder> {
+public interface MOrderMapper extends CommonMapper<MOrder> {
 
 
 }

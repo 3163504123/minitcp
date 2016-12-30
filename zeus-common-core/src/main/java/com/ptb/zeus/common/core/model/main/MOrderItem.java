@@ -52,6 +52,23 @@ public class MOrderItem  implements Serializable {
 	@DateTimeFormat(pattern = "MM/dd/yyyy HH:mm:ss")
 	protected Date ctime;
 
+	public MOrderItem() {
+	}
+
+	public MOrderItem(String orderID) {
+		this.orderId = orderID;
+	}
+
+	public MOrderItem(String orderId, int productID, int price,int num) {
+		this.orderId = orderId;
+		this.pId = productID;
+		this.number = num;
+		this.rawPrice =  price;
+		this.rawPrice = price;
+		this.amount = price * num;
+
+	}
+
 	public String getId() {
 		return this.id;
 	}

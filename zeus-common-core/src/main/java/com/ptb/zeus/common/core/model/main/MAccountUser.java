@@ -42,6 +42,7 @@ public class MAccountUser  implements Serializable {
 	}
 
 	public MAccountUser(long uid) {
+		this.uid = uid;
 
 	}
 

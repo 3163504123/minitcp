@@ -19,7 +19,7 @@ import java.io.IOException;
  *
  * @author shuai.zhang  on 2016/11/13
  * @version 1.0.0
- * @description 类的功能
+ * @description 验证码识别接口
  */
 @Controller
 @RequestMapping("admin/api/ivcode")

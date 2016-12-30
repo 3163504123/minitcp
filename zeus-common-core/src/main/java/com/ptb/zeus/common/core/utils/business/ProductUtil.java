@@ -1,5 +1,8 @@
 package com.ptb.zeus.common.core.utils.business;
 
+import com.ptb.zeus.common.core.model.main.MProduct;
+import com.ptb.zeus.common.core.model.main.MUserService;
+
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -98,5 +101,22 @@ public class ProductUtil {
 			throw new RuntimeException("无效的产品编号");
 		}
 		return new Double(Math.pow(10,getServiceCountUnit(code)-2)).intValue();
+	}
+
+	public static MUserService convertProductToMUserService(MProduct mProduct,long uid){
+		MUserService mUserService;
+		switch (getServiceMethod(mProduct.getCode())) {
+			case CODE_PRODUCT_SERVICE_TYPE_TIME:
+				mUserService = new MUserService(mProduct.getCode(), getServiceMethod(mProduct.getCode()), uid, mProduct.getDes(), ProductUtil.getTimeServiceSeconds(mProduct.getCode()));
+				break;
+			case CODE_PRODUCT_SERVICE_TYPE_ENABLE:
+				mUserService = new MUserService(mProduct.getCode(), uid, getServiceMethod(mProduct.getCode()), mProduct.getDes());
+				break;
+			default:
+				mUserService = new MUserService(mProduct.getCode(), getServiceMethod(mProduct.getCode()), uid, mProduct.getDes(), ProductUtil.getServiceCount(mProduct.getCode()));
+				break;
+		}
+		return mUserService;
+
 	}
 }

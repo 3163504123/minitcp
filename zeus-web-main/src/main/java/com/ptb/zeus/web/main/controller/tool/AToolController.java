@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * The type Am proxy controller.
+ * 返回工具列表信息.
  */
 @RequestMapping("/api/tool")
 @RestController

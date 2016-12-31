@@ -42,7 +42,7 @@ public class AMProxyRestController extends BaseRestController {
 	@ResponseBody
 	public Object check(
 			@RequestParam(value = "t", required = false, defaultValue = "1") Integer threadNum) {
-		imProxyService.checkPooledProxy(threadNum);
+		imProxyService.checkPooledProxy(threadNum, true);
 		return BaseResponse.NormalResponse;
 	}
 

@@ -40,6 +40,12 @@ public class UserException extends RuntimeException {
 		this.errorCode = errorCode;
 	}
 
+	public UserException(String format) {
+
+		this.errorMessage = format;
+		this.errorCode = -1;
+	}
+
 	public int getErrorCode() {
 		return errorCode;
 	}

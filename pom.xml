@@ -49,13 +49,14 @@
         <module>zeus-common-core</module>
         <module>zeus-common</module>
         <module>zeus-common-web</module>
-        <module>zeus-user-service</module>
         <module>zeus-user-facade</module>
+        <module>zeus-user-service</module>
         <module>zeus-main-service</module>
         <module>zeus-main-facade</module>
         <module>zeus-web-basic</module>
         <module>zeus-web-backend</module>
         <module>zeus-web-main</module>
+        <module>zeus-tool</module>
 
     </modules>
     <dependencies>

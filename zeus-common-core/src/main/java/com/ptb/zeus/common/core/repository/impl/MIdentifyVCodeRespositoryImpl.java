@@ -1,7 +1,8 @@
-package com.ptb.zeus.common.core.repository;
+package com.ptb.zeus.common.core.repository.impl;
 
 import com.alibaba.fastjson.JSON;
 import com.ptb.zeus.common.core.model.main.IdentifyVCodeResult;
+import com.ptb.zeus.common.core.repository.MIdentifyVCodeRespository;
 import com.ptb.zeus.common.core.utils.identiyVCode.ChaoJiYing;
 
 import org.springframework.beans.factory.annotation.Value;

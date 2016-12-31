@@ -1,6 +1,6 @@
 package com.ptb.zeus.service.main.impl;
 
-import com.ptb.zeus.common.core.repository.LocalStorageRespositoryImpl;
+import com.ptb.zeus.common.core.repository.impl.LocalStorageRespositoryImpl;
 import com.ptb.zeus.common.core.repository.StoreRespository;
 import com.ptb.zeus.service.main.StorageService;
 

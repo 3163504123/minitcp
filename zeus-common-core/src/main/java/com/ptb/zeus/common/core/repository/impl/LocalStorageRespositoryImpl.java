@@ -1,5 +1,6 @@
-package com.ptb.zeus.common.core.repository;
+package com.ptb.zeus.common.core.repository.impl;
 
+import com.ptb.zeus.common.core.repository.StoreRespository;
 import com.ptb.zeus.config.ConfigUtil;
 
 import org.apache.commons.io.FileUtils;

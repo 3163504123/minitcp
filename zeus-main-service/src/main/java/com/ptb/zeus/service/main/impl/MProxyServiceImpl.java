@@ -4,7 +4,7 @@ import com.ptb.zeus.common.core.mapper.main.MUserServiceMapper;
 import com.ptb.zeus.common.core.model.main.MProxy;
 import com.ptb.zeus.common.core.model.main.MUserService;
 import com.ptb.zeus.common.core.model.main.ProxyFilter;
-import com.ptb.zeus.common.core.repository.ProxyMongoRespository;
+import com.ptb.zeus.common.core.repository.impl.ProxyMongoRespositoryImpl;
 import com.ptb.zeus.common.core.repository.ProxyRespository;
 import com.ptb.zeus.common.core.utils.UserServiceUtils;
 import com.ptb.zeus.common.core.utils.business.ProductUtil;
@@ -13,6 +13,7 @@ import com.ptb.zeus.service.main.IMProxyService;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
@@ -23,13 +24,14 @@ import java.util.List;
  * @version 1.0.0
  * @description 代理的服务类，完成代理相关的逻辑
  */
+@Component
 public class MProxyServiceImpl implements IMProxyService {
 	private static Logger logger = LoggerFactory.getLogger(MProxyServiceImpl.class);
 	ProxyRespository proxyRespository;
 	MUserServiceMapper userServiceMapper;
 
 	public MProxyServiceImpl() {
-		proxyRespository = new ProxyMongoRespository();
+		proxyRespository = new ProxyMongoRespositoryImpl();
 	}
 
 	@Override
@@ -93,7 +95,7 @@ public class MProxyServiceImpl implements IMProxyService {
 	}
 
 	@Override
-	public void checkPooledProxy(Integer threadNum) {
-		proxyRespository.checkAndDelInvalidProxy(threadNum);
+	public void checkPooledProxy(Integer threadNum, boolean isAsync) {
+		proxyRespository.checkAndDelInvalidProxy(threadNum,isAsync);
 	}
 }

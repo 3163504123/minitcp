@@ -1,0 +1,1 @@
+java -cp conf/ -Djava.ext.dirs=lib com.ylxy.cuckoo.web.entry.Application

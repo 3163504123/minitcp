@@ -7,6 +7,7 @@ http://www.springframework.org/schema/context
 http://www.springframework.org/schema/context/spring-context-4.0.xsd">
     <import resource="classpath*:META-INF/spring/db/spring-data.xml"/>
     <import resource="classpath*:META-INF/spring/core/spring-cache.xml"/>
-    <context:component-scan base-package="com.ptb.zeus.common.core.mapper"/>
+<!--    <context:component-scan base-package="com.ptb.zeus.common.core.mapper"/>-->
+    <context:component-scan base-package="com.ptb.zeus"/>
 
 </beans>

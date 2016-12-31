@@ -1,4 +1,4 @@
-package com.ptb.zeus.common.core.repository;
+package com.ptb.zeus.common.core.repository.impl;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
@@ -9,6 +9,7 @@ import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.Sorts;
 import com.ptb.zeus.common.core.model.main.MProxy;
 import com.ptb.zeus.common.core.model.main.ProxyFilter;
+import com.ptb.zeus.common.core.repository.ProxyRespository;
 import com.ptb.zeus.common.core.utils.MongoUtils;
 
 import org.apache.commons.lang3.StringUtils;
@@ -23,8 +24,8 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -34,12 +35,12 @@ import java.util.concurrent.TimeUnit;
  * @version 1.0.0
  * @description 类的功能
  */
-public class ProxyMongoRespository implements ProxyRespository {
-	static Logger logger = LoggerFactory.getLogger(ProxyMongoRespository.class);
+public class ProxyMongoRespositoryImpl implements ProxyRespository {
+	static Logger logger = LoggerFactory.getLogger(ProxyMongoRespositoryImpl.class);
 
 	String tbName = "freeProxy";
 	String database = "minitcp";
-	static ExecutorService executorService = Executors.newFixedThreadPool(5);
+	static ThreadPoolExecutor executorService = (ThreadPoolExecutor) Executors.newFixedThreadPool(5);
 
 	enum E_PROXY_TYPE{
 		E_PROXY_TYPE_FREE,
@@ -48,7 +49,7 @@ public class ProxyMongoRespository implements ProxyRespository {
 		E_PROXY_TYPE_DYNAMIC,
 	}
 
-	public ProxyMongoRespository() {
+	public ProxyMongoRespositoryImpl() {
 
 	}
 
@@ -77,7 +78,7 @@ public class ProxyMongoRespository implements ProxyRespository {
 	}
 
 
-	public synchronized void   checkAndDelInvalidProxy(int threadNum) {
+	public synchronized void   checkAndDelInvalidProxy(int threadNum, boolean isAsync) {
 
 		FindIterable<Document> documents = coll().find(Filters.lt("checkTime",System.currentTimeMillis()- TimeUnit.MINUTES.toMillis(5)));
 		for (Document document : documents) {
@@ -92,6 +93,19 @@ public class ProxyMongoRespository implements ProxyRespository {
 					del(host);
 				}
 			});
+		}
+		if(!isAsync) {
+			while(true) {
+				if(executorService.getActiveCount() == 0) {
+					break;
+				}
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				System.out.println("正在进行检查代理可用型");
+			}
 		}
 	}
 
@@ -225,14 +239,4 @@ public class ProxyMongoRespository implements ProxyRespository {
 		return list;
 	}
 
-	public static void main(String[] args) {
-		ProxyMongoRespository proxyMongoRespository = new ProxyMongoRespository();
-/*		proxyMongoRespository.saveNewProxyFromGOUBANJIA();*/
-		proxyMongoRespository.checkAndDelInvalidProxy(5);
-		MProxy mProxy = new MProxy();
-		mProxy.setAnonymity("透明");
-		mProxy.setType("http");
-		List<MProxy> freeProxy = proxyMongoRespository.getGoodProxys(1,null);
-		System.out.println(JSON.toJSONString(freeProxy));
-	}
 }

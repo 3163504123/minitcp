@@ -23,7 +23,7 @@ public interface ProxyRespository {
 	List<MProxy> getPerfectProxys(int size);
 
 	void genNewProxy();
-	void checkAndDelInvalidProxy(int threadNum);
+	void checkAndDelInvalidProxy(int threadNum, boolean isAsync);
 	MProxy getDynamicProxy(String serviceID);
 
 	void changeDynamicProxy(String key);

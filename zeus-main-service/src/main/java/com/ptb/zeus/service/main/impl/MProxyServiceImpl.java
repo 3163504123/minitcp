@@ -1,12 +1,12 @@
 package com.ptb.zeus.service.main.impl;
 
-import com.ptb.zeus.common.core.mapper.main.MProductMapper;
 import com.ptb.zeus.common.core.mapper.main.MUserServiceMapper;
 import com.ptb.zeus.common.core.model.main.MProxy;
 import com.ptb.zeus.common.core.model.main.MUserService;
 import com.ptb.zeus.common.core.model.main.ProxyFilter;
 import com.ptb.zeus.common.core.repository.ProxyMongoRespository;
 import com.ptb.zeus.common.core.repository.ProxyRespository;
+import com.ptb.zeus.common.core.utils.UserServiceUtils;
 import com.ptb.zeus.common.core.utils.business.ProductUtil;
 import com.ptb.zeus.exception.UserException;
 import com.ptb.zeus.service.main.IMProxyService;
@@ -27,7 +27,6 @@ public class MProxyServiceImpl implements IMProxyService {
 	private static Logger logger = LoggerFactory.getLogger(MProxyServiceImpl.class);
 	ProxyRespository proxyRespository;
 	MUserServiceMapper userServiceMapper;
-	MProductMapper productMapper;
 
 	public MProxyServiceImpl() {
 		proxyRespository = new ProxyMongoRespository();
@@ -43,7 +42,8 @@ public class MProxyServiceImpl implements IMProxyService {
 			String serviceID, int size, ProxyFilter mProxy) {
 		//todo 根据KEY判断是否有使用该服务的权限
 		MUserService mUserService = userServiceMapper.selectOne(new MUserService(serviceID));
-		if (mUserService.enabled() && ProductUtil.isGoodProxy(mUserService.getpId())) {
+
+		if (UserServiceUtils.isOK(mUserService,ProductUtil.CODE_PROXY_GOOD)) {
 			return proxyRespository.getGoodProxys(size, mProxy);
 		} else {
 			throw UserException.NoServiceAuthError;
@@ -55,7 +55,7 @@ public class MProxyServiceImpl implements IMProxyService {
 	public List<MProxy> getPerfectProxys(String serviceID, int size) {
 		//todo 根据KEY判断是否有使用该服务的权限
 		MUserService mUserService = userServiceMapper.selectOne(new MUserService(serviceID));
-		if (mUserService.enabled() && ProductUtil.isPerfectProxy(mUserService.getpId())) {
+		if (UserServiceUtils.isOK(mUserService,ProductUtil.CODE_PROXY_PERFECT)) {
 			return proxyRespository.getPerfectProxys(size);
 		} else {
 			throw UserException.NoServiceAuthError;
@@ -67,7 +67,7 @@ public class MProxyServiceImpl implements IMProxyService {
 		//先检验该服务是否有效
 
 		MUserService mUserService = userServiceMapper.selectOne(new MUserService(serviceID));
-		if (mUserService.enabled() && ProductUtil.isDyNamicProxy(mUserService.getpId())) {
+		if (UserServiceUtils.isOK(mUserService,ProductUtil.CODE_PROXY_DYNAMIC)) {
 			//有效，则通过serviceID，拿到数据库中拿到对应的IP
 			if (proxyRespository.getDynamicProxy(serviceID) == null) {
 				//没拿到，可能是换IP导致，可分配一个临时动态IP

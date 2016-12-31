@@ -3,7 +3,10 @@ package com.ptb.zeus.common.core.mapper.main;
 import com.baomidou.mybatisplus.mapper.AutoMapper;
 import com.ptb.zeus.common.core.model.main.MProduct;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 /**
  *
@@ -14,4 +17,6 @@ import org.springframework.stereotype.Repository;
 public interface MProductMapper extends AutoMapper<MProduct> {
 
 
+
+	List<MProduct> selectByProductContent(@Param("toolID") Integer toolID);
 }

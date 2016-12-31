@@ -14,5 +14,8 @@
  		<result column="utime" property="utime" />
  		<result column="code" property="code" />
 	</resultMap>
+    <select id="selectByProductContent" resultMap="MProductResultMap">
+		select * from m_product where  code div 100 = #{toolID}
+	</select>
 
 </mapper>

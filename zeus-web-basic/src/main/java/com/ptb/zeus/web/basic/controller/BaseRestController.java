@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -33,6 +34,11 @@ public class BaseRestController extends BaseController {
 		if (ex instanceof HttpMessageNotReadableException) {
 			logger.warn(ex.getMessage(), ex);
 			return BaseResponse.NormalResponse;
+		}
+
+		if(ex instanceof MethodArgumentTypeMismatchException) {
+			return new BaseResponse<>(UserException.ArgError.getErrorCode(), UserException.ArgError.getErrorMessage(), null);
+
 		}
 
 		if (ex instanceof ClientAbortException) {

@@ -47,7 +47,6 @@ public class AFUserServiceController extends BaseRestController{
 	@ResponseBody
 	public Object getEntitys(PageRequest request,
 	                         @RequestParam(name = "f", defaultValue = "1") int f) {
-
 		Page<MUserService> page = new Page<MUserService>(request.getPage(), request.getRows(), request.getSort());
 		page.setAsc(request.isAsc());
 

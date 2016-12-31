@@ -24,61 +24,56 @@ import javax.persistence.TemporalType;
 public class MUserService  implements Serializable {
 
 
-	public void initNew(Long uid) {
-		this.enabled = 1;
-		this.uid = uid;
-		this.remark = "";
-		this.method = -1;
-		this.costNum = 0;
-		this.initNum = 0;
-		this.initTime = new Date();
-		this.deadlineTime = new Date();
-		this.ctime = new Date();
-		this.skey = "";
+	private static MUserService initNew(Long uid) {
+		MUserService mUserService = new MUserService();
+		mUserService.enabled = 1;
+		mUserService.uid = uid;
+		mUserService.remark = "";
+		mUserService.method = -1;
+		mUserService.costNum = 0;
+		mUserService.initNum = 0;
+		mUserService.initTime = new Date();
+		mUserService.deadlineTime = new Date();
+		mUserService.ctime = new Date();
+		mUserService.skey = "";
+		return mUserService;
 	}
 
-	public MUserService(Integer code,Long uid,int method,String remark) {
-		initNew(uid);
-		this.enabled = 1;
-		this.uid = uid;
-		this.remark = remark;
-		this.method = method;
-		this.skey = UUID.randomUUID().toString();
+	public static MUserService newTimeService(Integer code,int method, Long uid, String remark, Long timeServiceSeconds){
+		MUserService mUserService = initNew(uid);
+		mUserService.pId = code;
+		mUserService.uid = uid;
+		mUserService.skey = UUID.randomUUID().toString();
+		mUserService.enabled = 1;
+		mUserService.deadlineTime = new Date(System.currentTimeMillis() + timeServiceSeconds*1000);
+		mUserService.method = method;
+		mUserService.remark = remark;
+		return mUserService;
 	}
 
-	public MUserService(Integer code,int method, Long uid, String remark, Long timeServiceSeconds) {
-		this.pId = code;
-		this.uid = uid;
-		this.skey = UUID.randomUUID().toString();
-		this.enabled = 1;
-		this.deadlineTime = new Date(System.currentTimeMillis() + timeServiceSeconds*1000);
-		this.method = method;
-		this.remark = remark;
+	public static MUserService newEnableService(Integer code,Long uid,int method,String remark) {
+		MUserService mUserService = initNew(uid);
+		mUserService.enabled = 1;
+		mUserService.uid = uid;
+		mUserService.remark = remark;
+		mUserService.method = method;
+		mUserService.skey = UUID.randomUUID().toString();
+		return mUserService;
 	}
 
-	public MUserService(Integer code,int method, Long uid, String remark, Integer timeServiceSeconds) {
-		this.pId = code;
-		this.uid = uid;
-		this.skey = UUID.randomUUID().toString();
-		this.enabled = 1;
-		this.deadlineTime = new Date(System.currentTimeMillis() + timeServiceSeconds*1000);
-		this.method = method;
-		this.remark = remark;
+	public static MUserService newCountService(Integer code,int method, Long uid, String remark, int count) {
+		MUserService mUserService = initNew(uid);
+		mUserService.pId = code;
+		mUserService.uid = uid;
+		mUserService.skey = UUID.randomUUID().toString();
+		mUserService.enabled = 1;
+		mUserService.method = method;
+		mUserService.remark = remark;
+		mUserService.setInitNum(count);
+		return mUserService;
+
 	}
 
-
-
-
-
-	enum EServiceType {
-		E_SERVICE_TYPE_GOOD_PORXY(10001),
-		E_SERVICE_TYPE_PERFECT_PROXY(10002),
-		E_SERVICE_TYPE_DYNAMIC_PROXY(10003),;
-		int value;
-		EServiceType(int value) {
-			this.value = value;
-		}
-	}
 
 	@TableField(exist = false)
 	protected static final long serialVersionUID = 1L;

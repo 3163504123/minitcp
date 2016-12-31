@@ -23,9 +23,10 @@ public class AToolController extends ListRestController<MTool,Long> {
 	@Autowired
 	IMToolService imToolService;
 
+
 	@RequestMapping("get")
 	@ResponseBody
-	public Object getEntity(@RequestParam("id")  Integer id) {
+	public Object getEntity(@RequestParam(value = "id",required = false)  Integer id) {
 		if(id == null) {
 			throw UserException.ArgError;
 		}
@@ -36,9 +37,20 @@ public class AToolController extends ListRestController<MTool,Long> {
 		return new BaseResponse<>(getBasicService().selectById(id));
 	}
 
+
+	@RequestMapping("/product")
+	@ResponseBody
+	public Object getServiceProduct(@RequestParam(value = "id",required = false) Integer id) {
+		if(id == null) {
+			throw UserException.ArgError;
+		}
+		return new BaseResponse<>(imToolService.selectProductsByToolID(id));
+	}
+
 	@Override
 	protected IService<MTool, Long> getBasicService() {
 		return this.imToolService;
 	}
+
 }
 

@@ -4,6 +4,7 @@ import com.ptb.zeus.config.ConfigUtil;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
+import org.springframework.stereotype.Component;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -20,6 +21,7 @@ import java.io.InputStream;
  * @version 1.0.0
  * @description 类的功能
  */
+@Component
 public class LocalStorageRespositoryImpl implements StoreRespository {
 	String tbName = "file";
 	String database = "fileTest";

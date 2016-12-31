@@ -114,15 +114,12 @@ public class MOrderServiceImpl extends CommonServiceImpl<MOrderMapper, MOrder> i
 		ArrayList<MUserService> mUserServices = new ArrayList<>();
 		for (MOrderItem mOrderItem : mOrderItems) {
 			MProduct mProduct = mProductMapper.selectById(mOrderItem.getPId());
-			for (int i = 0; i < mOrderItem.getNumber(); i++) {
-				mUserServices.add(ProductUtil.convertProductToMUserService(mProduct, uid));
-			}
+			mUserServices.add(ProductUtil.convertProductToMUserService(mProduct, uid, mOrderItem.getNumber()));
 		}
 		mUserServiceMapper.insertBatch(mUserServices);
 	}
 
-
-	private  MAccountUser getAccountByUID(long uid) {
+	private MAccountUser getAccountByUID(long uid) {
 		/*查询用户账户ID*/
 		MAccountUser mAccountUser = mAccountUserMapper.selectOne(new MAccountUser(uid));
 		if (mAccountUser == null) {

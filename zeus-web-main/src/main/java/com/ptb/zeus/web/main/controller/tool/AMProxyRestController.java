@@ -3,11 +3,11 @@ package com.ptb.zeus.web.main.controller.tool;
 import com.ptb.zeus.common.core.model.main.MProxy;
 import com.ptb.zeus.common.core.model.main.ProxyFilter;
 import com.ptb.zeus.service.main.IMProxyService;
-import com.ptb.zeus.service.main.impl.MProxyServiceImpl;
 import com.ptb.zeus.web.basic.controller.BaseRestController;
 import com.ptb.zeus.web.main.request.ProxyServiceRequest;
 import com.ptb.zeus.web.response.BaseResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,7 +24,9 @@ import javax.validation.Valid;
 @RequestMapping("/api/proxy")
 @RestController
 public class AMProxyRestController extends BaseRestController {
-	IMProxyService imProxyService = new MProxyServiceImpl();
+
+	@Autowired
+	IMProxyService imProxyService;
 
 	private static final int MAX_FREE_PROXY_NUM = 500; //请求返回的最大代理数量
 	private static final int FormatText = 1;

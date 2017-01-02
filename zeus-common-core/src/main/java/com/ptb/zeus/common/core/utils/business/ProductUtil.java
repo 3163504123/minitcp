@@ -15,11 +15,11 @@ import java.util.concurrent.TimeUnit;
 public class ProductUtil {
 	/*########################################################################################*/
 	/*编码含义 前三位带表父类，中三位代表子类，后三表代码服务类型*/
+	public final static int CODE_PROXY_FREE = 1001000;
 	public final static int CODE_PROXY_GOOD = 1001001;
 	public final static int CODE_PROXY_PERFECT = 1001002;
-	public final static int CODE_PROXY_FREE = 1001000;
 	public final static int CODE_PROXY_DYNAMIC = 1001003;
-	public final static int CODE_VCODE_GENERAL = 1002001;   //字符验证码识别
+	public final static int CODE_VCODE_GENERAL = 1003001;   //字符验证码识别
 
 	/*判断服务内容。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。*/
 	public static int getProductContent(int code) {
@@ -53,9 +53,9 @@ public class ProductUtil {
 
 	/*########################################################################################*/
 
-	public final static int CODE_PRODUCT_SERVICE_TYPE_ENABLE = 1; //使能类型
-	public final static int CODE_PRODUCT_SERVICE_TYPE_COUNT = 2; //次数型产品
-	public final static int CODE_PRODUCT_SERVICE_TYPE_TIME = 3; //次数型产品
+	public final static int CODE_PRODUCT_SERVICE_TYPE_ENABLE = 2; //使能类型
+	public final static int CODE_PRODUCT_SERVICE_TYPE_COUNT = 1; //次数型产品
+	public final static int CODE_PRODUCT_SERVICE_TYPE_TIME = 0; //时间型产品
 	/*获取服务方式  时间型 ，使能型，次数型*/
 
 	public static int getServiceMethod(int code) {
@@ -103,6 +103,12 @@ public class ProductUtil {
 	/*购买单位为一年*/
 	final static int CODE_PRODUCT_TYPE_YEAR = 5;
 
+	/*购买次数单位为百*/
+	final static int CODE_PRODUCT_TYPE_HUNDRED = 1;
+
+	/*购买次数单位为千*/
+	final static int CODE_PRODUCT_TYPE_THOUSAND = 2;
+
 
 	public static long getTimeServiceSeconds(int code) {
 		int timeUnit = getServiceUnit(code);
@@ -122,11 +128,7 @@ public class ProductUtil {
 	}
 
 
-	/*购买次数单位为百*/
-	final static int CODE_PRODUCT_TYPE_HUNDRED = 1;
 
-	/*购买次数单位为千*/
-	final static int CODE_PRODUCT_TYPE_THOUSAND = 2;
 
 
 	public static int getServiceCountByProductCode(int code) {
@@ -158,5 +160,11 @@ public class ProductUtil {
 		} return mUserService;
 
 	}
+
+	/*订单状态常量*/
+	public final static int ORDER_STATE_NOPAY=0;
+	public final static int ORDER_STATE_PAYED=1;
+	public final static int ORDER_STATE_COMPLETE = 2;
+	public final static int ORDER_STATE_CANCEL=-1;
 
 }

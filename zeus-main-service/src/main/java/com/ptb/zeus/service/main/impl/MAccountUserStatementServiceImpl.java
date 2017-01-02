@@ -25,7 +25,7 @@ public class MAccountUserStatementServiceImpl extends SuperServiceImpl<MAccountU
 			Page<MAccountUserStatement> page, MAccountUser mAccountUser, Date startDate,
 			Date stopDate) {
 		MAccountUserStatement mAccountUserStatement = new MAccountUserStatement(mAccountUser.getId());
-		EntityWrapper<MAccountUserStatement>    entityWrapper = new EntityWrapper<>();
+		EntityWrapper<MAccountUserStatement>    entityWrapper = new EntityWrapper<>(mAccountUserStatement);
 		if (startDate != null && stopDate != null) {
 			entityWrapper.where("cTime >= {0} and cTime <= {1}", DateFormatUtils.format(startDate,"yyyy-MM-dd HH:mm:ss"), DateFormatUtils.format(stopDate,"yyyy-MM-dd HH:mm:ss"));
 		}

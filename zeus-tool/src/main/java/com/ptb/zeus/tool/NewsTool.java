@@ -2,9 +2,11 @@ package com.ptb.zeus.tool;
 
 import com.ptb.zeus.common.core.model.news.BlogLink;
 import com.ptb.zeus.common.core.model.news.MNews;
+import com.ptb.zeus.common.core.utils.HttpUtil;
 import com.ptb.zeus.common.core.utils.RegexUtils;
 import com.ptb.zeus.service.main.INewsService;
 
+import org.apache.http.client.fluent.Content;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -12,6 +14,7 @@ import org.jsoup.select.Elements;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +35,7 @@ public class NewsTool {
 	static Pattern bizRegex = Pattern.compile(".*var appuin = \"([^\"]*)\".*");
 	static Pattern headImgRegex = Pattern.compile(".*hd_head_img : \"([^\"]*)\".*");
 	static Pattern originalLinkRegex = Pattern.compile(".*var msg_source_url = \'([^\']*)\'.*", Pattern.DOTALL);
-	static Pattern coverImgRegex = Pattern.compile(".*var msg_cdn_url = \"([^\"]*)\".*");
+	static Pattern coverImgRegex = Pattern.compile(".*var msg_cdn_url = \"([^\\?\"]*)\".*");
 
 	static public List<String> getHotArticleFromSogou() {
 		List<String> articles = new ArrayList<>();
@@ -73,12 +76,18 @@ public class NewsTool {
 
 	public static void addByBlogLink(BlogLink blogLink) {
 
-		WxArticle wxArticle = parsePage(blogLink.getUrl());
-		if(wxArticle != null) {
-			MNews mNews = convertWxArticleToNews(wxArticle);
-			iNewsService.addNews(mNews);
+		try {
+			Content content = HttpUtil.getPageByPcClient(blogLink.getUrl());
+			WxArticle wxArticle = parsePage(content.asString());
+			wxArticle.setArticleUrl(blogLink.getUrl());
+			if(wxArticle != null) {
+				MNews mNews = convertWxArticleToNews(wxArticle);
+				iNewsService.addNews(mNews);
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+			return;
 		}
-
 	}
 
 
@@ -87,7 +96,7 @@ public class NewsTool {
 		String title = html.select(".rich_media_title").first().text();
 		String nickName = html.select(".profile_nickname").text();
 		String author = html.select("#post-user").text();
-		String content = html.select("#js_content").html();
+		String content = html.select("#page-content").html();
 		String wxid = html.select(".profile_inner>p:nth-of-type(1)>.profile_meta_value").text().toString();
 		String brief = html.select(".profile_inner>p:nth-of-type(2)>.profile_meta_value").text().toString();
 		//String postDate = html.select("#post-date").text();
@@ -133,6 +142,7 @@ public class NewsTool {
 		}
 
 		WxArticle article = new WxArticle(title, nickName, content, wxid, brief, postTime, biz, headImgUrl, author);
+		article.setRawPage(pageSource);
 		article.setSourceLink(sourceLink);
 		article.setOriginal(isOrinal);
 		article.setCoverImgUrl(coverImgUrl);
@@ -141,19 +151,29 @@ public class NewsTool {
 
 	public static MNews convertWxArticleToNews(WxArticle wxArticle) {
 		MNews blog = new MNews();
-		blog.setContent(Jsoup.parseBodyFragment(wxArticle.getContent()).text());
+		blog.setContent(wxArticle.getContent());
 		blog.setPostTime(wxArticle.getPostTime());
 		blog.setTitle(wxArticle.getTitle());
 		blog.setAuthor(wxArticle.getAuthor());
 		blog.setSource(wxArticle.getNickName());
 		blog.setSourceUrl(wxArticle.getArticleUrl());
 		blog.setConverPlan(wxArticle.getCoverImgUrl());
+		blog.setRawPage(wxArticle.getRawPage());
 		return blog;
 	}
 
 
 	public static void main(String[] args) {
 		NewsTool newsTool = new NewsTool();
-		System.out.println(newsTool.getHotArticleFromSogou());
+		List<String> hotArticleFromSogou = newsTool.getHotArticleFromSogou();
+		hotArticleFromSogou.forEach(k -> {
+			try {
+				addByBlogLink(new BlogLink(k, 0));
+			} catch (Exception e) {
+				logger.warn(String.format("add article url %s error", k));
+			}
+
+		});
+
 	}
 }

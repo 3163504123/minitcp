@@ -1,11 +1,12 @@
 package com.ptb.zeus.service.main.impl;
 
+import com.ptb.zeus.common.core.mapper.main.MProductMapper;
 import com.ptb.zeus.common.core.mapper.main.MUserServiceMapper;
 import com.ptb.zeus.common.core.model.main.MProxy;
 import com.ptb.zeus.common.core.model.main.MUserService;
 import com.ptb.zeus.common.core.model.main.ProxyFilter;
-import com.ptb.zeus.common.core.repository.impl.ProxyMongoRespositoryImpl;
 import com.ptb.zeus.common.core.repository.ProxyRespository;
+import com.ptb.zeus.common.core.repository.impl.ProxyMongoRespositoryImpl;
 import com.ptb.zeus.common.core.utils.UserServiceUtils;
 import com.ptb.zeus.common.core.utils.business.ProductUtil;
 import com.ptb.zeus.exception.UserException;
@@ -13,7 +14,8 @@ import com.ptb.zeus.service.main.IMProxyService;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -24,11 +26,17 @@ import java.util.List;
  * @version 1.0.0
  * @description 代理的服务类，完成代理相关的逻辑
  */
-@Component
+@Service
 public class MProxyServiceImpl implements IMProxyService {
 	private static Logger logger = LoggerFactory.getLogger(MProxyServiceImpl.class);
+	@Autowired
 	ProxyRespository proxyRespository;
-	MUserServiceMapper userServiceMapper;
+
+	@Autowired
+	MUserServiceMapper mUserServiceMapper;
+
+	@Autowired
+	MProductMapper mProductMapper;
 
 	public MProxyServiceImpl() {
 		proxyRespository = new ProxyMongoRespositoryImpl();
@@ -42,8 +50,7 @@ public class MProxyServiceImpl implements IMProxyService {
 	@Override
 	public List<MProxy> getGoodProxys(
 			String serviceID, int size, ProxyFilter mProxy) {
-		//todo 根据KEY判断是否有使用该服务的权限
-		MUserService mUserService = userServiceMapper.selectOne(new MUserService(serviceID));
+		MUserService mUserService = mUserServiceMapper.selectOne(new MUserService(serviceID));
 
 		if (UserServiceUtils.isOK(mUserService,ProductUtil.CODE_PROXY_GOOD)) {
 			return proxyRespository.getGoodProxys(size, mProxy);
@@ -56,7 +63,7 @@ public class MProxyServiceImpl implements IMProxyService {
 	@Override
 	public List<MProxy> getPerfectProxys(String serviceID, int size) {
 		//todo 根据KEY判断是否有使用该服务的权限
-		MUserService mUserService = userServiceMapper.selectOne(new MUserService(serviceID));
+		MUserService mUserService = mUserServiceMapper.selectOne(new MUserService(serviceID));
 		if (UserServiceUtils.isOK(mUserService,ProductUtil.CODE_PROXY_PERFECT)) {
 			return proxyRespository.getPerfectProxys(size);
 		} else {
@@ -68,7 +75,7 @@ public class MProxyServiceImpl implements IMProxyService {
 	public MProxy getDynamicProxys(String serviceID) {
 		//先检验该服务是否有效
 
-		MUserService mUserService = userServiceMapper.selectOne(new MUserService(serviceID));
+		MUserService mUserService = mUserServiceMapper.selectOne(new MUserService(serviceID));
 		if (UserServiceUtils.isOK(mUserService,ProductUtil.CODE_PROXY_DYNAMIC)) {
 			//有效，则通过serviceID，拿到数据库中拿到对应的IP
 			if (proxyRespository.getDynamicProxy(serviceID) == null) {

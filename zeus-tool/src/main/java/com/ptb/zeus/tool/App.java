@@ -24,7 +24,7 @@ public class App {
 		CommandLineParser parser = new DefaultParser();
 		Options options = new Options();
 		options.addOption("h", "help", false, "显示帮助 ");
-		options.addOption("news", true, "爬取SOGOU信息");
+		options.addOption("news", false, "爬取SOGOU信息");
 		options.addOption("fetchProxy", false, "获取最新代理");
 		options.addOption("checkProxy", false, "检查代理有效性");
 

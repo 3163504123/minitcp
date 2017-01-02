@@ -9,6 +9,7 @@ import com.ptb.zeus.common.core.model.user.TbUser;
 import com.ptb.zeus.exception.UserException;
 import com.ptb.zeus.service.user.ITbUserService;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,6 +21,7 @@ import java.util.List;
 @Service
 public class TbUserServiceImpl extends SuperServiceImpl<TbUserMapper, TbUser> implements ITbUserService {
 
+	@Autowired
 	MAccountUserMapper mAccountUserMapper;
 
 	@Override

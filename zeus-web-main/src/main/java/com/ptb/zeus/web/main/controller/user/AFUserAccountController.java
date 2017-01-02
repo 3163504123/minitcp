@@ -3,6 +3,7 @@ package com.ptb.zeus.web.main.controller.user;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.ptb.zeus.common.core.model.main.MAccountUser;
 import com.ptb.zeus.common.core.model.main.MAccountUserStatement;
+import com.ptb.zeus.exception.UserException;
 import com.ptb.zeus.service.main.IMAccountUserService;
 import com.ptb.zeus.service.main.IMAccountUserStatementService;
 import com.ptb.zeus.service.user.ITbUserService;
@@ -60,6 +61,9 @@ public class AFUserAccountController extends BaseRestController {
 		page.setAsc(request.isAsc());
 
 		MAccountUser acct = imAccountUserService.getAccountByUserID(getToken().getUid());
+		if(acct == null) {
+			throw UserException.NoExistUserError;
+		}
 
 		Page<MAccountUserStatement> tbUserPage  = imAccountUserStatementService.selectPage(page,acct,new Date(statementRequest.getStartDate()),
 		                                                                                   new Date(statementRequest.getStopDate()));

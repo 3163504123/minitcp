@@ -15,6 +15,9 @@ public class UserServiceUtils {
 
 	public static boolean isOK(MUserService mUserService, int codeProxyGood) {
 		boolean ret = false;
+		if(mUserService == null) {
+			throw UserException.NoServiceAuthError;
+		}
 		if (mUserService.getEnabled() <= 0) {
 			throw UserException.ServiceOverError;
 		}

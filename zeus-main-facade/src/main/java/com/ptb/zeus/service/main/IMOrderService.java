@@ -1,7 +1,10 @@
 package com.ptb.zeus.service.main;
 
 import com.baomidou.framework.service.ICommonService;
+import com.baomidou.mybatisplus.plugins.Page;
 import com.ptb.zeus.common.core.model.main.MOrder;
+
+import java.util.Date;
 
 /**
  *
@@ -17,4 +20,5 @@ public interface IMOrderService extends ICommonService<MOrder> {
 
 	void cancelOrder(long uid, String orderID);
 
+	Page<MOrder> selectPage(Page<MOrder> page, long uid, Date date, Date date1);
 }

@@ -19,6 +19,8 @@ public class WxArticle {
     //封面图
     private String coverImgUrl;
 
+    private String rawPage;
+
     /**
      * Instantiates a new Wx article.
      *
@@ -272,6 +274,14 @@ public class WxArticle {
 
     public void setCoverImgUrl(String coverImgUrl) {
         this.coverImgUrl = coverImgUrl;
+    }
+
+    public String getRawPage() {
+        return rawPage;
+    }
+
+    public void setRawPage(String rawPage) {
+        this.rawPage = rawPage;
     }
 
     @Override

@@ -37,7 +37,7 @@ public class INewsServiceImpl implements INewsService {
 
 	@Override
 	public void addNews(MNews mNews) {
-			//todo
+		mNewsRespository.addMNews(mNews);
 	}
 
 

@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.plugins.Page;
 import com.ptb.zeus.web.basic.request.PageRequest;
 import com.ptb.zeus.web.response.BaseResponse;
 
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -24,6 +25,7 @@ public abstract class ListRestController<R,U> extends BaseRestController {
 
 	@RequestMapping("list")
 	@ResponseBody
+	@Cacheable(value = "default")
 	public Object getEntitys(PageRequest request, R r,
 	                         @RequestParam(name = "f", defaultValue = "0") int f) {
 		Page<R> page = new Page<R>(request.getPage(), request.getRows(), request.getSort());

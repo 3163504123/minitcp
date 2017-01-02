@@ -19,6 +19,7 @@ import org.bson.Document;
 import org.bson.conversions.Bson;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -35,6 +36,7 @@ import java.util.concurrent.TimeUnit;
  * @version 1.0.0
  * @description 类的功能
  */
+@Component
 public class ProxyMongoRespositoryImpl implements ProxyRespository {
 	static Logger logger = LoggerFactory.getLogger(ProxyMongoRespositoryImpl.class);
 

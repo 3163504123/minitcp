@@ -58,17 +58,16 @@ public class MOrder implements Serializable {
 	 */
 	private String remark;
 
-	/*订单状态常量*/
-	public final static int ORDER_STATE_NOPAY=0;
-	public final static int ORDER_STATE_PAYED=1;
-	public final static int ORDER_STATE_COMPLETE = 2;
-	public final static int ORDER_STATE_CANCEL=-1;
 	public MOrder() {
 	}
 
 	public MOrder(long accountID, String orderID) {
 		this.accountId = accountID;
 		this.id = orderID;
+	}
+
+	public MOrder(Long id) {
+		this.accountId = id;
 	}
 
 

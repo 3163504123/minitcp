@@ -80,7 +80,7 @@ public class AFUserController extends BaseRestController {
 
 			System.out.println(vcode);
 			//发送短信
-/*			iMMobileMsgService.sendRegisterSMS(sendRegVCodeRequest.getPhone(), vcode);*/
+			iMMobileMsgService.sendRegisterSMS(sendRegVCodeRequest.getPhone(), vcode);
 
 			//校验成功后，删除COOKIE中的图片验证码，并记录手机验证码
 			httpSession.removeAttribute(E_SESSION_IMGVCODE.name());
@@ -205,8 +205,8 @@ public class AFUserController extends BaseRestController {
 	}
 
 	private void checkPhoneAndVcode(String phone, String vcode, HttpSession httpSession) {
-		String sessionPhone = httpSession.getAttribute(E_SESSION_PHONENUM.name()).toString();
-		String sessionVcode = httpSession.getAttribute(E_SESSION_PHONEVCODE.name()).toString();
+		String sessionPhone = (String) httpSession.getAttribute(E_SESSION_PHONENUM.name());
+		String sessionVcode = (String) httpSession.getAttribute(E_SESSION_PHONEVCODE.name());
 
 		if (StringUtils.isBlank(sessionVcode) || StringUtils.isBlank(sessionPhone)) {
 			throw UserException.NoExistVaildCodeError;

@@ -1,6 +1,6 @@
 package com.ptb.zeus.web.main.request;
 
-import org.hibernate.validator.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 /**
  * Copyright ©2016 Beijing Tender Union Information co , LTD
@@ -11,7 +11,7 @@ import org.hibernate.validator.constraints.NotBlank;
  */
 public class CreateOrderRequest {
 	/*商品ID*/
-	@NotBlank
+	@NotNull
 	Integer productID ;
 	/*商品数量*/
 	Integer num = 1;

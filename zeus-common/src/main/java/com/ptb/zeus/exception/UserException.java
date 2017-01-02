@@ -25,6 +25,9 @@ public class UserException extends RuntimeException {
 	public static final UserException NotEnoughPointError = new UserException("账户点数不足，请充值", 13002);
 	public static final UserException InvaildUIDRequest = new UserException("无效用户ID或你不能查看其它用户信息", 13003);
 	public static final UserException NoExistOrderError = new UserException("不存在的订单", 13004);
+
+
+
 	public static final UserException IdentifyVCodeImageUploadError = new UserException("上传识别图片失败", 13005);
 	public static final UserException UploadFileSizeOutError = new UserException("上传识别太大", 13006);
 	public static final UserException ServiceKeyError = new UserException("服务KEY类型不匹配", 13007);

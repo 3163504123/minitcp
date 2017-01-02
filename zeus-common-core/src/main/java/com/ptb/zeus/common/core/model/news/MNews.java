@@ -11,12 +11,21 @@ public class MNews {
     String title;
     String content;
     Long postTime;
+    String rawPage;
     List<String> tags;
     private String author;
     private String source;
     private String sourceUrl;
     int type = 0;
     private String converPlan;
+
+    public String getRawPage() {
+        return rawPage;
+    }
+
+    public void setRawPage(String rawPage) {
+        this.rawPage = rawPage;
+    }
 
     public Long getPostTime() {
         return postTime;

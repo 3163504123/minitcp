@@ -1,6 +1,8 @@
 package com.ptb.zeus.service.main.impl;
 
 import com.baomidou.framework.service.impl.SuperServiceImpl;
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.baomidou.mybatisplus.plugins.Page;
 import com.ptb.zeus.common.core.mapper.main.MProductMapper;
 import com.ptb.zeus.common.core.mapper.main.MToolMapper;
 import com.ptb.zeus.common.core.mapper.user.TbUserMapper;
@@ -9,6 +11,7 @@ import com.ptb.zeus.common.core.model.main.MTool;
 import com.ptb.zeus.common.core.model.user.TbUser;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -47,4 +50,12 @@ public class MToolServiceImpl extends SuperServiceImpl<MToolMapper, MTool> imple
 			Integer toolID) {
 		return productMapper.selectByProductContent(toolID);
 	}
+
+	@Override
+	@Cacheable(value = "default",key = "#page.current + ':' + #page.size")
+	public Page<MTool> selectAllByPage(
+			Page<MTool> page) {
+		return this.selectPage(page,new EntityWrapper<>());
+	}
+
 }

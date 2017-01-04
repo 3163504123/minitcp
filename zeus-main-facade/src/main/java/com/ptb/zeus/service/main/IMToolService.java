@@ -1,6 +1,7 @@
 package com.ptb.zeus.service.main;
 
 import com.baomidou.framework.service.ISuperService;
+import com.baomidou.mybatisplus.plugins.Page;
 import com.ptb.zeus.common.core.model.main.MProduct;
 import com.ptb.zeus.common.core.model.main.MTool;
 
@@ -16,4 +17,6 @@ public interface IMToolService extends ISuperService<MTool> {
 	void testJXA();
 
 	List<MProduct> selectProductsByToolID(Integer id);
+
+	Page<MTool> selectAllByPage(Page<MTool> page);
 }

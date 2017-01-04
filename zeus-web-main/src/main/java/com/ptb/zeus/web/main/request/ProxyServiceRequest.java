@@ -18,7 +18,7 @@ public class ProxyServiceRequest {
 
 	@Min(0)
 	@Max(100)
-	int size = 1;          //请求代理数量
+	int size = 10;          //请求代理数量
 
 
 	public String getKey() {

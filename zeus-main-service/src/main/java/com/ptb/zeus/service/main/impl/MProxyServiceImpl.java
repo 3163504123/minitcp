@@ -57,7 +57,6 @@ public class MProxyServiceImpl implements IMProxyService {
 		} else {
 			throw UserException.NoServiceAuthError;
 		}
-
 	}
 
 	@Override

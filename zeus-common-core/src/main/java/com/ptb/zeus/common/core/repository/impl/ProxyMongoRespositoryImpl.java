@@ -76,7 +76,7 @@ public class ProxyMongoRespositoryImpl implements ProxyRespository {
 	 * @param id the id
 	 */
 	public void updateCheckTime(String id) {
-		coll().updateOne(Filters.eq("_id", id), new Document("checkTime", System.currentTimeMillis()));
+		coll().updateOne(Filters.eq("_id", id), new Document().append("$set",new Document("checkTime", System.currentTimeMillis())));
 	}
 
 

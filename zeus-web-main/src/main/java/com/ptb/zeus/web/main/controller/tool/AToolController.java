@@ -69,6 +69,5 @@ public class AToolController extends BaseRestController {
 		return map;
 	}
 
-
 }
 

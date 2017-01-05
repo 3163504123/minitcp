@@ -1,7 +1,9 @@
 package com.ptb.zeus.common.core.repository;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 
 /**
  * Copyright ©2016 Beijing Tender Union Information co , LTD
@@ -14,5 +16,7 @@ public interface StoreRespository {
 
 	String saveFile(String fileType, String fileType1, InputStream inputStream);
 
-	InputStream getFileInputStream(String pathFileName) throws FileNotFoundException;
+	void getFileInputStream(String filename, OutputStream outputStream) throws IOException;
+
+	InputStream getFileInputStream(String uuid) throws FileNotFoundException;
 }

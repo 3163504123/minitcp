@@ -14,6 +14,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 
 /**
  * Copyright ©2016 Beijing Tender Union Information co , LTD
@@ -27,29 +28,6 @@ public class LocalStorageRespositoryImpl implements StoreRespository {
 	String tbName = "file";
 	String database = "fileTest";
 
-/*	private MongoDatabase db() {
-		return MongoUtils.i().getDatabase("fileTest");
-	}
-
-	private void upload(){
-		GridFSBucket gridFSBucket = GridFSBuckets.create(db());
-		try {
-			InputStream streamToUploadFrom = new FileInputStream(new File("/Users/eric/wk/self/java/zeus-parent/zeus-parent.iml"));
-			GridFSUploadOptions gridFSUploadOptions = new GridFSUploadOptions()
-					.chunkSizeBytes(1024)
-					.metadata(new Document("type", "presentation"));
-			ObjectId fileId = gridFSBucket.uploadFromStream("mongodb-tutorial", streamToUploadFrom, gridFSUploadOptions);
-			System.out.println(fileId);
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
-	}
-
-	public static void main(String[] args) {
-		LocalStoreRespositoryImpl mongoRespository = new LocalStoreRespositoryImpl();
-		mongoRespository.test();
-	}*/
-
 	private String localFileStoragePrefix;
 
 	public LocalStorageRespositoryImpl() {
@@ -60,15 +38,12 @@ public class LocalStorageRespositoryImpl implements StoreRespository {
 	public String saveFile(String fileType, String filename, InputStream inputStream) {
 		try {
 			String pathFileName = String.format("%s/%d_%s", fileType, System.currentTimeMillis(), filename);
-			String fullPathFilename = String.format("%s/%s",localFileStoragePrefix,pathFileName);
+			String fullPathFilename = String.format("%s/%s", localFileStoragePrefix, pathFileName);
 			FileUtils.forceMkdirParent(new File(fullPathFilename));
-			BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(new File(
-					fullPathFilename)));
+			BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(new File(fullPathFilename)));
 			IOUtils.copyLarge(inputStream, stream);
 			stream.close();
 			return pathFileName;
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -76,8 +51,18 @@ public class LocalStorageRespositoryImpl implements StoreRespository {
 	}
 
 	@Override
-	public InputStream getFileInputStream(String pathFileName) throws FileNotFoundException {
-		String fullFilePathName = String.format("%s/%s", localFileStoragePrefix, pathFileName);
-		return new FileInputStream(fullFilePathName);
+	public void getFileInputStream(
+			String filename, OutputStream outputStream) throws IOException {
+		String fullFilePathName = String.format("%s/%s", localFileStoragePrefix, filename);
+		FileInputStream fileInputStream = new FileInputStream(fullFilePathName);
+		long l = IOUtils.copyLarge(fileInputStream, outputStream);
+	}
+
+	@Override
+	public InputStream getFileInputStream(String uuid) throws FileNotFoundException {
+		String fullFilePathName = String.format("%s/%s", localFileStoragePrefix, uuid);
+		FileInputStream fileInputStream = new FileInputStream(fullFilePathName);
+		return fileInputStream;
+
 	}
 }

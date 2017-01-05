@@ -1,8 +1,10 @@
 package com.ptb.zeus.service.main;
 
 import com.ptb.zeus.common.core.model.main.IdentifyVCodeResult;
+import com.ptb.zeus.common.core.model.main.ReginizeHiistory;
 
 import java.io.InputStream;
+import java.util.List;
 
 /**
  * Copyright ©2016 Beijing Tender Union Information co , LTD
@@ -14,4 +16,6 @@ import java.io.InputStream;
 public interface MIdentifyVCodeService {
 
 	IdentifyVCodeResult regnize(String originalFilename, InputStream inputStream, String key);
+
+	List<ReginizeHiistory> selecltIdentifyVCodeHistory(int page, int rows, long uid);
 }

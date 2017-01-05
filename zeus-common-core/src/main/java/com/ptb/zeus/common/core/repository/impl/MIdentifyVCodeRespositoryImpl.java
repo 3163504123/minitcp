@@ -8,6 +8,7 @@ import com.ptb.zeus.common.core.utils.identiyVCode.ChaoJiYing;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import java.io.IOException;
 import java.io.InputStream;
 
 /**
@@ -31,8 +32,17 @@ public class MIdentifyVCodeRespositoryImpl implements MIdentifyVCodeRespository 
 
 	@Override
 	public IdentifyVCodeResult regnize(InputStream fileInputStream) {
-		String s = ChaoJiYing.PostPic(chaojiyingUsername, chaojiyingPassword, codeType, "5000", "5", "0", "haha", fileInputStream);
-		return JSON.parseObject(s,IdentifyVCodeResult.class);
+		try {
+			String s = ChaoJiYing.PostPic(chaojiyingUsername, chaojiyingPassword, codeType, "5000", "5", "0", "haha", fileInputStream);
+			return JSON.parseObject(s,IdentifyVCodeResult.class);
+		}finally {
+			try {
+				fileInputStream.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+
 	}
 
 }

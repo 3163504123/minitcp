@@ -29,7 +29,7 @@
         <redis.version>2.8.0</redis.version>
         <mapper.version>3.3.8</mapper.version>
         <pagehelper.version>4.1.1</pagehelper.version>
-        <mongo.version>3.0.4</mongo.version>
+        <mongo.version>3.2.2</mongo.version>
         <zk.version>3.4.5</zk.version>
         <curator-version>3.2.0</curator-version>
         <ptb-util.verion>1.2.4</ptb-util.verion>
